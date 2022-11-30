@@ -34,6 +34,7 @@ return [
     */
 
     'connections' => [
+        
 
             'mongodb' => [
                   'driver' => 'mongodb',
