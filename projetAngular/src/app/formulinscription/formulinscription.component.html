@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formulaire d'inscription</title>
+</head>
+<body>
+<div class="container">
+<legend class="text-dark d-flex justify-content-center">Formulaire d'inscription</legend>
+        <!-- <form class="row g-3">
+    
+                    <div class="form-group col-md-6" >
+                      <label>Prenom<span style="color: red;">*</span></label>
+                      <input type="text" name="prenom" class="form-control ng-untouched ng-pristine ng-valid required" id="user"
+                      [(ngModel)]="user.prenom" name="prenom">
+                    </div>
+    
+                    <div class="form-group col-md-6" >
+                      <label for="nom">Nom<span style="color: red;">*</span></label>
+                      <input type="text" name="nom" class="form-control ng-untouched ng-pristine ng-valid required"
+                      [(ngModel)]="user.nom" name="nom"  #name="ngModel">
+                      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                           Champ obligatoire !
+                      </div>
+                    </div>
+    
+                    <div class="form-group col-md-6">
+                      <label>Mot de passe<span style="color: red;">*</span></label>
+                      <input type="password" name="password" class="form-control ng-untouched ng-pristine ng-valid required" id="password">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Confirmer mot de passe<span style="color: red;">*</span></label>
+                      <input type="password" name="Confirmpassword" class="form-control ng-untouched ng-pristine ng-valid required" id="Confirmpassword">
+                    </div>
+                  
+                    <div class="form-group col-md-6">
+                      <label>Email<span style="color: red;">*</span></label>
+                      <input type="text" name="email" class="form-control ng-untouched ng-pristine ng-valid required" id="mail" [(ngModel)]="user.email">
+                    </div>
+    
+                    <div class="form-group col-md-6">
+                      <label>Role<span style="color: red;">*</span></label>
+                      <select id="mobilenumber" name="MobileNumber"  class="form-select ng-untouched ng-pristine ng-valid required">
+                      <option selected></option>
+                      <option>Administrateur</option>
+                      <option>Utilisateur</option>
+                    </select>
+                    </div>
+                    
+                    <div class="col-md-3">
+                      <label for="fil" class="form-label">Photo de profil</label>
+                      <input type="file" name="image" class="form-control" id="file" accept="jpeg, jpg, png">
+                   </div>
+    
+                    <div class="col-12">
+                      <input type="submit" name="submit" id="bouton" class="btn btn-light" value="S'inscrire">
+                      <a href="../index.php" style="color: black; float: right;">Se connecter</a>
+                    </div>
+                   
+                  </form> -->
+
+
+
+                  <div class="container">
+                    <div [hidden]="submitted">
+                      <form (ngSubmit)="onSubmit()" #heroForm="ngForm" class="form-group row g-3">
+                        <div class="form-group col-md-6">
+                          <label for="nom">Nom<span style="color: red;">*</span></label>
+                          <input type="text" class="form-control" id="nom"
+                                 required
+                                 [(ngModel)]="model.nom" name="nom"
+                                 #name="ngModel">
+                          <div [hidden]="name.valid || name.pristine"
+                               class="alert alert-danger">
+                            Champ obligatoire !
+                          </div>
+                        </div>
+                  
+                        <div class="form-group col-md-6">
+                            <label for="nom">Prenom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" id="prenom"
+                                   required
+                                   [(ngModel)]="model.prenom" name="prenom" 
+                                   #prenom="ngModel">
+                            <div [hidden]="prenom.valid || prenom.pristine"
+                                 class="alert alert-danger">
+                                 Champ obligatoire !
+                            </div>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="nom">Email<span style="color: red;">*</span></label>
+                            <input type="email" class="form-control" id="email"
+                                   required
+                                   [(ngModel)]="model.email" name="email"
+                                   #email="ngModel">
+                            <div [hidden]="email.valid || email.pristine"
+                                 class="alert alert-danger">
+                                 Champ obligatoire !
+                            </div>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="nom">Mot de passe<span style="color: red;">*</span></label>
+                            <input type="password" class="form-control" id="mdp"
+                                   required
+                                   [(ngModel)]="model.mdp" name="mdp"
+                                   #mdp="ngModel">
+                            <div [hidden]="mdp.valid || mdp.pristine"
+                                 class="alert alert-danger">
+                                 Champ obligatoire !
+                            </div>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="nom">Confirmer mot de passe<span style="color: red;">*</span></label>
+                            <input type="password" class="form-control" id="mdp1"
+                                   required
+                                   [(ngModel)]="model.mdp1" name="mdp1"
+                                   #mdp1="ngModel">
+                            <div [hidden]="mdp1.valid || mdp1.pristine"
+                                 class="alert alert-danger">
+                                 Champ obligatoire !
+                            </div>
+                          </div>
+                          
+                        <div class="form-group col-md-6">
+                          <label for="power">Roles<span style="color: red;">*</span></label>
+                          <select class="form-control" id="power"
+                                  required
+                                  [(ngModel)]="model.roles" name="power"
+                                  #power="ngModel">
+                            <option *ngFor="let pow of roles" [value]="pow">{{pow}}</option>
+                          </select>
+                          <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+                            Champ obligatoire !
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>Photo de profil</label>
+                            <input type="file" class="form-control">
+                            </div>
+                        </div>
+                  <div>
+                        <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">S'inscrir</button>
+                        <a href="" style="color: black; float: right;">Se connecter</a>
+                  </div>     
+                      </form>
+                    </div>
+                  </div>
+    </div> 
+</body>
+</html>

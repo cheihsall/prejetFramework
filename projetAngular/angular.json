@@ -95,12 +95,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss", 
+              "prejetFramework/projetAngular/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "448372a4-fe22-4764-aa8e-27cf9fbe2943"
   }
 }
