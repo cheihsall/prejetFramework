@@ -17,7 +17,7 @@ class Utilisateurs extends Controller
             $randomString .= $characters[$index];
         }
 
-        return 'MA' . $randomString;
+        return 'G5' . $randomString;
     }
     public function addUser(Request $request){
 
