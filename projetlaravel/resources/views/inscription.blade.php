@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="col-md-6 input-control">
-                    <label for="input4" class="form-label">Ajouter une image</label>
+                    <label for="input4" class="form-label">Photo de profil</label>
                     <input type="file" name="photo" accept=".jpg,.png,.jpeg" class="form-control border-dark p-2">
                 </div>
 
@@ -79,8 +79,8 @@
                 </div>
 
                 <span class="text text-center mt-2">
-                    <p>Vous avez un compte?
-                        <a href="../../index.php" style="text-decoration:none;"> connectez-vous</a>
+                    <p>Vous avez un compte ?      
+                        <a href="" style="text-decoration:none;"> connectez-vous</a>
                     </p>
                 </span>
             </form>

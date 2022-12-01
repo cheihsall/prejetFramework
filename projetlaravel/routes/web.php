@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Utilisateurs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('inscription/', function () {
     return view('inscription');
 });
+
