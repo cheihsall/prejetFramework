@@ -51,7 +51,7 @@
                         <label for="nom">Email<span style="color: red;">*</span></label>
                         <input type="email" class="form-control" id="email" required [(ngModel)]="model.email"
                             name="email" #email="ngModel">
-                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger"> 
                             Champ obligatoire !
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         <input type="file" class="form-control">
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary"
+                        <button type="submit" class="btn btn-dark"
                             [disabled]="!heroForm.form.valid">S'inscrire</button>
                         <a href="" style="color: black; float: right;">Se connecter</a>
                     </div>
