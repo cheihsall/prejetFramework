@@ -22,5 +22,3 @@ Route::get('/but', function () {
     return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']);
  });
 
- /* -
-  */
