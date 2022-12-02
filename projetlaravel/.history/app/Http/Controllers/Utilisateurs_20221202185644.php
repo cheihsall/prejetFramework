@@ -50,13 +50,15 @@ class Utilisateurs extends Controller
 
         $valid = $request->validate([
 
-           
+            'nom' => 'required',
+            'prenom' => 'required',
             'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'passwords' => 'required',
-            
+            'roles' => 'required',
+            'passwords2' => 'required',
             
         ]);
-        return $valid;
+        return $validation;
 
 
         
