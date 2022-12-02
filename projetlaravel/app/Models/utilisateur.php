@@ -13,7 +13,6 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class utilisateur extends Model
 {
     use HasFactory;
-    
 
     protected $fillable = [
         'matricule',
@@ -26,6 +25,7 @@ class utilisateur extends Model
         'date_inscription',
         'date_archivage',
         'date_modification',
-        
+
+
     ];
 }

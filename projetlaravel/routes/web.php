@@ -20,6 +20,9 @@ Route::get('/', function () {
 }) ->name('welcome');
 Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
+
+//creation  
+
 Route::get('/admin', function () {
     return view('admin');
 });
@@ -33,6 +36,7 @@ Route::get('/inscription', function () {
 });
  
 Route::post('/inscription' ,[utilisateurs::class,'inscription']);
+
 
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 
