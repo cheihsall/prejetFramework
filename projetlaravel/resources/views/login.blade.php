@@ -4,59 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <title>Page CONNEXION</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Page de Connexion</title>
 </head>
 
 <body>
 
     <div class=" container d-flex justify-content-center mt-5">
-        <!--     <img src="./views/img/decor.png" alt="" >
- -->
-        <div class="col-md-8 ">
+        <div class="col-md-8 mt-5">
 
-            <div class="row d-flex justify-content-center mt-5 ">
-              
-
+            <div class="row d-flex justify-content-center bg-white-50 mt-5 ">
 
                 <form action="{{ route('login.store') }}" method="post"
-                    class="row g-2 d-block bg-transparent col-md-8">
+                    class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
                     @csrf
-                    <nav class="navbar navbar-dark bg-success">
-                        <div class="container d-flex justify-content-center">
+                    <nav class="navbar bg-success mt-0 col-md-12">
+                        <div class="container d-flex justify-content-center col-md-12">
                             <a class="navbar-brand" href="#">
-                                <span class=""> <b>CONNEXION </b> </span>
+                                <span class="text-white"><h3>Connexion</h3></span>
                             </a>
+                            </div>
 
                     </nav>
-
-                    <div class="col-md-12 p-3">
-                        <label for="">E-MAIL</label>
-                        <input id="email" class="form-control " type='text' id="email"
+                    <div class="col-md-12">
+                        <label  class="form-label">Email<span class="text-danger">*</span></label>
+                        <input id="email" class="form-control border-dark p-2" type='text' id="email"
                             name='email' placeholder=" Email ">
-                        <!--div class="invalid-feedback d-none" id="erreur_email2">entrez un format valide</div>
-                        <div class="invalid-feedback d-none" id="erreur_email">Email est obligatoire</div-->
-                            @error('email')
-                            <span class="text-danger">{{$message}}</span>
-                            <br>
-                            @enderror
-                    
-                        </div>
 
-                    <div class="col-md-12 p-3 ">
-                        <label for="input2">Mot de Passe</label>
-                        <input id="passwords" class="form-control border-dark p-3" type="password" name="mdp"
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                            <br>
+                        @enderror
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <label class="form-label">Mot de Passe<span class="text-danger">*</span></label>
+                        <input id="passwords" class="form-control border-dark p-2" type="password" name="mdp"
                             id="mdp" placeholder="mot de passe">
                         <!--div class="invalid-feedback d-none" id="erreur_passwords">mot de passe est obligatoire</div-->
                         @error('mdp')
-                        <span class="text-danger">{{$message}}</span>
-                        <br>
+                            <span class="text-danger">{{ $message }}</span>
+                            <br>
                         @enderror
-                
+
                     </div>
 
                     <div class="row d-flex justify-content-center mt-2">
@@ -68,7 +61,7 @@
 
                     <span class="text text-center mt-2">
                         <p>Vous n'avez pas de compte?
-                            <a href="./views/pages/inscription.php" style="text-decoration:none;">s'inscrire</a>
+                            <a href="./views/pages/inscription.php" style="text-decoration:none;">S'inscrire</a>
                         </p>
                     </span>
                 </form>
@@ -81,3 +74,9 @@
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+</script>

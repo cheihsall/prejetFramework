@@ -18,13 +18,13 @@ class TestController extends Controller
    {
     $validate = Validator::make($request->all(), [
         
-        'email' => 'required |max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+        'email' => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
        
         'mdp' => 'required',
     ],[
         'email.required' => 'Email est obligatoire',
         'email.regex' => 'Email incorrect',
-        
+        'mdp.required' => 'Mot de passe obligatoire',
     ]);
 if($validate->fails()){
 return back()->withErrors($validate->errors())->withInput();
