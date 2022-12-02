@@ -24,7 +24,7 @@
                 </nav>
                 <div class="col-md-6 input-control">
                     <label for="input1" class="form-label">Nom<span style="color: red;">*</span></label>
-                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror" id="nom" required>
+                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror" value="{{old('nom')}}" id="nom" required>
                     @error('nom')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -32,7 +32,7 @@
 
                 <div class="col-md-6 input-control">
                     <label for="input2" class="form-label">Prenom<span style="color: red;">*</span></label>
-                    <input type="text" class="form-control border-dark p-2 @error('prenom') is-invalid @enderror" name="prenom" id="prenom" required> 
+                    <input type="text" class="form-control border-dark p-2 @error('prenom') is-invalid @enderror" value="{{old('prenom')}}" name="prenom" id="prenom" required> 
                     @error('prenom')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -48,7 +48,7 @@
 
                 <div class="col-md-6 input-control">
                     <label for="input7" class="form-label">Rôles<span style="color: red;">*</span></label>
-                    <select name="roles" class="form-select border-dark p-2 @error('roles') is-invalid @enderror" id="roles" required>
+                    <select name="roles" class="form-select border-dark p-2 @error('roles') is-invalid @enderror" value="{{old('roles')}}" id="roles" required>
                         <option selected disabled value=""></option>
                         <option value="administrateur" name='roles'>Admin</option>
                         <option value="utilisateur" name='roles'>User</option>
@@ -60,7 +60,7 @@
 
                 <div class="col-md-6 input-control">
                     <label for="input5" class="form-label">Mot de passe<span style="color: red;">*</span></label>
-                    <input type="password" class="form-control border-dark p-2 @error('passwords') is-invalid @enderror" name="passwords" id="passwords" required>
+                    <input type="password" class="form-control border-dark p-2 @error('passwords') is-invalid @enderror" value="{{old('passwords')}}" name="passwords" id="passwords" required>
                     @error('passwords')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -68,8 +68,8 @@
 
                 <div class="col-md-6 input-control">
                     <label for="input6" class="form-label">Confirme mot de passe<span style="color: red;">*</span></label>
-                    <input type="password" class="form-control border-dark p-2 @error('passwords') is-invalid @enderror" name="passwords" id="passwords2" required>
-                    @error('passwords')
+                    <input type="password" class="form-control border-dark p-2 @error('passwords') is-invalid @enderror" value="{{old('passwords2')}}" name="passwords2" id="passwords2" required>
+                    @error('passwords2')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
