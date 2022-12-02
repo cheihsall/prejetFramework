@@ -9,7 +9,7 @@ class Utilisateurs extends Controller
 {
 
 
-    //controle formulaire
+   
 
     public function inscription(Request $request){
 
@@ -18,17 +18,19 @@ class Utilisateurs extends Controller
         $email = $request->get('email');
         $mdp = $request->get('passwords');
         $mdp1 = $request->get('passwords2');
-        $role = $request->get('roles');
+        $role = $request->get('roles');  
 
+         //controle formulaire
 
         $validation = $request->validate([
 
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'passwords' => 'required',
             'roles' => 'required',
-            'passwords2' => 'required',
+            'passwords2' => 'required_with:passwords|same:passwords',
+        
             
         ]);
         return $validation;
