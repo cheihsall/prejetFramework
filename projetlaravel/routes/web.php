@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\Utilisateurs;
+use App\Models\utilisateur;
 use App\Http\Controllers\login;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +27,12 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return view('user');
 });
+
+Route::get('/inscription', function () {
+    return view('inscription');
+});
+ 
+Route::post('/inscription' ,[utilisateurs::class,'inscription']);
 
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 
