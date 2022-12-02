@@ -19,20 +19,5 @@ class Utilisateurs extends Controller
 
         return 'G5' . $randomString;
     }
-    public function addUser(Request $request){
 
-        $user = new utilisateur();
-
-        $user->matricule = $this->generateMatricule();
-        $user->nom = $request->get('nom');
-        $user->prenom = $request->get('prenom');
-        $user->email = $request->get('email');
-        $user->motdepasse = $request->get('motdepasse');
-        $user->role = $request->get('role');
-        $user->photo = $request->get('photo');
-        $user->date_inscription = date("y-m-d h:i:s");
-        $user->date_archivage = null;
-        $user->date_modification = null;
-        $user->save();
-    }
 }
