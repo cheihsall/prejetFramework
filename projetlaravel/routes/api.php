@@ -28,5 +28,3 @@ Route::post('posts/switchRole/{id}', [PostController::class, "switchRole"]);
 Route::apiResource('posts', PostController::class);
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
 
- /* -
-  */

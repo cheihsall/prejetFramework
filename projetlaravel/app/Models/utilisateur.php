@@ -20,11 +20,12 @@ class utilisateur extends Model
         'nom',
         'prenom',
         'email',
-        'motdepasse',
+        'passwords',
         'role',
         'photo',
         'date_inscription',
         'date_archivage',
         'date_modification',
+        
     ];
 }
