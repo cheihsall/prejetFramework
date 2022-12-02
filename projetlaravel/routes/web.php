@@ -18,4 +18,6 @@ Route::get('/', function () {
 }) ->name('welcome');
 Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
+//creation  
+
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
