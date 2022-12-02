@@ -18,4 +18,13 @@ Route::get('/', function () {
 }) ->name('welcome');
 Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/user', function () {
+    return view('user');
+});
+
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+
