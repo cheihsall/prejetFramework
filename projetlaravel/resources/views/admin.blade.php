@@ -53,39 +53,27 @@
     </tr>
   </thead>
   <tbody>
+    
+  @foreach ($users as $user)
     <tr>
-      <td scope="row">SOW</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>778897668</td>
-      <td>778897668</td>
-      <td><a href=""><img src="archiv.png" alt=""></a>
+      
+      <td cope="row">{{{ $user->nom }}}</td>
+      <td>{{{ $user->prenom }}}</td>
+      <td>{{{ $user->email }}}</td>
+       <td>{{{ $user->matricule }}}</td>
+      <td>{{{ $user->role }}}</td>
+      
+      
+     
+      <td><form action="/api/posts/switchRole/{{$user->id}}" method="post">
+        <button type="submit">switcher</button>
+    </form>
         <a href=""><img src="./image/change.png" alt=""></a>
         <a href=""><img src="./image/edit.png" alt=""></a>
   </td>
     </tr>
-    <tr>
-      <td scope="row">SOW</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>778897668</td>
-      <td>778897668</td>
-      <td><a href=""><img src="./image/archiv.png" alt=""></a>
-        <a href=""><img src="./image/change.png" alt=""></a>
-        <a href=""><img src="./image/edit.png" alt=""></a>
-  </td>
-    </tr>
-    <tr>
-      <td scope="row">SOW</td>
-      <td>Larry</td>
-      <td>Bird</td>
-      <td>778897668</td>
-      <td>778897668</td>
-      <td><a href=""><img src="./image/archiv.png" alt=""></a>
-          <a href=""><img src="./image/change.png" alt=""></a>
-          <a href=""><img src="./image/edit.png" alt=""></a>
-    </td>
-    </tr>
+    @endforeach
+    
   </tbody>
 </table>
 </div>

@@ -25,7 +25,7 @@ class Utilisateurs extends Controller
 
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required',

@@ -32,7 +32,7 @@ class PostController extends Controller
        /*  $user = new utilisateur(); */
         $users = Utilisateur::all();
 
-        return view("tableau", [
+        return view("admin", [
             'users' => $users
         ]);
 
