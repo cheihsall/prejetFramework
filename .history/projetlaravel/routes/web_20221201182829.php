@@ -1,6 +1,4 @@
 <?php
-use App\Http\Controllers\Utilisateurs;
-use App\Models\utilisateur;
 use App\Http\Controllers\login;
 use Illuminate\Support\Facades\Route;
 
@@ -17,26 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-}) ->name('welcome');
+}) ->name('');
 Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
-
-//creation  
-
-Route::get('/admin', function () {
-    return view('admin');
-});
-
-Route::get('/user', function () {
-    return view('user');
-});
-
-Route::get('/inscription', function () {
-    return view('inscription');
-});
- 
-Route::post('/inscription' ,[utilisateurs::class,'inscription']);
-
-
-Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 
