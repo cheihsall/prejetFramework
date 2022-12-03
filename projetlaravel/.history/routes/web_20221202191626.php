@@ -35,10 +35,10 @@ Route::get('/inscription', function () {
     return view('inscription');
 });
 Route::get('/login', function () {
-    return view('login');
+    return view('inscription');
 });
 Route::post('/inscription' ,[utilisateurs::class,'inscription']);
-Route::post('/login' ,[utilisateurs::class,'login']);
+Route::post('/login' ,[login::class,'login']);
 
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');

@@ -17,7 +17,7 @@
 
             <div class="row d-flex justify-content-center bg-white-50 mt-5 ">
 
-                <form method="post" action="/login" class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
+                <form  class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
                     @csrf
                     <nav class="navbar bg-success mt-0 col-md-12">
                         <div class="container d-flex justify-content-center col-md-12">
@@ -29,7 +29,7 @@
                     </nav>
                     <div class="col-md-12">
                         <label  class="form-label">Email<span class="text-danger">*</span></label>
-                        <input id="email" class="form-control border-dark p-2 " type='text' id="email"
+                        <input id="email" class="form-control border-dark p-2" type='text' id="email"
                             name='email' placeholder=" Email ">
 
                         @error('email')

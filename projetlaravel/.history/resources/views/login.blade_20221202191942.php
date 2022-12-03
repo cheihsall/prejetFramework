@@ -29,7 +29,7 @@
                     </nav>
                     <div class="col-md-12">
                         <label  class="form-label">Email<span class="text-danger">*</span></label>
-                        <input id="email" class="form-control border-dark p-2 " type='text' id="email"
+                        <input id="email" class="form-control border-dark p-2" type='text' id="email"
                             name='email' placeholder=" Email ">
 
                         @error('email')

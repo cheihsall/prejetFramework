@@ -40,13 +40,19 @@ class Utilisateurs extends Controller
 
     public function login(Request $request){
 
+        $nom = $request->get('nom');
+        $prenom = $request->get('prenom');
         $email = $request->get('email');
         $mdp = $request->get('passwords');
+        $mdp1 = $request->get('passwords2');
+        $role = $request->get('roles');
 
 
         $valid = $request->validate([
-            'email' => ['required', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
-            '' => 'required',    
+            'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'passwords' => 'required',
+            
+            
         ]);
         return $valid;
 

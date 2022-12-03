@@ -38,7 +38,7 @@ Route::get('/login', function () {
     return view('login');
 });
 Route::post('/inscription' ,[utilisateurs::class,'inscription']);
-Route::post('/login' ,[utilisateurs::class,'login']);
+Route::post('/login' ,[l::class,'login']);
 
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');

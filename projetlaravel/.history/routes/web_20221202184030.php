@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 }) ->name('welcome');
-//Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
+Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
 
 //creation  
@@ -34,12 +34,9 @@ Route::get('/user', function () {
 Route::get('/inscription', function () {
     return view('inscription');
 });
-Route::get('/login', function () {
-    return view('login');
-});
+ 
 Route::post('/inscription' ,[utilisateurs::class,'inscription']);
-Route::post('/login' ,[utilisateurs::class,'login']);
 
 
-//Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 
