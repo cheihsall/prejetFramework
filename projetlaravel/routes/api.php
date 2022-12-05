@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\UtilisateursController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+//Route::post('/login' ,[utilisateurs::class,'login']);
+
+
+
+
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Route::apiResource("users", UserController::class);
 Route::get('/but', function () {
-    return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']);
+    return ['nom' => 'Cheikh', 'prenom' => 'Sall'];
+
 });
+<<<<<<< HEAD
 /* Route::delete('posts/{id}', [PostController::class, "dest"]); */
+=======
+/* Route::post("/utilisateur/login",[Utilisateurs::class,'login']); */
+>>>>>>> 72113e6cbbbd28458c90cfc660369c7859d01b0c
 Route::post('posts/edit/{id}', [PostController::class, "edit"]);
 Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]);
 Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
