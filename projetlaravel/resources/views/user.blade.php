@@ -51,31 +51,20 @@
     </tr>
   </thead>
   <tbody>
+    
+    @foreach ($users as $user)
     <tr>
-      <td scope="row">SOW</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>778897668</td>
-      <td>778897668</td>
+      
+      <td cope="row">{{{ $user->nom }}}</td>
+      <td>{{{ $user->prenom }}}</td>
+      <td>{{{ $user->email }}}</td>
+       <td>{{{ $user->matricule }}}</td>
+     
+      <td>{{{ $user->date_inscription }}}</td>
 
 
     </tr>
-    <tr>
-      <td scope="row">SOW</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>778897668</td>
-      <td>778897668</td>
-
-    </tr>
-    <tr>
-      <td scope="row">SOW</td>
-      <td>Larry</td>
-      <td>Bird</td>
-      <td>778897668</td>
-      <td>778897668</td>
-
-    </tr>
+    @endforeach
   </tbody>
 </table>
 </div>
