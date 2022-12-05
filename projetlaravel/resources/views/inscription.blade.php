@@ -24,7 +24,7 @@
                 </nav>
                 <div class="col-md-6 input-control">
                     <label for="input1" class="form-label">Nom<span style="color: red;">*</span></label>
-                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror" value="{{old('nom')}}" id="nom" required>
+                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror" value="{{old('nom')}}" id="nom" required> 
                     @error('nom')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -93,3 +93,5 @@
             </form>
         </div>
     </div>
+</body>
+</html>

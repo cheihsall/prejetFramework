@@ -31,3 +31,6 @@ Route::apiResource('posts', PostController::class);
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
 
 
+/* Route::post('posts/inscription' ,[PostController::class,'store']); */
+
+

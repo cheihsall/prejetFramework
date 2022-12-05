@@ -58,9 +58,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+      $request->validate([
+
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'passwords' => 'required',
+            'roles' => 'required',
+            'passwords2' => 'required_with:passwords|same:passwords',
+        
+            
+        ]);
         
     
+
+
     $etat='1';
+
 
         $user = new Utilisateur();
 
@@ -68,6 +82,7 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
+
         $user->motdepasse = Hash::make($request->get('passwords'));
         $user->role = $request->get('roles');
         $user->photo = $request->get(5);
@@ -77,6 +92,7 @@ class PostController extends Controller
         $user->date_modification = null;
         $user->save(); 
         return redirect("/api/posts");
+
     
     }
 
