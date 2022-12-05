@@ -13,18 +13,20 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class utilisateur extends Model
 {
     use HasFactory;
-    
 
     protected $fillable = [
         'matricule',
         'nom',
         'prenom',
         'email',
-        'motdepasse',
-        'role',
+        'passwords',
+        'roles',
         'photo',
+        'etat' ,
         'date_inscription',
         'date_archivage',
         'date_modification',
+
+
     ];
 }
