@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\api\PostClogin;
 use Illuminate\Support\Facades\Route;
 
 /*

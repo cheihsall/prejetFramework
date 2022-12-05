@@ -89,7 +89,7 @@ class PostController extends Controller
        /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
        //
         if(!$pass ) return response(["message"=>"pass n'existe pas"]); 
-        return redirect("/api/posts");
+       return $utilisateur;
 
 
         

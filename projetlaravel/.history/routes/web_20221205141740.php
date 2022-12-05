@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +38,7 @@ Route::get('/login', function () {
     return view('login');
 });
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
-Route::post('/inscription' ,[PostController::class,'inscription']);
+Route::post('/inscription' ,[PostV::class,'inscription']);
 Route::post('/login' ,[PostController::class,'login']);
 
 
