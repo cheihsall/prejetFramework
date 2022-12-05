@@ -13,13 +13,13 @@
 <body>
     <div class="container d-flex justify-content-center mt-5">
         <div class="col-md-8  mt-5">
-            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/inscription" method="POST">
+            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/api/posts" method="POST">
                 @csrf
                 <nav class="navbar navbar-dark bg-success mt-0">
                     <div class="container-fluid d-flex justify-content-center">
                         <a class="navbar-brand pe-none" href="#">
                             <b> FORMULAIRE INSCRIPTION</b>
-                        </a>   
+                        </a>
                     </div>
                 </nav>
                 <div class="col-md-6 input-control">
@@ -32,7 +32,7 @@
 
                 <div class="col-md-6 input-control">
                     <label for="input2" class="form-label">Prenom<span style="color: red;">*</span></label>
-                    <input type="text" class="form-control border-dark p-2 @error('prenom') is-invalid @enderror" name="prenom" id="prenom" required> 
+                    <input type="text" class="form-control border-dark p-2 @error('prenom') is-invalid @enderror" name="prenom" id="prenom" required>
                     @error('prenom')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -78,7 +78,7 @@
                     <label for="input4" class="form-label">Photo de profil</label>
                     <input type="file" name="photo" accept=".jpg,.png,.jpeg" class="form-control border-dark p-2">
                 </div>
-                 
+
                 <div class="row d-flex justify-content-center mt-2">
                     <button type="submit" class="btn btn-success col-3" id="submit">
                         S'inscrire
@@ -86,7 +86,7 @@
                 </div>
 
                 <span class="text text-center mt-2">
-                    <p>Vous avez un compte ?      
+                    <p>Vous avez un compte ?
                         <a href="" style="text-decoration:none;"> connectez-vous</a>
                     </p>
                 </span>

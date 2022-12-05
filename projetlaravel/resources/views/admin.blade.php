@@ -31,10 +31,8 @@
                         <img src="./image/dearchiv.png" alt=""> Liste des archivés
                     </button></a>
             </div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="rechercher ..." aria-label="Search">
-                <button class="btn btn-outline-light p-1" type="submit">rechercher</button>
-            </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           @include('/recherche')
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="">
                 <button type="button" class="btn btn-outline-success "><img src="./image/deconect.png" alt="deconnecter">Deconnecter</button>
             </a>

@@ -31,8 +31,10 @@ Route::get('/user', function () {
 Route::get('/inscription', function () {
     return view('inscription');
 });
- 
-Route::post('/inscription' ,[utilisateurs::class,'inscription']);
+
+Route::post('/inscription',[utilisateurs::class,'inscription']);
 
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+
+
 
