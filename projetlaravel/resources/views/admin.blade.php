@@ -50,6 +50,8 @@
       <th scope="col">E-MAIL</th>
       <th scope="col">Matricule</th>
       <th scope="col">Role</th>
+      {{-- <th scope="col">Etat</th> --}}
+    {{--   <th scope="col">Pass</th> --}}
       <th scope="col">ACTION</th>
 
     </tr>
@@ -64,14 +66,18 @@
       <td>{{{ $user->email }}}</td>
        <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->role }}}</td>
+     {{--  <td>{{{ $user->etat }}}</td> --}}
+     {{--  <td>{{{ $user->motdepasse }}}</td> --}}
       
       
      
-      <td><form action="/api/posts/switchRole/{{$user->id}}" method="post">
-        <button type="submit">switcher</button>
-    </form>
-        <a href=""><img src="./image/change.png" alt=""></a>
-        <a href=""><img src="./image/edit.png" alt=""></a>
+      <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a>
+        {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
+        <button type="submit"><img src="/image/change.png" alt=""></button>
+    </form> --}}
+        <a href="/api/posts/archiv/{{$user->id}}"><img src="/image/archiv.png" alt=""></a>
+        <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a>
+       {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
   </td>
     </tr>
     @endforeach
@@ -79,6 +85,7 @@
   </tbody>
 </table>
 </div>
+
 </main>
 </body>
 

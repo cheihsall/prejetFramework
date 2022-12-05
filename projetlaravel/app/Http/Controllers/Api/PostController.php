@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Utilisateurs;
 use App\Models\Post;
 use App\Models\utilisateur;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Utilisateurs;
 
 class PostController extends Controller
 {
     function generateMatricule($n = 3)
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
 
         for ($i = 0; $i < $n; $i++) {
@@ -20,9 +21,9 @@ class PostController extends Controller
             $randomString .= $characters[$index];
         }
 
-        return 'G5' . $randomString;
+        return '2022-' . $randomString;
     }  /**
-     * Display a listing of the resource.
+     * Afficher une liste de la ressource
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +41,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Afficher le formulaire de création d'une nouvelle ressource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,7 +51,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stocker une ressource nouvellement créée dans le stockage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,7 +60,7 @@ class PostController extends Controller
     {
         
     
-    
+    $etat='1';
 
         $user = new Utilisateur();
 
@@ -67,19 +68,20 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-        $user->motdepasse = $request->get('motdepasse');
-        $user->role = $request->get('role');
-        $user->photo = $request->get('photo');
+        $user->motdepasse = Hash::make($request->get('passwords'));
+        $user->role = $request->get('roles');
+        $user->photo = $request->get(5);
+        $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
         $user->date_modification = null;
-        $user->save();
+        $user->save(); 
         return redirect("/api/posts");
     
     }
 
     /**
-     * Display the specified resource.
+     * Affiche la ressource spécifiée.
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
@@ -95,7 +97,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Afficher le formulaire de modification de la ressource spécifiée.
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
@@ -104,6 +106,8 @@ class PostController extends Controller
     {
         $user =  Utilisateur::findOrFail($id);
         $user->nom = $request->get("nom");
+        $user->prenom = $request->get("prenom");
+        $user->email = $request->get("email");
         $user->save();
         return redirect("/api/posts");
     }
@@ -129,7 +133,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mettre à jour la ressource spécifiée dans le stockage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Post  $post
@@ -148,6 +152,27 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Utilisateur::destroy($id);
+ $users = Utilisateur::all();
+        return response()->json($users); 
+    }
+
+
+
+    public function archiv(string $id)
+    {
+        $user =  Utilisateur::findOrFail($id);
+        $user->etat = "0";
+        $user->save();
+        return redirect("/api/posts");
+    }
+
+
+    public function desarchiv(string $id)
+    {
+        $user =  Utilisateur::findOrFail($id);
+        $user->etat =  "1";
+        $user->save();
+        return redirect("/api/posts");
     }
 }

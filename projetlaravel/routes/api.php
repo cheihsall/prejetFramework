@@ -22,9 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/but', function () {
     return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']);
 });
- 
+/* Route::delete('posts/{id}', [PostController::class, "dest"]); */
 Route::post('posts/edit/{id}', [PostController::class, "edit"]);
-Route::post('posts/switchRole/{id}', [PostController::class, "switchRole"]);
+Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]);
+Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
+Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);
 Route::apiResource('posts', PostController::class);
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
+
 
