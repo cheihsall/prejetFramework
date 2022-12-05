@@ -30,7 +30,7 @@ Route::get('/user', function () {
     return view('user');
 });
 
-Route::get('inscription', function () {
+Route::get('/inscription', function () {
     return view('inscription');
 });
  
