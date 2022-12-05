@@ -170,7 +170,9 @@ class PostController extends Controller
     {
         Utilisateur::destroy($id);
  $users = Utilisateur::all();
-        return response()->json($users); 
+ return view("admin", [
+    'users' => $users
+]);
     }
 
 

@@ -36,7 +36,7 @@ Route::get('/user', function () {
 
 
 
-Route::get('/inscription', function () {
+Route::get('inscription', function () {
 
 
     return view('inscription');
