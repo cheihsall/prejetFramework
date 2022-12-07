@@ -31,8 +31,13 @@ class PostController extends Controller
     {
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
-        $users = Utilisateur::all();
+/*         $users = Utilisateur::all();
+ */
+        // $user = new utilisateur();
+        $users =  Utilisateur::all();
+        
 
+        //::paginate(10);
         return view("admin", [
             'users' => $users
         ]);
@@ -57,7 +62,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+
       $request->validate([
 
             'nom' => 'required',
@@ -71,6 +76,7 @@ class PostController extends Controller
         ]);
         
     
+
 
 
     $etat='1';
@@ -90,10 +96,11 @@ class PostController extends Controller
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
         $user->date_modification = null;
-        $user->save(); 
+
+        $user->save();
         return redirect("/api/posts");
 
-    
+
     }
 
     /**
@@ -104,9 +111,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $users = Utilisateur::findOrFail($id);
+        $users= Utilisateur::findOrFail($id);
 
-        return view("tableau", [
+        return view("admin", [
             'users' => array($users) ]);
 
 /*         return response()->json($users); */
@@ -169,8 +176,8 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         Utilisateur::destroy($id);
- $users = Utilisateur::all();
-        return response()->json($users); 
+         $users = Utilisateur::all();
+        return response()->json($users);
     }
 
 
@@ -191,4 +198,20 @@ class PostController extends Controller
         $user->save();
         return redirect("/api/posts");
     }
+
+    public function recherche(Request $request)
+    {
+        //dd($request->get('prenom'));
+        $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+
+        /* $user->etat =  "1";
+        $user->save(); */
+        //dd(array($users));
+
+        //return $this->json(array($users));
+
+        return view("admin", [
+            "users" => $users
+        ]);
+        }
 }

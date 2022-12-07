@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
 
-//creation  
+//creation
 
 Route::get('/admin', function () {
     return view('admin');
@@ -40,9 +40,20 @@ Route::get('/inscription', function () {
 
     return view('inscription');
 });
+
+
+Route::post('/inscription',[utilisateurs::class,'inscription']);
+
  
 Route::post('/inscription' ,[PostController::class,'store']);
 
 
+
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+/*
+Route::get('/recherche', function () {
+    return view('recherche');
+});
+ */
+
 
