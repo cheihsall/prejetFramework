@@ -33,3 +33,6 @@ Route::post('recherche', [PostController::class, "recherche"]);
 
 
 
+/* Route::post('posts/inscription' ,[PostController::class,'store']); */
+
+

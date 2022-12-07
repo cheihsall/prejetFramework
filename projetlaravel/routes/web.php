@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
 use App\Http\Controllers\login;
@@ -33,11 +35,18 @@ Route::get('/user', function () {
 
 
 
+
 Route::get('/inscription', function () {
+
     return view('inscription');
 });
 
+
 Route::post('/inscription',[utilisateurs::class,'inscription']);
+
+ 
+Route::post('/inscription' ,[PostController::class,'store']);
+
 
 
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
