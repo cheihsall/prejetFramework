@@ -80,57 +80,22 @@
                 </div>
 
                 <div class="row d-flex justify-content-center mt-2">
-                    <button type="submit" class="btn btn-success col-3" id="submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="submit" class="btn btn-success col-3" id="submit">
                         S'inscrire
                     </button>
                 </div>
+
                 <span class="text text-center mt-2">
+
                     <p> Si vous avez un compte
                         <a href="" style="text-decoration:none;"> connectez-vous</a>
-
                     </p>
                 </span>
             </form>
         </div>
     </div>
-
-
-
-
- {{--  <!-- Modal -->
-   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-
-        <!-- Button trigger modal -->
-{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">,
-    Launch demo modal
-  </button> --}}
-
-  <!-- Modal -->
- {{--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: green">Inscription reussie</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Voulez-vous restez sur cette page ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">OUI</button>
-          <button type="button" class="btn btn-danger">NON</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  </div> --}}
-
-
-
 </body>
 </html>
+
+
 

@@ -44,26 +44,22 @@ Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
 Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);
 Route::apiResource('posts', PostController::class);
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
-<<<<<<< HEAD
-<<<<<<< HEAD
-Route::delete('posts/destroy/{id}', [PostController::class, "destroy"]);
-=======
-=======
 
 Route::delete('posts/destroy/{id}', [PostController::class, "destroy"]);
 
->>>>>>> baf34107d8121d8ab4b051caf9fd662f8618cdd7
+
+
+
+
+
+
+
 Route::post('recherche', [PostController::class, "recherche"]);
 
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
 
 Route::post('recherche', [PostController::class, "recherche"]);
-<<<<<<< HEAD
->>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
-=======
-
->>>>>>> baf34107d8121d8ab4b051caf9fd662f8618cdd7
 
 
 
