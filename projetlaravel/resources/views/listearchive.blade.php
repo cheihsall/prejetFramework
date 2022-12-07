@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +27,7 @@
     </div>
 
         <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
-          <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive">Archivé</a>
+          <a class="nav-link active text-light m-2" aria-current="page" href="/api/posts">Actif</a>
         </div>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="rechercher ..."  width="200"aria-label="Search">
@@ -57,7 +54,7 @@
 
     </tr>
   </thead>
-  <tbody cope="table-striped">
+  <tbody>
     
   @foreach ($users as $user)
     <tr>
@@ -72,12 +69,12 @@
       
       
      
-      <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a>
+     <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}
-        <a href="/api/posts/archiv/{{$user->id}}"><img src="/image/archiv.png" alt=""></a>
-        <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a>
+        <a href="/api/posts/desarchiv/{{$user->id}}"><img src="/image/archiv.png" alt=""></a>
+       {{--  <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a> --}}
        {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
   </td>
     </tr>

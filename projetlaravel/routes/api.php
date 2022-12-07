@@ -34,17 +34,18 @@ Route::get('/but', function () {
     return ['nom' => 'Cheikh', 'prenom' => 'Sall'];
 
 });
-<<<<<<< HEAD
+
 /* Route::delete('posts/{id}', [PostController::class, "dest"]); */
-=======
+
 /* Route::post("/utilisateur/login",[Utilisateurs::class,'login']); */
->>>>>>> 72113e6cbbbd28458c90cfc660369c7859d01b0c
+
 Route::post('posts/edit/{id}', [PostController::class, "edit"]);
 Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]);
 Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
 Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);
 Route::apiResource('posts', PostController::class);
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
+Route::get('/listearchive', [PostController::class, "listearchive"]);
 
 
 /* Route::post('posts/inscription' ,[PostController::class,'store']); */

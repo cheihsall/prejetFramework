@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\utilisateur;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Utilisateurs;
 
@@ -32,14 +33,50 @@ class PostController extends Controller
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
         $users = Utilisateur::all();
-
+        $u = [];
+        foreach ($users as $user) {
+            if ($user->etat == "1") {
+                array_push($u, $user);
+            }
+        }
+        $users = $u;
+       // dd($u);
+        
+       /*  foreach($users as $user) { if ($user->etat =="0"){
+            
+        }} */
         return view("admin", [
             'users' => $users
         ]);
+       
+
+        
 
         /* return response()->json($users); */
-    }
+   } 
 
+    public function listearchive()
+    {
+       /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
+       /*  $user = new utilisateur(); */
+        $users = Utilisateur::all();
+        $u = [];
+        foreach ($users as $user) {
+            if ($user->etat == "0") {
+                array_push($u, $user);
+            }
+        }
+        $users = $u;
+       // dd($u);
+        
+       /*  foreach($users as $user) { if ($user->etat =="0"){
+            
+        }} */
+        return view("listearchive", [
+            'users' => $users
+        ]); 
+    
+    } 
     /**
      * Afficher le formulaire de création d'une nouvelle ressource.
      *
@@ -83,19 +120,57 @@ class PostController extends Controller
             'passwords' => 'required', 'string',   
         ]);
 
-       $utilisateur= Utilisateur::where("email",$valid["email"])->first();
+
+        $users = utilisateur::all();
+   foreach($users as $user) {
+    if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
+        return redirect("/api/posts");
+        
+    } 
+   
+   }
+     return redirect("login");  /*  $utilisateur= Utilisateur::where("email",$valid["email"])->first();
        $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
        //
        if(!$utilisateur ) return response(["message"=>"l'email n'existe pas"]);
        /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
        //
-        if(!$pass ) return response(["message"=>"pass n'existe pas"]); 
-        return redirect("/api/posts");
+    /*     if(!$pass ) return response(["message"=>"pass n'existe pas"]);  */
+      /*   return redirect("/api/posts"); */
 
 
         
-    }
+    } 
     
+
+  /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+ 
+       */
+   /*    
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'passwords' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('/api/posts');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+ */
+ 
+
     /**
      * Stocker une ressource nouvellement créée dans le stockage.
      *
@@ -129,7 +204,7 @@ class PostController extends Controller
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
 
-        $user->motdepasse = Hash::make($request->get('passwords'));
+        $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
         $user->photo = $request->get(5);
         $user->etat = $etat;
@@ -237,6 +312,6 @@ class PostController extends Controller
         $user =  Utilisateur::findOrFail($id);
         $user->etat =  "1";
         $user->save();
-        return redirect("/api/posts");
+        return redirect("/api/listearchive");
     }
 }

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-use App\Http\Controllers\Api\PostController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,10 +40,10 @@ Route::get('/inscription', function () {
 
     return view('inscription');
 });
-<<<<<<< HEAD
+
  
 Route::post('/inscription' ,[PostController::class,'store']);
-=======
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -51,7 +51,7 @@ Route::get('/login', function () {
 Route::post('/inscription' ,[PostController::class,'inscription']);
 Route::post('/login' ,[PostController::class,'login']);
 
->>>>>>> 72113e6cbbbd28458c90cfc660369c7859d01b0c
+
 
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
