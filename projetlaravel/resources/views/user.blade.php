@@ -15,28 +15,26 @@
 <body>
 
     <header>
-    <nav class="navbar navbar-expand-lg bg-success p-5">
-    <div class="d-flex flex-column">
-     <img src="..." class="rounded" alt="photo">
-      <span>matricule</span>
-      </div>
-      <div class="me-2 d-flex flex-row">
-      <span>prenom</span>&nbsp;
-
-      <span>nom</span>&nbsp;
-    </div>
-
+        <nav class="navbar navbar-expand-lg bg-success p-4">
+            <div class="d-flex flex-column">
+                <img src="/image/user.png" class="rounded-circle" height="100" width="100" alt="photo">
+                 <span class="text-light h3">matricule</span>
+            </div>&nbsp;&nbsp;&nbsp;
+            <div class="me-5 d-flex flex-row">
+                <span class="text-light h3">prenom</span>&nbsp;&nbsp;
+                <span class="text-light h3">nom</span>&nbsp;
+            </div>
     <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
         <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
                 <img src="./image/dearchiv.png" alt=""> Liste des archivés
             </button></a>
     </div>
-    <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="rechercher ..." aria-label="Search">
-        <button class="btn btn-outline-light p-1" type="submit">rechercher</button>
-    </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="">
-        <button type="button" class="btn btn-outline-success "><img src="./image/deconect.png" alt="deconnecter">Deconnecter</button>
+    <form class="d-flex" role="search" action="recherche" method="post">
+        <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
+        <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
+    </form>&nbsp;
+    <a href="/login">
+        <button type="button" class="btn btn-outline-success "><img src="/image/deconect.png" alt="deconnecter">Deconnecter</button>
     </a>
 </nav>
     </header>
@@ -54,16 +52,15 @@
     </tr>
   </thead>
   <tbody>
-    
+
     @foreach ($users as $user)
     <tr>
-      
+
       <td cope="row">{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
       <td>{{{ $user->email }}}</td>
        <td>{{{ $user->matricule }}}</td>
-     
-      <td>{{{ $user->date_inscription }}}</td>
+       <td>{{{ $user->date_inscription = date("d-m-y")}}}</td>
 
 
     </tr>
