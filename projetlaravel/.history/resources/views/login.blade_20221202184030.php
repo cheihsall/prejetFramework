@@ -17,7 +17,8 @@
 
             <div class="row d-flex justify-content-center bg-white-50 mt-5 ">
 
-                <form   class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
+                <form action="{{ route('login.store') }}" method="post"
+                    class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
                     @csrf
                     <nav class="navbar bg-success mt-0 col-md-12">
                         <div class="container d-flex justify-content-center col-md-12">
@@ -60,7 +61,7 @@
 
                     <span class="text text-center mt-2">
                         <p>Vous n'avez pas de compte?
-                            <a href="" style="text-decoration:none;">S'inscrire</a>
+                            <a href="./views/pages/inscription.php" style="text-decoration:none;">S'inscrire</a>
                         </p>
                     </span>
                 </form>

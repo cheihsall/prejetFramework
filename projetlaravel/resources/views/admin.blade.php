@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,81 +17,99 @@
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg bg-success p-5">
+        <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
-                <img src="..." class="rounded" alt="photo">
-                <span>matricule</span>
-            </div>
+                <img src="/image/user.png" class="rounded-circle" height="100" width="100" alt="photo">
+                 <span class="text-light h3">matricule</span>
+            </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
-                <span>prenom</span>&nbsp;
+                <span class="text-light h3">prenom</span>&nbsp;&nbsp;
 
-                <span>nom</span>&nbsp;
+                <span class="text-light h3">nom</span>&nbsp;
             </div>
 
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
-                        <img src="./image/dearchiv.png" alt=""> Liste des archivés
+                        <img src="/image/dearchiv.png" alt=""> Liste des archivés
                     </button></a>
             </div>
-           @include('/recherche')
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="">
-                <button type="button" class="btn btn-outline-success "><img src="./image/deconect.png" alt="deconnecter">Deconnecter</button>
+            <form class="d-flex" role="search" action="recherche" method="post">
+                <input class="form-control me-2" name="prenom" type="search" placeholder="rechercher par prenom" aria-label="Search">
+                <button class="btn btn-outline-light p-1" onchange="" type="submit">rechercher</button>
+               {{--  <ul class="nav-item ">
+
+                           <a href="">
+                           <button type="button" class="btn btn-outline-danger mt-3 p-1 "><img src="/image/quit.png" alt="quitter" width="30"></button>
+                       </a>
+
+
+                </ul> --}}
+            </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/login">
+                <button type="button" class="btn btn-outline-success "><img src="/image/deconect.png" alt="deconnecter">Deconnecter</button>
             </a>
         </nav>
     </header>
     <main>
         <div class="m-5">
-            <table class="table caption-top border border-success">
-                <thead class="table-success">
-                    <tr>
-                        <th scope="col">NOM</th>
-                        <th scope="col">PRENOM</th>
-                        <th scope="col">E-MAIL</th>
-                        <th scope="col">Matricule</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">ACTION</th>
+        <table class="table caption-top border border-dark">
+        <thead class="table-success">
+    <tr>
+      <th scope="col">NOM</th>
+      <th scope="col">PRENOM</th>
+      <th scope="col">E-MAIL</th>
+      <th scope="col">Matricule</th>
+      <th scope="col">Role</th>
+      <th scope="col">ACTION</th>
+      {{-- <th scope="col">Etat</th> --}}
+    {{--   <th scope="col">Pass</th> --}}
+    </tr>
+  </thead>
+  <tbody>
+  @foreach ($users as $user)
+    <tr>
+      <td cope="row">{{{ $user->nom }}}</td>
+      <td>{{{ $user->prenom }}}</td>
+      <td>{{{ $user->email }}}</td>
+       <td>{{{ $user->matricule }}}</td>
+      <td>{{{ $user->role }}}</td>
+     {{--  <td>{{{ $user->etat }}}</td> --}}
+     {{--  <td>{{{ $user->motdepasse }}}</td> --}}
+      <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt="changer"></a>
+        {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
+        <button type="submit"><img src="/image/change.png" alt=""></button>
+    </form> --}}
+        <a href="/api/posts/archiv/{{$user->id}}"><img src="/image/archiv.png" alt="archiver"></a>
+        <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt="modifier"></a>
+       {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
+  </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+{{-- <nav aria-label="...">
+    <ul class="pagination d-flex justify-content-center">
+         {{$users->links()}}
+    </ul>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row">SOW</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>778897668</td>
-                        <td>778897668</td>
-                        <td><a href=""><img src="./image/archiv.png" alt=""></a>
-                            <a href=""><img src="./image/change.png" alt=""></a>
-                            <a href=""><img src="./image/edit.png" alt=""></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">SOW</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>778897668</td>
-                        <td>778897668</td>
-                        <td><a href=""><img src="./image/archiv.png" alt=""></a>
-                            <a href=""><img src="./image/change.png" alt=""></a>
-                            <a href=""><img src="./image/edit.png" alt=""></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">SOW</td>
-                        <td>Larry</td>
-                        <td>Bird</td>
-                        <td>778897668</td>
-                        <td>778897668</td>
-                        <td><a href=""><img src="./image/archiv.png" alt=""></a>
-                            <a href=""><img src="./image/change.png" alt=""></a>
-                            <a href=""><img src="./image/edit.png" alt=""></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
+</nav> --}}
+
+{{--  <nav aria-label="...">
+    <ul class="pagination fixed-bottom justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link"><img src="/image/precedent.png" alt="" width="30" height="20"></a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active" aria-current="page">
+        <a class="page-link" href="#">2</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#"><img src="/image/suivant.png" alt="" width="30" height="20"></a>
+      </li>
+    </ul>
+  </nav> --}}
+</div>
+</main>
 </body>
-
 </html>

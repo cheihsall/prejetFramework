@@ -60,7 +60,7 @@
 
                     <span class="text text-center mt-2">
                         <p>Vous n'avez pas de compte?
-                            <a href="" style="text-decoration:none;">S'inscrire</a>
+                            <a href="./views/pages/inscription.php" style="text-decoration:none;">S'inscrire</a>
                         </p>
                     </span>
                 </form>
