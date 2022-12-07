@@ -245,6 +245,7 @@ class PostController extends Controller
         $user->date_archivage = null;
         $user->date_modification = null;
 <<<<<<< HEAD
+<<<<<<< HEAD
         $user->save();
         return redirect("/inscription");
 
@@ -253,6 +254,16 @@ class PostController extends Controller
 
         $user->save();
         return redirect("/api/posts");
+=======
+
+        $user->save(); 
+        return redirect("/inscription");
+
+
+       /*  $user->save();
+        return redirect("/api/posts"); */
+
+>>>>>>> baf34107d8121d8ab4b051caf9fd662f8618cdd7
 
 
 >>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
@@ -334,14 +345,25 @@ class PostController extends Controller
     {
         Utilisateur::destroy($id);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> baf34107d8121d8ab4b051caf9fd662f8618cdd7
  $users = Utilisateur::all();
  return view("admin", [
     'users' => $users
 ]);
+<<<<<<< HEAD
 =======
          $users = Utilisateur::all();
         return response()->json($users);
 >>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
+=======
+
+       /*   $users = Utilisateur::all();
+        return response()->json($users); */
+
+>>>>>>> baf34107d8121d8ab4b051caf9fd662f8618cdd7
     }
 
 
@@ -361,10 +383,18 @@ class PostController extends Controller
         $user->etat =  "1";
         $user->save();
 <<<<<<< HEAD
+<<<<<<< HEAD
         return redirect('/api/posts');
 =======
         return redirect("/api/listearchive");
 >>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
+=======
+
+        /* return redirect('/api/posts'); */
+
+        return redirect("/api/listearchive");
+
+>>>>>>> baf34107d8121d8ab4b051caf9fd662f8618cdd7
     }
 
     public function recherche(Request $request)

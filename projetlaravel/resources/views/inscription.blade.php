@@ -84,13 +84,10 @@
                         S'inscrire
                     </button>
                 </div>
-
                 <span class="text text-center mt-2">
                     <p> Si vous avez un compte
-
-                    <p>Vous avez un compte ?
-
                         <a href="" style="text-decoration:none;"> connectez-vous</a>
+
                     </p>
                 </span>
             </form>
@@ -99,8 +96,19 @@
 
 
 
+
  {{--  <!-- Modal -->
    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+        <!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">,
+    Launch demo modal
+  </button> --}}
+
+  <!-- Modal -->
+ {{--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -116,7 +124,13 @@
         </div>
       </div>
     </div>
+
+  </div>
+
   </div> --}}
+
+
+
 </body>
 </html>
 
