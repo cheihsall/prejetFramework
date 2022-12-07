@@ -35,16 +35,13 @@
             </div>
             <form class="d-flex" role="search" action="recherche" method="post">
                 <input class="form-control me-2" name="prenom" type="search" placeholder="rechercher par prenom" aria-label="Search">
-                <button class="btn btn-outline-light p-1" onchange="" type="submit">rechercher</button>
-               {{--  <ul class="nav-item ">
-
-                           <a href="">
-                           <button type="button" class="btn btn-outline-danger mt-3 p-1 "><img src="/image/quit.png" alt="quitter" width="30"></button>
-                       </a>
-
-
-                </ul> --}}
-            </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-light p-1" id="recherche" onchange="search()" type="submit">rechercher</button>
+            </form>&nbsp;
+            <div class="nav-item mb-3 p-2" id="quit">
+                <a href="/">
+                <button type="button" class="btn btn-outline-danger mt-3 p-1 "><img src="/image/quit.png" alt="quitter" width="30"></button>
+            </a>
+        </div>
             <a href="/login">
                 <button type="button" class="btn btn-outline-success "><img src="/image/deconect.png" alt="deconnecter">Deconnecter</button>
             </a>
@@ -93,23 +90,8 @@
     </ul>
 
 </nav> --}}
-
-{{--  <nav aria-label="...">
-    <ul class="pagination fixed-bottom justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link"><img src="/image/precedent.png" alt="" width="30" height="20"></a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item active" aria-current="page">
-        <a class="page-link" href="#">2</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#"><img src="/image/suivant.png" alt="" width="30" height="20"></a>
-      </li>
-    </ul>
-  </nav> --}}
 </div>
 </main>
+<script src="/js/recherche"></script>
 </body>
 </html>
