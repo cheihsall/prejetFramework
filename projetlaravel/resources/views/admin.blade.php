@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,32 +15,47 @@
 <body>
 
     <header>
-    <nav class="navbar navbar-expand-lg bg-success p-5">
-    <div class="d-flex flex-column">
-     <img src="..." class="rounded" alt="photo">
-      <span>matricule</span>
-      </div>
-      <div class="me-5 d-flex flex-row">
-      <span>prenom</span>&nbsp;
+        <nav class="navbar navbar-expand-lg bg-success p-4">
+            <div class="d-flex flex-column">
+                <img src="/image/user.png" class="rounded-circle" height="100" width="100" alt="photo">
+                 <span class="text-light h3">matricule</span>
+            </div>&nbsp;&nbsp;&nbsp;
+            <div class="me-5 d-flex flex-row">
+                <span class="text-light h3">prenom</span>&nbsp;&nbsp;
 
-      <span>nom</span>&nbsp;
-    </div>
+                <span class="text-light h3">nom</span>&nbsp;
+            </div>
 
-        <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
-          <a class="nav-link active text-light m-2" aria-current="page" href="#">Archive</a>
-        </div>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="rechercher ..."  width="200"aria-label="Search">
-        <button class="btn btn-outline-light p-1" type="submit">rechercher</button>
-      </form>
-      <ul class="nav-item m-2">
-          <a class="nav-link text-light" href="">Deconnecter</a>
-</ul>
-</nav>
+
+
+            <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
+                <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
+                        <img src="/image/dearchiv.png" href="/api/listearchive"> Liste des archivés
+
+                    </button></a>
+            </div>
+            <form class="d-flex" role="search" action="recherche" method="post">
+                <input class="form-control me-2" name="prenom" type="search" placeholder="rechercher par prenom" aria-label="Search">
+                <button class="btn btn-outline-light p-1" onchange="" type="submit">rechercher</button>
+               {{--  <ul class="nav-item ">
+
+                           <a href="">
+                           <button type="button" class="btn btn-outline-danger mt-3 p-1 "><img src="/image/quit.png" alt="quitter" width="30"></button>
+                       </a>
+
+
+                </ul> --}}
+            </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/login">
+                <button type="button" class="btn btn-outline-success "><img src="/image/deconect.png" alt="deconnecter">Deconnecter</button>
+            </a>
+        </nav>
+
+
     </header>
     <main>
         <div class="m-5">
-        <table class="table caption-top border border-success">
+        <table class="table caption-top border border-dark">
         <thead class="table-success">
     <tr>
       <th scope="col">NOM</th>
@@ -51,12 +64,12 @@
       <th scope="col">Matricule</th>
       <th scope="col">Photo</th>
       <th scope="col">Role</th>
+      <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
     {{--   <th scope="col">Pass</th> --}}
-      <th scope="col">ACTION</th>
-
     </tr>
   </thead>
+
   <tbody>
 
   @foreach ($users as $user)
@@ -73,22 +86,46 @@
 
 
 
+
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a>
+      <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt="changer"></a>
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}
-        <a href="/api/posts/archiv/{{$user->id}}"><img src="/image/archiv.png" alt=""></a>
-        <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a>
+        <a href="/api/posts/archiv/{{$user->id}}"><img src="/image/archiv.png" alt="archiver"></a>
+        <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt="modifier"></a>
        {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
   </td>
     </tr>
     @endforeach
-
   </tbody>
 </table>
-</div>
+{{-- <nav aria-label="...">
+    <ul class="pagination d-flex justify-content-center">
+         {{$users->links()}}
+    </ul>
 
+
+</nav> --}}
+
+
+{{--  <nav aria-label="...">
+    <ul class="pagination fixed-bottom justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link"><img src="/image/precedent.png" alt="" width="30" height="20"></a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active" aria-current="page">
+        <a class="page-link" href="#">2</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#"><img src="/image/suivant.png" alt="" width="30" height="20"></a>
+      </li>
+    </ul>
+  </nav> --}}
+</div>
 </main>
 </body>
-
 </html>
+

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-use App\Http\Controllers\login;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 }) ->name('welcome');
-Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
+//Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
 
-//creation  
+//creation
 
 Route::get('/admin', function () {
     return view('admin');
@@ -41,9 +41,41 @@ Route::get('inscription', function () {
 
     return view('inscription');
 });
+
+
+
+
+Route::post('/inscription',[utilisateurs::class,'inscription']);
+
+
+
+Route::post('/inscription',[utilisateurs::class,'inscription']);
+
+
  
 Route::post('/inscription' ,[PostController::class,'store']);
 
+Route::get('/login', function () {
+    return view('login');
+});
+//Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
+Route::post('/inscription' ,[PostController::class,'inscription']);
+Route::post('/login' ,[PostController::class,'login']);
+
+
+
+
+
+//Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+
+
 
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+/*
+Route::get('/recherche', function () {
+    return view('recherche');
+});
+ */
+
+
 

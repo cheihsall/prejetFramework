@@ -87,12 +87,16 @@
 
                 <span class="text text-center mt-2">
                     <p> Si vous avez un compte
+
+                    <p>Vous avez un compte ?
+
                         <a href="" style="text-decoration:none;"> connectez-vous</a>
                     </p>
                 </span>
             </form>
         </div>
     </div>
+
 
 
  {{--  <!-- Modal -->
@@ -113,6 +117,6 @@
       </div>
     </div>
   </div> --}}
-
 </body>
 </html>
+

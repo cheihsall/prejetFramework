@@ -26,15 +26,18 @@
       <span>nom</span>&nbsp;
     </div>
 
-        <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
-        </div>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="rechercher ..."  width="200"aria-label="Search">
+    <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
+        <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
+                <img src="./image/dearchiv.png" alt=""> Liste des archivés
+            </button></a>
+    </div>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="rechercher ..." aria-label="Search">
         <button class="btn btn-outline-light p-1" type="submit">rechercher</button>
-      </form>
-      <ul class="nav-item m-2">
-          <a class="nav-link text-light" href="">Deconnecter</a>
-</ul>
+    </form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="">
+        <button type="button" class="btn btn-outline-success "><img src="./image/deconect.png" alt="deconnecter">Deconnecter</button>
+    </a>
 </nav>
     </header>
     <main>

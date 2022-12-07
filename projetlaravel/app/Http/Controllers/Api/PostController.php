@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\utilisateur;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Utilisateurs;
 
@@ -31,15 +32,59 @@ class PostController extends Controller
     {
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
-        $users = Utilisateur::all();
 
+
+        $users = Utilisateur::all();
+        $u = [];
+        foreach ($users as $user) {
+            if ($user->etat == "1") {
+                array_push($u, $user);
+            }
+        }
+        $users = $u;
+       // dd($u);
+        
+       /*  foreach($users as $user) { if ($user->etat =="0"){
+            
+        }} */
+
+/*         $users = Utilisateur::all();
+ */
+       
+
+        //::paginate(10);
         return view("admin", [
             'users' => $users
         ]);
+       
+
+        
 
         /* return response()->json($users); */
-    }
+   } 
 
+    public function listearchive()
+    {
+       /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
+       /*  $user = new utilisateur(); */
+        $users = Utilisateur::all();
+        $u = [];
+        foreach ($users as $user) {
+            if ($user->etat == "0") {
+                array_push($u, $user);
+            }
+        }
+        $users = $u;
+       // dd($u);
+        
+       /*  foreach($users as $user) { if ($user->etat =="0"){
+            
+        }} */
+        return view("listearchive", [
+            'users' => $users
+        ]); 
+    
+    } 
     /**
      * Afficher le formulaire de création d'une nouvelle ressource.
      *
@@ -50,17 +95,110 @@ class PostController extends Controller
         //
     }
 
+    public function inscription(Request $request){
+
+        return $request->all();
+
+
+        $validation = $request->validate([
+
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'passwords' => 'required',
+            'roles' => 'required',
+            'passwords2' => 'required',
+            
+        ]);
+        return $validation;
+
+
+        
+    }
+     //controle de saisie login 
+
+    public function login(Request $request){
+
+        $email = $request->get('email');
+        $mdp = $request->get('passwords');
+
+
+        $valid = $request->validate([
+            'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
+            'passwords' => 'required', 'string',   
+        ]);
+
+
+        $users = utilisateur::all();
+   foreach($users as $user) {
+    if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
+        return redirect("/api/posts");
+        
+    } 
+   
+   }
+     return redirect("login");  /*  $utilisateur= Utilisateur::where("email",$valid["email"])->first();
+       $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
+       //
+       if(!$utilisateur ) return response(["message"=>"l'email n'existe pas"]);
+       /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
+       //
+    /*     if(!$pass ) return response(["message"=>"pass n'existe pas"]);  */
+      /*   return redirect("/api/posts"); */
+
+
+        
+    } 
+    
+
+  /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+ 
+       */
+   /*    
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'passwords' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('/api/posts');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+ */
+ 
+
     /**
      * Stocker une ressource nouvellement créée dans le stockage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function store(Request $request)
     {
         $u=new utilisateur();
         $email= $request->get('email');
         $request->validate([
+=======
+
+    public function store(Request $request){ 
+
+   
+
+      $request->validate([
+>>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
 
             'nom' => 'required',
             'prenom' => 'required',
@@ -88,6 +226,7 @@ class PostController extends Controller
 
 
 
+
     $etat='1';
 
 
@@ -98,17 +237,25 @@ class PostController extends Controller
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
 
-        $user->motdepasse = Hash::make($request->get('passwords'));
+        $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
         $user->photo = $request->get(5);
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
         $user->date_modification = null;
+<<<<<<< HEAD
         $user->save();
         return redirect("/inscription");
 
 
+=======
+
+        $user->save();
+        return redirect("/api/posts");
+
+
+>>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
     }
 
     /**
@@ -119,9 +266,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $users = Utilisateur::findOrFail($id);
+        $users= Utilisateur::findOrFail($id);
 
-        return view("tableau", [
+        return view("admin", [
             'users' => array($users) ]);
 
 /*         return response()->json($users); */
@@ -162,7 +309,9 @@ class PostController extends Controller
             "user" => $user
         ]);
     }
-
+    public function connection(){
+        
+    }
     /**
      * Mettre à jour la ressource spécifiée dans le stockage.
      *
@@ -184,10 +333,15 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         Utilisateur::destroy($id);
+<<<<<<< HEAD
  $users = Utilisateur::all();
  return view("admin", [
     'users' => $users
 ]);
+=======
+         $users = Utilisateur::all();
+        return response()->json($users);
+>>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
     }
 
 
@@ -206,6 +360,26 @@ class PostController extends Controller
         $user =  Utilisateur::findOrFail($id);
         $user->etat =  "1";
         $user->save();
+<<<<<<< HEAD
         return redirect('/api/posts');
+=======
+        return redirect("/api/listearchive");
+>>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
     }
+
+    public function recherche(Request $request)
+    {
+        //dd($request->get('prenom'));
+        $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+
+        /* $user->etat =  "1";
+        $user->save(); */
+        //dd(array($users));
+
+        //return $this->json(array($users));
+
+        return view("admin", [
+            "users" => $users
+        ]);
+        }
 }

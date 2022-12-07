@@ -1,5 +1,5 @@
 
 
-<form action="/api/posts/switchRole/{{$user->id}}" method="post">
+<form action="/api/posts/{{$user->id}}" method="get">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form>
