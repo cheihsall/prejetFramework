@@ -91,7 +91,7 @@ class PostController extends Controller
         $user->date_archivage = null;
         $user->date_modification = null;
         $user->save(); 
-        return redirect("/api/posts");
+        return redirect("/inscription");
 
     
     }
@@ -191,6 +191,6 @@ class PostController extends Controller
         $user =  Utilisateur::findOrFail($id);
         $user->etat =  "1";
         $user->save();
-        return redirect("/api/posts");
+        return redirect('/api/posts');
     }
 }
