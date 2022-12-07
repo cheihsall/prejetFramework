@@ -29,7 +29,10 @@
             </div>
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
+
+
                         <img src="/image/dearchiv.png"> Liste des archivés
+
 
                     </button></a>
             </div>
