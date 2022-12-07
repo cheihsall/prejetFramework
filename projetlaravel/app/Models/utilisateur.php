@@ -26,6 +26,7 @@ class utilisateur extends Model
         'date_inscription',
         'date_archivage',
         'date_modification',
+        'etat',
 
 
     ];

@@ -17,7 +17,7 @@
 
             <div class="row d-flex justify-content-center bg-white-50 mt-5 ">
 
-                <form   class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
+                <form method="post" action="" class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
                     @csrf
                     <nav class="navbar bg-success mt-0 col-md-12">
                         <div class="container d-flex justify-content-center col-md-12">
@@ -29,7 +29,7 @@
                     </nav>
                     <div class="col-md-12">
                         <label  class="form-label">Email<span class="text-danger">*</span></label>
-                        <input id="email" class="form-control border-dark p-2" type='text' id="email"
+                        <input id="email" class="form-control border-dark p-2 " type='text' id="email"
                             name='email' placeholder=" Email ">
 
                         @error('email')
@@ -41,10 +41,10 @@
 
                     <div class="col-md-12 ">
                         <label class="form-label">Mot de Passe<span class="text-danger">*</span></label>
-                        <input id="passwords" class="form-control border-dark p-2" type="password" name="mdp"
-                            id="mdp" placeholder="mot de passe">
+                        <input id="passwords" class="form-control border-dark p-2" type="password" name="passwords"
+                            id="passwords" placeholder="mot de passe">
                         <!--div class="invalid-feedback d-none" id="erreur_passwords">mot de passe est obligatoire</div-->
-                        @error('mdp')
+                        @error('passwords')
                             <span class="text-danger">{{ $message }}</span>
                             <br>
                         @enderror
@@ -60,7 +60,7 @@
 
                     <span class="text text-center mt-2">
                         <p>Vous n'avez pas de compte?
-                            <a href="./views/pages/inscription.php" style="text-decoration:none;">S'inscrire</a>
+                            <a href="" style="text-decoration:none;">S'inscrire</a>
                         </p>
                     </span>
                 </form>
