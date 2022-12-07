@@ -91,7 +91,7 @@ class PostController extends Controller
         if ($user->role === "administrateur"){
           return redirect("/api/posts");  
         }
-        elseif ($user->role === "utilisateur") {
+        ifelse ($user->role === "utilisateur") {
             return view("inscription");
         }
         
