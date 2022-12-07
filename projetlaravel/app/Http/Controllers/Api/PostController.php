@@ -56,12 +56,35 @@ class PostController extends Controller
         return view("admin", [
             'users' => $users
         ]);
+
+        
        
 
         
 
         /* return response()->json($users); */
    } 
+
+
+
+   public function usersimple()
+   {
+      
+       $users = Utilisateur::all();
+       $u = [];
+       foreach ($users as $user) {
+           if ($user->etat == "1") {
+               array_push($u, $user);
+           }
+       }
+       $users = $u;
+      
+       return view("user", [
+           'users' => $users
+       ]);
+
+    
+  } 
 
     public function listearchive()
     {
