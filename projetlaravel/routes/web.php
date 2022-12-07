@@ -43,6 +43,11 @@ Route::get('/inscription', function () {
 
 
 
+
+Route::post('/inscription',[utilisateurs::class,'inscription']);
+
+
+
 Route::post('/inscription',[utilisateurs::class,'inscription']);
 
 
@@ -61,6 +66,7 @@ Route::post('/login' ,[PostController::class,'login']);
 
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+
 
 
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');

@@ -44,6 +44,8 @@ Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
 Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);
 Route::apiResource('posts', PostController::class);
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
+Route::post('recherche', [PostController::class, "recherche"]);
+
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
 

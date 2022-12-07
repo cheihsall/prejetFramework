@@ -30,9 +30,11 @@
             </div>
 
 
+
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
                         <img src="/image/dearchiv.png" href="/api/listearchive"> Liste des archivés
+  
                     </button></a>
             </div>
             <form class="d-flex" role="search" action="recherche" method="post">
@@ -52,6 +54,7 @@
             </a>
         </nav>
 
+        
     </header>
     <main>
         <div class="m-5">
@@ -97,7 +100,9 @@
          {{$users->links()}}
     </ul>
 
+
 </nav> --}}
+
 
 {{--  <nav aria-label="...">
     <ul class="pagination fixed-bottom justify-content-center">

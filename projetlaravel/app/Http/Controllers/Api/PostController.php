@@ -33,6 +33,7 @@ class PostController extends Controller
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
 
+
         $users = Utilisateur::all();
         $u = [];
         foreach ($users as $user) {
@@ -47,6 +48,11 @@ class PostController extends Controller
             
         }} */
 
+/*         $users = Utilisateur::all();
+ */
+       
+
+        //::paginate(10);
         return view("admin", [
             'users' => $users
         ]);
@@ -179,7 +185,10 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request){ 
+
+   
 
       $request->validate([
 
