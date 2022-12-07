@@ -1,0 +1,12 @@
+let recherche = document.getElementById('recherche');
+let quit = document.getElementById('quit');
+function search(){
+    quit.classList.remove("none")
+    if (recherche !=""){
+        quit.classList.remove("none")
+
+    }else{
+        quit.classList.remove("none")
+
+    }
+}

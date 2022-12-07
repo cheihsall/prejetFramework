@@ -33,8 +33,8 @@ class PostController extends Controller
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
 
-
-        $users = Utilisateur::all();
+/*        ->paginate(10);
+ */        $users = Utilisateur::all();
         $u = [];
         foreach ($users as $user) {
             if ($user->etat == "1") {
@@ -43,27 +43,25 @@ class PostController extends Controller
         }
         $users = $u;
        // dd($u);
-        
+
        /*  foreach($users as $user) { if ($user->etat =="0"){
-            
+
         }} */
 
 /*         $users = Utilisateur::all();
  */
-       
+
 
         //::paginate(10);
         return view("admin", [
             'users' => $users
         ]);
 
-        
-       
 
-        
+
 
         /* return response()->json($users); */
-   } 
+   }
 
 
 
@@ -99,15 +97,15 @@ class PostController extends Controller
         }
         $users = $u;
        // dd($u);
-        
+
        /*  foreach($users as $user) { if ($user->etat =="0"){
-            
+
         }} */
         return view("listearchive", [
             'users' => $users
-        ]); 
-    
-    } 
+        ]);
+
+    }
     /**
      * Afficher le formulaire de création d'une nouvelle ressource.
      *
@@ -118,7 +116,7 @@ class PostController extends Controller
         //
     }
 
-    public function inscription(Request $request){
+    /* public function inscription(Request $request){
 
         return $request->all();
 
@@ -131,14 +129,14 @@ class PostController extends Controller
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required',
-            
+
         ]);
         return $validation;
 
 
-        
-    }
-     //controle de saisie login 
+
+    } */
+     //controle de saisie login
 
     public function login(Request $request){
 
@@ -148,7 +146,7 @@ class PostController extends Controller
 
         $valid = $request->validate([
             'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
-            'passwords' => 'required', 'string',   
+            'passwords' => 'required', 'string',
         ]);
 
 
@@ -156,9 +154,9 @@ class PostController extends Controller
    foreach($users as $user) {
     if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
         return redirect("/api/posts");
-        
-    } 
-   
+
+    }
+
    }
      return redirect("login");  /*  $utilisateur= Utilisateur::where("email",$valid["email"])->first();
        $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
@@ -170,37 +168,37 @@ class PostController extends Controller
       /*   return redirect("/api/posts"); */
 
 
-        
-    } 
-    
+
+    }
+
 
   /**
      * Handle an authentication attempt.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
- 
+
        */
-   /*    
+   /*
     public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'passwords' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
             return redirect()->intended('/api/posts');
         }
- 
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
  */
- 
+
 
     /**
      * Stocker une ressource nouvellement créée dans le stockage.
@@ -209,9 +207,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request){ 
+    public function store(Request $request){
 
-   
+
 
       $request->validate([
 
@@ -221,11 +219,11 @@ class PostController extends Controller
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required_with:passwords|same:passwords',
-        
-            
+
+
         ]);
-        
-    
+
+
 
 
 
@@ -238,7 +236,6 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
         $user->photo = $request->get(5);
@@ -305,7 +302,7 @@ class PostController extends Controller
         ]);
     }
     public function connection(){
-        
+
     }
     /**
      * Mettre à jour la ressource spécifiée dans le stockage.
@@ -353,15 +350,9 @@ class PostController extends Controller
 
     public function recherche(Request $request)
     {
-        //dd($request->get('prenom'));
         $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
-
-        /* $user->etat =  "1";
-        $user->save(); */
-        //dd(array($users));
-
-        //return $this->json(array($users));
-
+/*          $users->etat =  "1";
+ */
         return view("admin", [
             "users" => $users
         ]);
