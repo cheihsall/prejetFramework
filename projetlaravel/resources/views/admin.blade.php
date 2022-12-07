@@ -97,27 +97,7 @@
 </nav> --}}
 </div>
 </main>
-<script>
-
-    function search(){
-        let recherche = document.getElementById('recherche');
-        let quit = document.getElementById('quit');
-
-        if (recherche.value !=" "){
-             quit.style.display = "block";
-
-        }
-
-}
-/* function buts(){
-    let but = document.getElementById('but');
-    let quit = document.getElementById('quit');
-
-    but.addEventListener("click", quit.style.display = "block");
-
-} */
-
-</script>
+<script src="recherche"></script>
 </body>
 </html>
 
