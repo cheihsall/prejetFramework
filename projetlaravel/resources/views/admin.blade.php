@@ -49,6 +49,7 @@
       <th scope="col">PRENOM</th>
       <th scope="col">E-MAIL</th>
       <th scope="col">Matricule</th>
+      <th scope="col">Photo</th>
       <th scope="col">Role</th>
       {{-- <th scope="col">Etat</th> --}}
     {{--   <th scope="col">Pass</th> --}}
@@ -57,20 +58,21 @@
     </tr>
   </thead>
   <tbody>
-    
+
   @foreach ($users as $user)
     <tr>
-      
+
       <td cope="row">{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
       <td>{{{ $user->email }}}</td>
        <td>{{{ $user->matricule }}}</td>
+       <td>{{{ $user->photo }}}</td>
       <td>{{{ $user->role }}}</td>
      {{--  <td>{{{ $user->etat }}}</td> --}}
      {{--  <td>{{{ $user->motdepasse }}}</td> --}}
-      
-      
-     
+
+
+
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a>
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
@@ -81,7 +83,7 @@
   </td>
     </tr>
     @endforeach
-    
+
   </tbody>
 </table>
 </div>

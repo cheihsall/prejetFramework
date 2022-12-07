@@ -13,13 +13,13 @@ class Utilisateurs extends Controller
 
     public function inscription(Request $request){
 
-    /*     $nom = $request->get('nom');
+        $nom = $request->get('nom');
         $prenom = $request->get('prenom');
         $email = $request->get('email');
         $mdp = $request->get('passwords');
         $mdp1 = $request->get('passwords2');
         $role = $request->get('roles');  
- */
+
          //controle formulaire
 
         $validation = $request->validate([

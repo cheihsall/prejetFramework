@@ -58,7 +58,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate([
+        $u=new utilisateur();
+        $email= $request->get('email');
+        $request->validate([
 
             'nom' => 'required',
             'prenom' => 'required',
@@ -66,11 +68,24 @@ class PostController extends Controller
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required_with:passwords|same:passwords',
-        
-            
+
+
         ]);
-        
-    
+
+        //controle du mail existant
+     foreach ($u::all() as $user) {
+
+        if($user->email === $email){
+
+         $validation = $request->validate([
+
+             'email'=>['confirmed'],
+
+         ]);
+         }
+  }
+
+
 
 
     $etat='1';
@@ -90,10 +105,10 @@ class PostController extends Controller
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
         $user->date_modification = null;
-        $user->save(); 
+        $user->save();
         return redirect("/inscription");
 
-    
+
     }
 
     /**
