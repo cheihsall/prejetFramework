@@ -51,6 +51,8 @@ Route::get('/listearchive', [PostController::class, "listearchive"]);
 Route::get('/usersimple', [PostController::class, "usersimple"]);
 
 Route::post('recherche', [PostController::class, "recherche"]);
+Route::post('rechinactif', [PostController::class, "rechinactif"]);
+
 
 
 
