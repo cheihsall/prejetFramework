@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Utilisateurs;
 
+
 class PostController extends Controller
 {
     function generateMatricule($n = 3)
@@ -33,8 +34,7 @@ class PostController extends Controller
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
 
-/*        ->paginate(10);
- */        $users = Utilisateur::all();
+        $users = Utilisateur::all();
         $u = [];
         foreach ($users as $user) {
             if ($user->etat == "1") {
@@ -42,6 +42,8 @@ class PostController extends Controller
             }
         }
         $users = $u;
+        $users = Utilisateur::paginate(10);
+
        // dd($u);
 
        /*  foreach($users as $user) { if ($user->etat =="0"){
@@ -50,9 +52,6 @@ class PostController extends Controller
 
 /*         $users = Utilisateur::all();
  */
-
-
-        //::paginate(10);
         return view("admin", [
             'users' => $users
         ]);
@@ -67,7 +66,7 @@ class PostController extends Controller
 
    public function usersimple()
    {
-      
+
        $users = Utilisateur::all();
        $u = [];
        foreach ($users as $user) {
@@ -76,13 +75,13 @@ class PostController extends Controller
            }
        }
        $users = $u;
-      
+
        return view("user", [
            'users' => $users
        ]);
 
-    
-  } 
+
+  }
 
     public function listearchive()
     {
@@ -93,6 +92,8 @@ class PostController extends Controller
         foreach ($users as $user) {
             if ($user->etat == "0") {
                 array_push($u, $user);
+                $users = Utilisateur::paginate(10);
+
             }
         }
         $users = $u;
@@ -116,6 +117,7 @@ class PostController extends Controller
         //
     }
 
+
     /* public function inscription(Request $request){
 
         return $request->all();
@@ -136,6 +138,7 @@ class PostController extends Controller
 
 
     } */
+
      //controle de saisie login
 
     public function login( Request $request){
@@ -150,7 +153,7 @@ class PostController extends Controller
         ]);
        
 
-<<<<<<< HEAD
+
        $users= Utilisateur::all();
        foreach($users as $user){
         if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
@@ -173,33 +176,12 @@ class PostController extends Controller
     ]);
       
  
-=======
 
-        $users = utilisateur::all();
-   foreach($users as $user) {
-    if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
-        return redirect("/api/posts");
-
-    }
-
-   }
-     return redirect("login");  /*  $utilisateur= Utilisateur::where("email",$valid["email"])->first();
-       $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
-       //
-       if(!$utilisateur ) return response(["message"=>"l'email n'existe pas"]);
-       /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
-       //
-    /*     if(!$pass ) return response(["message"=>"pass n'existe pas"]);  */
-      /*   return redirect("/api/posts"); */
-
-
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
 
     }
 
 
-<<<<<<< HEAD
-=======
+
   /**
      * Handle an authentication attempt.
      *
@@ -228,7 +210,6 @@ class PostController extends Controller
  */
 
 
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
     /**
      * Stocker une ressource nouvellement créée dans le stockage.
      *
@@ -265,10 +246,7 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-<<<<<<< HEAD
 
-=======
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
         $user->photo = $request->get(5);
@@ -383,11 +361,38 @@ class PostController extends Controller
 
     public function recherche(Request $request)
     {
-        $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
-/*          $users->etat =  "1";
- */
-        return view("admin", [
-            "users" => $users
-        ]);
+                $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+                $u = [];
+                foreach ($users as $user) {
+                    if ($user->etat == "1") {
+                        array_push($u, $user);
+                    }
+                }
+                $users = $u;
+                return view("admin", [
+                    "users" => $users
+                ]);
+
+
+
         }
+
+        public function rechinactif(Request $request)
+        {
+                    $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+                    $u = [];
+                    foreach ($users as $user) {
+                        if ($user->etat == "0") {
+                            array_push($u, $user);
+                        }
+                    }
+                    $users = $u;
+                    return view("admin", [
+                        "users" => $users
+                    ]);
+
+
+
+            }
+
 }
