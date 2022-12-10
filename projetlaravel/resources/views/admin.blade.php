@@ -1,6 +1,6 @@
 
 
-
+ {{--  {{init_php_session()}}  --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +17,7 @@
 <body>
 
     <header>
+     
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
                 <img src="/image/user.png" class="rounded-circle" height="100" width="100" alt="photo">
@@ -40,7 +41,7 @@
                 <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
             </form>&nbsp;
             <div class="nav-item mb-3 p-2" >
-                <a href="/api/posts">
+                <a href="/api/admin">
                 <button type="button" id="quit" class="btn btn-outline-danger mt-3 p-1 " style="display:none">
                     <img src="/image/quit.png" alt="quitter" width="30">
                 </button>
@@ -63,6 +64,7 @@
       <th scope="col">E-MAIL</th>
       <th scope="col">Matricule</th>
       <th scope="col">Role</th>
+      <th scope="col">Role</th>
       <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
     {{--   <th scope="col">Pass</th> --}}
@@ -79,7 +81,7 @@
        <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->role }}}</td>
      {{--  <td>{{{ $user->etat }}}</td> --}}
-     {{--  <td>{{{ $user->motdepasse }}}</td> --}}
+      <td>{{{ $user->motdepasse }}}</td>
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img class="btn-outline-secondary" src="/image/change.png" alt="changer"></a>
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
@@ -94,11 +96,7 @@
 </table>
     {{-- <div class="pagination d-flex justify-content-center ">
          {{$users->links()}}
-    </div> --}}
 
-</div>
-</main>
-<script>
     function search(){
     let recherche = document.getElementById('recherche');
     let quit = document.getElementById('quit');
@@ -110,11 +108,13 @@
     }
 
 </script>
+<div class="d-flex justify-content-center col-">
+   {{--  {{ $users->links() }} --}}
+</div>
+</div>
+</main>
+
 </body>
 </html>
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
