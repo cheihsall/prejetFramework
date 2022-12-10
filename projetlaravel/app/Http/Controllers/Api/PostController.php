@@ -117,40 +117,69 @@ class PostController extends Controller
         //
     }
 
+
+    /* public function inscription(Request $request){
+
+        return $request->all();
+
+
+        $validation = $request->validate([
+
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix ',
+            'passwords' => 'required',
+            'roles' => 'required',
+            'passwords2' => 'required',
+
+        ]);
+        return $validation;
+
+
+
+    } */
+
      //controle de saisie login
 
-    public function login(Request $request){
+    public function login( Request $request){
 
-        $email = $request->get('email');
+       /*  $email = $request->get('email');
         $mdp = $request->get('passwords');
-
+ */
 
         $valid = $request->validate([
             'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
             'passwords' => 'required', 'string',
         ]);
+       
 
 
-        $users = utilisateur::all();
-   foreach($users as $user) {
-    if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
-        return redirect("/api/posts");
+       $users= Utilisateur::all();
+       foreach($users as $user){
+        if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
+       {
+        if ($user->role === "administrateur"){
+          return redirect("/api/posts");  
+        }
+        elseif ($user->role === "utilisateur") {
+            return view("inscription");
+        }
+        
+        };
+       
+       }
+   
+      
+       $valid = $request->validate([
+        'msg' => 'accepted',
+       
+    ]);
+      
+ 
+
 
     }
 
-   }
-     return redirect("login");  /*  $utilisateur= Utilisateur::where("email",$valid["email"])->first();
-       $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
-       //
-       if(!$utilisateur ) return response(["message"=>"l'email n'existe pas"]);
-       /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
-       //
-    /*     if(!$pass ) return response(["message"=>"pass n'existe pas"]);  */
-      /*   return redirect("/api/posts"); */
-
-
-
-    }
 
 
   /**
@@ -217,6 +246,7 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
+
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
         $user->photo = $request->get(5);

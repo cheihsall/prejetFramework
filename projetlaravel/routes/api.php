@@ -34,6 +34,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']);
 }); */
 
+
+
+
+
+
 /* Route::delete('posts/{id}', [PostController::class, "dest"]); */
 
 /* Route::post("/utilisateur/login",[Utilisateurs::class,'login']); */
