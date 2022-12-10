@@ -9,10 +9,9 @@ class Utilisateurs extends Controller
 {
 
 
-<<<<<<< HEAD
    
 
-    public function inscription(Request $request){
+  /*  public function inscription(Request $request){
 
         $nom = $request->get('nom');
         $prenom = $request->get('prenom');
@@ -35,10 +34,8 @@ class Utilisateurs extends Controller
             
         ]);
         return $validation;
-=======
->>>>>>> 9d98e50dad215b66ccbebccb8bfedc8c5574c337
+*/
 
-     //controle de saisie login 
 
     public function login(Request $request){
 
@@ -48,21 +45,25 @@ class Utilisateurs extends Controller
 
         $valid = $request->validate([
             'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
-            'passwords' => 'required', 'string',   
+            'passwords' => 'required', 'string',
         ]);
 
        $utilisateur= Utilisateur::where("email",$valid["email"])->first();
        $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
        //
-       if(!$utilisateur ) return response(["message"=>"l'email n'existe pas"]);
+       if(!$utilisateur ) return response(["message"=>"Email n'existe pas"]);
        /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
        //
-        if(!$pass ) return response(["message"=>"pass n'existe pas"]); 
+
+        */if(!$pass ) return response([]); */
+
+        if(!$pass ) return response(["message"=>"pass n'existe pas"]);
+
        return $utilisateur;
 
 
-        
+
     }
 }
- ?> 
+ ?>
 

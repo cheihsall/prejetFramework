@@ -51,12 +51,18 @@ Route::post('/inscription' ,[PostController::class,'store']);
 
 
 
+
 Route::get('/login', function () {
     return view('login');
 });
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
 /* Route::post('/inscription' ,[PostController::class,'inscription']); */
 Route::post('/login' ,[PostController::class,'login']);
+
+
+//Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+
+
 
 
 Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
