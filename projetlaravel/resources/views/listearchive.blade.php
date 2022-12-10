@@ -26,7 +26,7 @@
             </div>
 
         <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
-          <a class="nav-link active text-light m-2 h3" aria-current="page" href="/api/posts">Actifs</a>
+          <a class="nav-link active text-light m-2 h3" aria-current="page" href="/api/admin">Actifs</a>
         </div>
         <form class="d-flex" role="search" action="recherche" method="post">
             <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
@@ -75,6 +75,9 @@
 
   </tbody>
 </table>
+<div class="d-flex justify-content-center col-">
+  {{ $users->links() }}
+</div>
 </div>
 
 </main>

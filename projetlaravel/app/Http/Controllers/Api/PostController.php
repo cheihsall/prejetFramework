@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Utilisateurs;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\RouteServiceProvider;
 
 class PostController extends Controller
 {
@@ -35,10 +37,12 @@ class PostController extends Controller
 
 /*        ->paginate(10);
  */        $users = Utilisateur::all();
+ 
         $u = [];
         foreach ($users as $user) {
             if ($user->etat == "1") {
                 array_push($u, $user);
+                
             }
         }
         $users = $u;
@@ -50,7 +54,7 @@ class PostController extends Controller
 
 /*         $users = Utilisateur::all();
  */
-
+$users = Utilisateur::paginate(8);
 
         //::paginate(10);
         return view("admin", [
@@ -76,7 +80,7 @@ class PostController extends Controller
            }
        }
        $users = $u;
-      
+       $users = Utilisateur::paginate(8);
        return view("user", [
            'users' => $users
        ]);
@@ -100,7 +104,7 @@ class PostController extends Controller
 
        /*  foreach($users as $user) { if ($user->etat =="0"){
 
-        }} */
+        }} */$users = Utilisateur::paginate(8);
         return view("listearchive", [
             'users' => $users
         ]);
@@ -153,7 +157,7 @@ class PostController extends Controller
         $users = utilisateur::all();
    foreach($users as $user) {
     if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
-        return redirect("/api/posts");
+        return redirect("/api/session");
 
     }
 
@@ -238,14 +242,14 @@ class PostController extends Controller
         $user->email = $request->get('email');
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
-        $user->photo = $request->get(5);
+        $user->photo = $request->get("photo");
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
         $user->date_modification = null;
 
         $user->save();
-        return redirect("/api/posts");
+        return redirect("/api/admin");
 
 
     }
@@ -279,7 +283,7 @@ class PostController extends Controller
         $user->prenom = $request->get("prenom");
         $user->email = $request->get("email");
         $user->save();
-        return redirect("/api/posts");
+        return redirect("/api/admin");
     }
 
     public function switchRole(string $id)
@@ -291,7 +295,7 @@ class PostController extends Controller
             $user->role = "administrateur";
         }
         $user->save();
-        return redirect("/api/posts");
+        return redirect("/api/admin");
     }
 
     public function editForm(string $id)
@@ -336,7 +340,7 @@ class PostController extends Controller
         $user =  Utilisateur::findOrFail($id);
         $user->etat = "0";
         $user->save();
-        return redirect("/api/posts");
+        return redirect("/api/admin");
     }
 
 
@@ -349,12 +353,55 @@ class PostController extends Controller
     }
 
     public function recherche(Request $request)
-    {
+    {$users = Utilisateur::paginate(8);
         $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
 /*          $users->etat =  "1";
  */
         return view("admin", [
             "users" => $users
         ]);
+
+        
         }
+
+
+
+
+        public function session(LoginRequest $request)
+    {
+        $request->authenticate();
+
+        session_start();
+
+        return redirect("/api/admin");
+    }
+
+    /**
+     * Destroy an authenticated session.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deconnect(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+    function init_php_session():bool
+    {
+        if(!session_id())
+        {
+            session_start();
+            session_regenerate_id();
+            return true;
+        }
+        return false;
+    }
+   
 }
