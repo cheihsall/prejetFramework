@@ -8,13 +8,34 @@ use Illuminate\Http\Request;
 class Utilisateurs extends Controller
 {
 
-<<<<<<< HEAD
-     //controle de saisie login 
-=======
 
+   
 
-     //controle de saisie login
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
+  /*  public function inscription(Request $request){
+
+        $nom = $request->get('nom');
+        $prenom = $request->get('prenom');
+        $email = $request->get('email');
+        $mdp = $request->get('passwords');
+        $mdp1 = $request->get('passwords2');
+        $role = $request->get('roles');  
+
+         //controle formulaire
+
+        $validation = $request->validate([
+
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'passwords' => 'required',
+            'roles' => 'required',
+            'passwords2' => 'required_with:passwords|same:passwords',
+        
+            
+        ]);
+        return $validation;
+*/
+
 
     public function login(Request $request){
 
@@ -33,11 +54,11 @@ class Utilisateurs extends Controller
        if(!$utilisateur ) return response(["message"=>"Email n'existe pas"]);
        /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
        //
-<<<<<<< HEAD
-        if(!$pass ) return response([]); 
-=======
+
+        */if(!$pass ) return response([]); */
+
         if(!$pass ) return response(["message"=>"pass n'existe pas"]);
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
+
        return $utilisateur;
 
 

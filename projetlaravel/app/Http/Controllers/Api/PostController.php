@@ -62,7 +62,9 @@ class PostController extends Controller
 /*         $users = Utilisateur::all();
  */
 
+
 $users = Utilisateur::paginate(8);
+
 
         //::paginate(10);
 
@@ -75,6 +77,7 @@ $users = Utilisateur::paginate(8);
 
         /* return response()->json($users); */
    }
+
 
 
 
@@ -99,6 +102,7 @@ $users = Utilisateur::paginate(8);
 
   }
 
+
     public function listearchive()
     {
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
@@ -117,7 +121,9 @@ $users = Utilisateur::paginate(8);
 
        /*  foreach($users as $user) { if ($user->etat =="0"){
 
+
         }} */$users = Utilisateur::paginate(8);
+
         return view("listearchive", [
             'users' => $users
         ]);
@@ -153,6 +159,7 @@ $users = Utilisateur::paginate(8);
 
 
 
+
     } */
 
      //controle de saisie login
@@ -168,6 +175,7 @@ $users = Utilisateur::paginate(8);
             'passwords' => 'required', 'string',
         ]);
        
+
 
 
 
@@ -197,6 +205,7 @@ $users = Utilisateur::paginate(8);
 
 
     }
+
 
 
 
@@ -235,7 +244,15 @@ $users = Utilisateur::paginate(8);
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request){
+
+    public function store(Request $request)
+    {
+        $u=new utilisateur();
+        $email= $request->get('email');
+
+
+
+
 
 
 
@@ -250,6 +267,21 @@ $users = Utilisateur::paginate(8);
 
 
         ]);
+
+
+        //controle du mail existant
+     foreach ($u::all() as $user) {
+
+        if($user->email === $email){
+
+         $request->validate([
+
+             'email'=>['confirmed'],
+
+         ]);
+         }
+  }
+
 
 
 
@@ -274,7 +306,22 @@ $users = Utilisateur::paginate(8);
         $user->date_modification = null;
 
         $user->save();
-        return redirect("/api/admin");
+
+        return redirect("/pupop");
+
+
+
+
+
+
+       /*  $user->save();
+        return redirect("/api/posts"); */
+
+
+
+
+        /*return redirect("/api/admin");*/
+
 
 
     }
@@ -354,8 +401,12 @@ $users = Utilisateur::paginate(8);
     public function destroy(string $id)
     {
         Utilisateur::destroy($id);
-         $users = Utilisateur::all();
-        return response()->json($users);
+
+ $users = Utilisateur::all();
+ return view("admin", [
+    'users' => $users
+]);
+
     }
 
 
@@ -374,7 +425,13 @@ $users = Utilisateur::paginate(8);
         $user =  Utilisateur::findOrFail($id);
         $user->etat =  "1";
         $user->save();
+
+
+        /* return redirect('/api/posts'); */
+
         return redirect("/api/listearchive");
+
+
     }
 
     public function recherche(Request $request)

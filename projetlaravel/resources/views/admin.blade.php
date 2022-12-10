@@ -1,6 +1,8 @@
 
 
+
  {{--  {{init_php_session()}}  --}}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +36,7 @@
                         <img src="/image/dearchiv.png"> Inactifs
 
 
+<
                     </button></a>
             </div>
             <form class="d-flex" role="search" action="recherche" method="post">
@@ -63,6 +66,7 @@
       <th scope="col">PRENOM</th>
       <th scope="col">E-MAIL</th>
       <th scope="col">Matricule</th>
+      <th scope="col">Photo</th>
       <th scope="col">Role</th>
       <th scope="col">Role</th>
       <th scope="col">ACTION</th>
@@ -75,14 +79,18 @@
 
   @foreach ($users as $user)
     <tr>
+
       <td cope="row">{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
       <td>{{{ $user->email }}}</td>
        <td>{{{ $user->matricule }}}</td>
+       <td>{{{ $user->photo }}}</td>
       <td>{{{ $user->role }}}</td>
      {{--  <td>{{{ $user->etat }}}</td> --}}
+
       <td>{{{ $user->motdepasse }}}</td>
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img class="btn-outline-secondary" src="/image/change.png" alt="changer"></a>
+n
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}

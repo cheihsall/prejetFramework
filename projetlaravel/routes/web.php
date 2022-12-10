@@ -36,32 +36,32 @@ Route::get('/user', function () {
 
 
 
-Route::get('/inscription', function () {
+Route::get('inscription', function () {
+
 
     return view('inscription');
 });
 
-
-
-
-Route::post('/inscription',[utilisateurs::class,'inscription']);
-
-
-
-Route::post('/inscription',[utilisateurs::class,'inscription']);
-
+Route::get('pupop', function () {
+    return view('pupop');
+});
 
 
 Route::post('/inscription' ,[PostController::class,'store']);
+
+
+
 
 Route::get('/login', function () {
     return view('login');
 });
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
-Route::post('/inscription' ,[PostController::class,'inscription']);
+/* Route::post('/inscription' ,[PostController::class,'inscription']); */
 Route::post('/login' ,[PostController::class,'login']);
 
+
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+
 
 
 
