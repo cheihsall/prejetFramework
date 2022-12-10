@@ -12,6 +12,7 @@ use App\Http\Controllers\Utilisateurs;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 
+
 class PostController extends Controller
 {
     function generateMatricule($n = 3)
@@ -35,9 +36,13 @@ class PostController extends Controller
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
 
+
 /*        ->paginate(10);
  */        $users = Utilisateur::all();
  
+
+        $users = Utilisateur::all();
+
         $u = [];
         foreach ($users as $user) {
             if ($user->etat == "1") {
@@ -46,6 +51,8 @@ class PostController extends Controller
             }
         }
         $users = $u;
+        $users = Utilisateur::paginate(10);
+
        // dd($u);
 
        /*  foreach($users as $user) { if ($user->etat =="0"){
@@ -54,9 +61,11 @@ class PostController extends Controller
 
 /*         $users = Utilisateur::all();
  */
+
 $users = Utilisateur::paginate(8);
 
         //::paginate(10);
+
         return view("admin", [
             'users' => $users
         ]);
@@ -71,7 +80,7 @@ $users = Utilisateur::paginate(8);
 
    public function usersimple()
    {
-      
+
        $users = Utilisateur::all();
        $u = [];
        foreach ($users as $user) {
@@ -80,13 +89,15 @@ $users = Utilisateur::paginate(8);
            }
        }
        $users = $u;
+
        $users = Utilisateur::paginate(8);
+
        return view("user", [
            'users' => $users
        ]);
 
-    
-  } 
+
+  }
 
     public function listearchive()
     {
@@ -97,6 +108,8 @@ $users = Utilisateur::paginate(8);
         foreach ($users as $user) {
             if ($user->etat == "0") {
                 array_push($u, $user);
+                $users = Utilisateur::paginate(10);
+
             }
         }
         $users = $u;
@@ -120,6 +133,7 @@ $users = Utilisateur::paginate(8);
         //
     }
 
+
     /* public function inscription(Request $request){
 
         return $request->all();
@@ -129,7 +143,7 @@ $users = Utilisateur::paginate(8);
 
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'email' => 'required | regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix ',
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required',
@@ -140,40 +154,50 @@ $users = Utilisateur::paginate(8);
 
 
     } */
+
      //controle de saisie login
 
-    public function login(Request $request){
+    public function login( Request $request){
 
-        $email = $request->get('email');
+       /*  $email = $request->get('email');
         $mdp = $request->get('passwords');
-
+ */
 
         $valid = $request->validate([
             'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
             'passwords' => 'required', 'string',
         ]);
+       
 
 
-        $users = utilisateur::all();
-   foreach($users as $user) {
-    if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
-        return redirect("/api/session");
+
+       $users= Utilisateur::all();
+       foreach($users as $user){
+        if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
+       {
+        if ($user->role === "administrateur"){
+          return redirect("/api/posts");  
+        }
+        elseif ($user->role === "utilisateur") {
+            return view("inscription");
+        }
+        
+        };
+       
+       }
+   
+      
+       $valid = $request->validate([
+        'msg' => 'accepted',
+       
+    ]);
+      
+ 
+
+
 
     }
 
-   }
-     return redirect("login");  /*  $utilisateur= Utilisateur::where("email",$valid["email"])->first();
-       $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
-       //
-       if(!$utilisateur ) return response(["message"=>"l'email n'existe pas"]);
-       /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
-       //
-    /*     if(!$pass ) return response(["message"=>"pass n'existe pas"]);  */
-      /*   return redirect("/api/posts"); */
-
-
-
-    }
 
 
   /**
@@ -240,6 +264,7 @@ $users = Utilisateur::paginate(8);
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
+
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
         $user->photo = $request->get("photo");
@@ -353,6 +378,7 @@ $users = Utilisateur::paginate(8);
     }
 
     public function recherche(Request $request)
+
     {$users = Utilisateur::paginate(8);
         $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
 /*          $users->etat =  "1";
@@ -404,4 +430,41 @@ $users = Utilisateur::paginate(8);
         return false;
     }
    
+
+    {
+                $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+                $u = [];
+                foreach ($users as $user) {
+                    if ($user->etat == "1") {
+                        array_push($u, $user);
+                    }
+                }
+                $users = $u;
+                return view("admin", [
+                    "users" => $users
+                ]);
+
+
+
+        }
+
+        public function rechinactif(Request $request)
+        {
+                    $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+                    $u = [];
+                    foreach ($users as $user) {
+                        if ($user->etat == "0") {
+                            array_push($u, $user);
+                        }
+                    }
+                    $users = $u;
+                    return view("admin", [
+                        "users" => $users
+                    ]);
+
+
+
+            }
+
+
 }

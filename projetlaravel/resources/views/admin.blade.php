@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <title>page admin</title>
 </head>
@@ -32,7 +31,7 @@
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
 
 
-                        <img src="/image/dearchiv.png"> Liste des archivés
+                        <img src="/image/dearchiv.png"> Inactifs
 
 
                     </button></a>
@@ -95,29 +94,18 @@
     @endforeach
   </tbody>
 </table>
-{{-- <nav aria-label="...">
-    <ul class="pagination d-flex justify-content-center">
+    {{-- <div class="pagination d-flex justify-content-center ">
          {{$users->links()}}
-    </ul>
-</nav> --}}<script>
 
     function search(){
-        let recherche = document.getElementById('recherche');
-        let quit = document.getElementById('quit');
-
-        if (recherche.value !=" "){
-             quit.style.display = "block";
-
-        }
-
-}
-/* function buts(){
-    let but = document.getElementById('but');
+    let recherche = document.getElementById('recherche');
     let quit = document.getElementById('quit');
 
-    but.addEventListener("click", quit.style.display = "block");
+    if (recherche.value !=" "){
+         quit.style.display = "block";
 
-} */
+    }
+    }
 
 </script>
 <div class="d-flex justify-content-center col-">
@@ -128,4 +116,5 @@
 
 </body>
 </html>
+
 
