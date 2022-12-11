@@ -50,6 +50,16 @@ Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);
 Route::apiResource('admin', PostController::class) ;
 
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
+
+Route::delete('posts/destroy/{id}', [PostController::class, "destroy"]);
+
+
+
+
+
+
+
+
 Route::post('recherche', [PostController::class, "recherche"]);
 Route::get('search', [PostController::class, "Search"]);
 

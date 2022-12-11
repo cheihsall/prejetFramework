@@ -73,17 +73,19 @@ class PostController extends Controller
 /*         $users = Utilisateur::all();
  */
 
+
 /* $users = Utilisateur::paginate(8); */
 
 
         ->orderBy('nom')
         ->paginate(5);
-        //::paginate(10);
+
 
         return view("admin", [
             'users' => $users
         ]);
    }
+
 
 
 
@@ -108,6 +110,7 @@ class PostController extends Controller
 
   }
 
+
     public function listearchive()
     {
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
@@ -126,7 +129,9 @@ class PostController extends Controller
 
        /*  foreach($users as $user) { if ($user->etat =="0"){
 
+
         }} */$users = Utilisateur::paginate(8);
+
         return view("listearchive", [
             'users' => $users
         ]);
@@ -162,6 +167,7 @@ class PostController extends Controller
 
 
 
+
     } */
 
      //controle de saisie login
@@ -183,9 +189,7 @@ class PostController extends Controller
 
 
 
-  
-
-  
+ 
        $users= Utilisateur::all();
        foreach($users as $user){
         if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
@@ -216,6 +220,7 @@ class PostController extends Controller
 
 
 
+
   /**
      * Handle an authentication attempt.
      *
@@ -234,11 +239,11 @@ class PostController extends Controller
 
 
 
+    public function store(Request $request)
+    {
+        $u=new utilisateur();
+        $email= $request->get('email');
 
-
-
-
-    public function store(Request $request){
 
 
 
@@ -253,6 +258,21 @@ class PostController extends Controller
 
 
         ]);
+
+
+        //controle du mail existant
+     foreach ($u::all() as $user) {
+
+        if($user->email === $email){
+
+         $request->validate([
+
+             'email'=>['confirmed'],
+
+         ]);
+         }
+  }
+
 
 
 
@@ -277,7 +297,22 @@ class PostController extends Controller
         $user->date_modification = null;
 
         $user->save();
-        return redirect("/api/admin");
+
+        return redirect("/pupop");
+
+
+
+
+
+
+       /*  $user->save();
+        return redirect("/api/posts"); */
+
+
+
+
+        /*return redirect("/api/admin");*/
+
 
 
     }
@@ -414,8 +449,12 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         Utilisateur::destroy($id);
-         $users = Utilisateur::all();
-        return response()->json($users);
+
+ $users = Utilisateur::all();
+ return view("admin", [
+    'users' => $users
+]);
+
     }
 
 
@@ -440,7 +479,13 @@ class PostController extends Controller
         $user =  Utilisateur::findOrFail($id);
         $user->etat =  "1";
         $user->save();
+
+
+        /* return redirect('/api/posts'); */
+
         return redirect("/api/listearchive");
+
+
     }
 
 

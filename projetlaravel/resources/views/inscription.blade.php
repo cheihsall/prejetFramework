@@ -13,7 +13,7 @@
 <body>
     <div class="container d-flex justify-content-center mt-5">
         <div class="col-md-8  mt-5">
-            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/api/posts" method="POST">
+            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/inscription" method="POST">
                 @csrf
                 <nav class="navbar navbar-dark bg-success mt-0">
                     <div class="container-fluid d-flex justify-content-center">
@@ -24,7 +24,7 @@
                 </nav>
                 <div class="col-md-6 input-control">
                     <label for="input1" class="form-label">Nom<span style="color: red;">*</span></label>
-                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror" value="{{old('nom')}}" id="nom" required> 
+                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror" value="{{old('nom')}}" id="nom" required>
                     @error('nom')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -86,14 +86,16 @@
                 </div>
 
                 <span class="text text-center mt-2">
-                    <p>Vous avez un compte ?
+
+                    <p> Si vous avez un compte
                         <a href="" style="text-decoration:none;"> connectez-vous</a>
                     </p>
                 </span>
             </form>
         </div>
     </div>
-
 </body>
 </html>
+
+
 
