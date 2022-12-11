@@ -13,7 +13,7 @@
 <body>
     <div class="container d-flex justify-content-center mt-5">
         <div class="col-md-8  mt-5">
-            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/api/posts" method="POST">
+            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate method="POST">
                 @csrf
                 <nav class="navbar navbar-dark bg-success mt-0">
                     <div class="container-fluid d-flex justify-content-center">

@@ -116,7 +116,7 @@ class PostController extends Controller
         //
     }
 
-    /* public function inscription(Request $request){
+    public function inscription(Request $request){
 
         return $request->all();
 
@@ -135,7 +135,7 @@ class PostController extends Controller
 
 
 
-    } */
+    }
      //controle de saisie login
 
     public function login( Request $request){
@@ -150,7 +150,7 @@ class PostController extends Controller
         ]);
        
 
-<<<<<<< HEAD
+
        $users= Utilisateur::all();
        foreach($users as $user){
         if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
@@ -173,7 +173,7 @@ class PostController extends Controller
     ]);
       
  
-=======
+
 
         $users = utilisateur::all();
    foreach($users as $user) {
@@ -193,13 +193,12 @@ class PostController extends Controller
       /*   return redirect("/api/posts"); */
 
 
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
+
 
     }
 
 
-<<<<<<< HEAD
-=======
+
   /**
      * Handle an authentication attempt.
      *
@@ -228,7 +227,7 @@ class PostController extends Controller
  */
 
 
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
+
     /**
      * Stocker une ressource nouvellement créée dans le stockage.
      *
@@ -265,10 +264,7 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-<<<<<<< HEAD
 
-=======
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
         $user->photo = $request->get(5);
