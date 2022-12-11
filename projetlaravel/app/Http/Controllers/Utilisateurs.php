@@ -9,7 +9,7 @@ class Utilisateurs extends Controller
 {
 
 
-   
+
 
   /*  public function inscription(Request $request){
 
@@ -18,7 +18,7 @@ class Utilisateurs extends Controller
         $email = $request->get('email');
         $mdp = $request->get('passwords');
         $mdp1 = $request->get('passwords2');
-        $role = $request->get('roles');  
+        $role = $request->get('roles');
 
          //controle formulaire
 
@@ -30,8 +30,8 @@ class Utilisateurs extends Controller
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required_with:passwords|same:passwords',
-        
-            
+
+
         ]);
         return $validation;
 */
