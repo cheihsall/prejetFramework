@@ -46,7 +46,7 @@ Route::apiResource('admin', PostController::class) ;
 
 Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
 Route::post('recherche', [PostController::class, "recherche"]);
-
+Route::get('search', [PostController::class, "Search"]);
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
 Route::get('/usersimple', [PostController::class, "usersimple"])->name('session');

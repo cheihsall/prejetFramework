@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\utilisateur;
 use Illuminate\Http\Request;
 
+
 class Utilisateurs extends Controller
 {
 

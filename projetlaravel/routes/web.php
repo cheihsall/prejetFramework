@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-}) ->name('welcome');
+})->name('welcome');
 //Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
 
@@ -44,22 +44,22 @@ Route::get('/inscription', function () {
 
 
 
-Route::post('/inscription',[utilisateurs::class,'inscription']);
+Route::post('/inscription', [utilisateurs::class, 'inscription']);
 
 
 
-Route::post('/inscription',[utilisateurs::class,'inscription']);
+Route::post('/inscription', [utilisateurs::class, 'inscription']);
 
 
- 
-Route::post('/inscription' ,[PostController::class,'store']);
+
+Route::post('/inscription', [PostController::class, 'store']);
 
 Route::get('/login', function () {
     return view('login');
 });
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
-Route::post('/inscription' ,[PostController::class,'inscription']);
-Route::post('/login' ,[PostController::class,'login']);
+Route::post('/inscription', [PostController::class, 'inscription']);
+Route::post('/login', [PostController::class, 'login']);
 
 
 
@@ -69,12 +69,9 @@ Route::post('/login' ,[PostController::class,'login']);
 
 
 
-Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+Route::post('/login/save', [App\Http\Controllers\TestController::class, 'store'])->name('login.store');
 /*
 Route::get('/recherche', function () {
     return view('recherche');
 });
  */
-
-
-

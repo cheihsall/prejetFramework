@@ -32,39 +32,25 @@ class PostController extends Controller
      */
     public function index()
     {
-       /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
-       /*  $user = new utilisateur(); */
-
-/*        ->paginate(10);
- */        $users = Utilisateur::all();
+        $users = Utilisateur::all();
+        $users->where('etat'=='1' )
  
-        $u = [];
+        /* $u = [];
         foreach ($users as $user) {
             if ($user->etat == "1") {
                 array_push($u, $user);
                 
             }
         }
-        $users = $u;
-       // dd($u);
+        $users = $u() */
+       
 
-       /*  foreach($users as $user) { if ($user->etat =="0"){
-
-        }} */
-
-/*         $users = Utilisateur::all();
- */
-$users = Utilisateur::paginate(8);
-
+        ->orderBy('nom')
+        ->paginate(5);
         //::paginate(10);
         return view("admin", [
             'users' => $users
         ]);
-
-
-
-
-        /* return response()->json($users); */
    }
 
 
@@ -142,6 +128,19 @@ $users = Utilisateur::paginate(8);
     } */
      //controle de saisie login
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function login(Request $request){
 
         $email = $request->get('email');
@@ -162,16 +161,7 @@ $users = Utilisateur::paginate(8);
     }
 
    }
-     return redirect("login");  /*  $utilisateur= Utilisateur::where("email",$valid["email"])->first();
-       $pass= Utilisateur::where("motdepasse",$valid["passwords"])->first();
-       //
-       if(!$utilisateur ) return response(["message"=>"l'email n'existe pas"]);
-       /* if (!Hash::check($utilisateur['passwords'],$utilisateur->passwords)) response(["message"=>"mdp incorrect"]); */
-       //
-    /*     if(!$pass ) return response(["message"=>"pass n'existe pas"]);  */
-      /*   return redirect("/api/posts"); */
-
-
+     return redirect("login");  
 
     }
 
@@ -184,32 +174,19 @@ $users = Utilisateur::paginate(8);
 
        */
    /*
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'passwords' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/api/posts');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-    }
  */
-
-
-    /**
+/**
      * Stocker une ressource nouvellement créée dans le stockage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
+
 
     public function store(Request $request){
 
@@ -254,6 +231,9 @@ $users = Utilisateur::paginate(8);
 
     }
 
+
+
+
     /**
      * Affiche la ressource spécifiée.
      *
@@ -270,12 +250,22 @@ $users = Utilisateur::paginate(8);
 /*         return response()->json($users); */
     }
 
+
+
+
+
+
     /**
      * Afficher le formulaire de modification de la ressource spécifiée.
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
+      
      */
+
+
+
+     
     public function edit(string $id, Request $request)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -285,6 +275,14 @@ $users = Utilisateur::paginate(8);
         $user->save();
         return redirect("/api/admin");
     }
+
+
+
+
+
+
+
+
 
     public function switchRole(string $id)
     {
@@ -298,6 +296,13 @@ $users = Utilisateur::paginate(8);
         return redirect("/api/admin");
     }
 
+
+
+
+
+
+
+
     public function editForm(string $id)
     {
         $user = Utilisateur::findOrFail($id);
@@ -305,6 +310,14 @@ $users = Utilisateur::paginate(8);
             "user" => $user
         ]);
     }
+
+
+
+
+
+
+
+
     public function connection(){
 
     }
@@ -314,11 +327,25 @@ $users = Utilisateur::paginate(8);
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
      */
     public function update(Request $request, Post $post)
     {
         //
     }
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -326,12 +353,21 @@ $users = Utilisateur::paginate(8);
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
+
+
     public function destroy(string $id)
     {
         Utilisateur::destroy($id);
          $users = Utilisateur::all();
         return response()->json($users);
     }
+
+
 
 
 
@@ -344,6 +380,10 @@ $users = Utilisateur::paginate(8);
     }
 
 
+
+
+
+
     public function desarchiv(string $id)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -351,6 +391,11 @@ $users = Utilisateur::paginate(8);
         $user->save();
         return redirect("/api/listearchive");
     }
+
+
+
+
+
 
     public function recherche(Request $request)
     {$users = Utilisateur::paginate(8);
@@ -365,6 +410,17 @@ $users = Utilisateur::paginate(8);
         }
 
 
+        public function Search(Request $request)
+        {
+            $users = utilisateur::all();
+            $search = \Request::get('nom'); 
+            $users = utilisateur::where('nom','like','%'.$search.'%')
+                ->orderBy('nom')
+                ->paginate(5);
+                return view("admin" ,["users"=>$users]);
+        }
+     
+
 
 
         public function session(LoginRequest $request)
@@ -375,6 +431,10 @@ $users = Utilisateur::paginate(8);
 
         return redirect("/api/admin");
     }
+
+
+
+
 
     /**
      * Destroy an authenticated session.
@@ -392,6 +452,12 @@ $users = Utilisateur::paginate(8);
 
         return redirect('/');
     }
+
+
+
+
+
+
 
     function init_php_session():bool
     {
