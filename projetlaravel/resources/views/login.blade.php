@@ -68,11 +68,9 @@
 
                     <span class="text text-center mt-2">
                         <p>Vous n'avez pas de compte?
-<<<<<<< HEAD
+D
                             <a href="inscription" style="text-decoration:none;" >S'inscrire</a>
-=======
-                            <a href="" style="text-decoration:none;">S'inscrire</a>
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
+
                         </p>
                     </span>
                 </form>

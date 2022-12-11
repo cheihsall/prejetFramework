@@ -34,8 +34,8 @@ class PostController extends Controller
     public function index()
     {
 
-        $users = Utilisateur::all();
-        $users->where('etat'=='1' )
+        /* $users = Utilisateur::all() */
+        $users = Utilisateur::where('etat'=='1' )
  
         /* $u = [];
 
@@ -195,7 +195,9 @@ class PostController extends Controller
         if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
        {
         if ($user->role === "administrateur"){
-          return redirect("/api/posts");  
+          Auth::login($user);  
+
+          return redirect("/lgin");  
         }
         elseif ($user->role === "utilisateur") {
             return view("inscription");
@@ -605,3 +607,7 @@ class PostController extends Controller
 
 
 }
+
+
+
+

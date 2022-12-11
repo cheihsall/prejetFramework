@@ -73,6 +73,6 @@ Route::post('rechinactif', [PostController::class, "rechinactif"]);
 
 
 
-/* Route::post('posts/inscription' ,[PostController::class,'store']); */
+Route::post('posts/inscription' ,[PostController::class,'store']); 
 
 

@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-/* use Illuminate\Auth\SessionGuard\utilisateur; */
-use App\Models\utilisateur;
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\utilisateur as ModelsUtilisateur;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,7 +16,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     /**
@@ -31,13 +28,10 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-        
+
         $request->session()->regenerate();
-     /*   $user = utilisateur::all(); */
-        return redirect()->intended("/api/admin", [
-            /* 'user' => $user */
-        ]);
-        /* return redirect()->intended(RouteServiceProvider::HOME); */
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

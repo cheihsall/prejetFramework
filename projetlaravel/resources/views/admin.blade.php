@@ -19,14 +19,20 @@
 <body>
 
     <header>
-     
+        @if (isset($header))
+        <header class="bg-success shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+    @endif
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
                 <img src="/image/user.png" class="rounded-circle" height="100" width="100" alt="photo">
                  <span class="text-light h3">matricule</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
-                <span class="text-light h3">prenom</span>&nbsp;&nbsp;
+                <span class="text-light h3"> {{ $user}}</span>&nbsp;&nbsp;
                 <span class="text-light h3">nom</span>&nbsp;
             </div>
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
@@ -110,10 +116,10 @@ n
     @endforeach
   </tbody>
 </table>
-    {{-- <div class="pagination d-flex justify-content-center ">
+   <div class="pagination d-flex justify-content-center ">
          {{$users->links()}}
 
-    function search(){
+ {{--    function search(){
     let recherche = document.getElementById('recherche');
     let quit = document.getElementById('quit');
 
@@ -123,10 +129,10 @@ n
     }
     }
 
-</script>
+
 <div class="d-flex justify-content-center col-">
     {{ $users->links() }}
-</div>
+</div> --}}
 </div>
 </main>
 

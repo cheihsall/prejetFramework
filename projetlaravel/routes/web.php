@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,10 +67,16 @@ Route::get('/login', function () {
 });
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
 
-Route::post('/inscription', [PostController::class, 'inscription']);
+Route::post('/inscription', [PostController::class, 'store']);
 
 /* Route::post('/inscription' ,[PostController::class,'inscription']); */
 Route::post('/login' ,[PostController::class,'login']);
+
+
+Route::get('lgin', [AuthenticatedSessionController::class, 'create']);
+/* ->name('lagin'); */
+
+Route::post('lgin', [AuthenticatedSessionController::class, 'store']);
 
 
 
