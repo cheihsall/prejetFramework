@@ -52,7 +52,11 @@ Route::post('/inscription', [utilisateurs::class, 'inscription']);
 
 
 
+<<<<<<< HEAD
 Route::post('/inscription', [PostController::class, 'store']);
+=======
+Route::post('/inscription' ,[PostController::class,'store']);
+>>>>>>> cb2fda5a4bc9156d28095d3597631cc55d404500
 
 Route::get('/login', function () {
     return view('login');
@@ -60,10 +64,6 @@ Route::get('/login', function () {
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
 Route::post('/inscription', [PostController::class, 'inscription']);
 Route::post('/login', [PostController::class, 'login']);
-
-
-
-
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 
