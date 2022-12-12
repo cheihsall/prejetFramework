@@ -16,15 +16,15 @@
 
     <header>
         <nav class="navbar navbar-expand-lg bg-success p-4">
-            <div class="d-flex flex-column">
-                <img src="/image/user.png" class="rounded-circle" height="100" width="100" alt="photo">
-                 <span class="text-light h3">matricule</span>
-            </div>&nbsp;&nbsp;&nbsp;
-            <div class="me-5 d-flex flex-row">
-                <span class="text-light h3">prenom</span>&nbsp;&nbsp;
-                <span class="text-light h3">nom</span>&nbsp;
-            </div>
-
+          <div class="d-flex flex-column">
+            <img src="{{ $_SESSION['phot'] }}" class="rounded-circle" height="100" width="100" alt="photo">
+             <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
+        </div>&nbsp;&nbsp;&nbsp;
+        <div class="me-5 d-flex flex-row">
+            <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
+            <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
+         
+        </div>
         <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
           <a class="nav-link active text-light m-2 h3" aria-current="page" href="/api/admin">Actifs</a>
         </div>
@@ -75,8 +75,8 @@
 
   </tbody>
 </table>
-<div class="d-flex justify-content-center col-">
-  {{ $users->links() }}
+<div class="pagination d-flex justify-content-center ">
+  {{$users->links()}}
 </div>
 </div>
 

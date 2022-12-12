@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/* Route::middleware('auth')->group(function () { */
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -32,8 +32,8 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return view('user');
 });
-
-
+/* });
+require __DIR__.'/auth.php'; */
 
 
 Route::get('inscription', function () {
@@ -67,12 +67,19 @@ Route::get('/login', function () {
 });
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
 
-Route::post('/inscription', [PostController::class, 'inscription']);
+Route::post('/inscription', [PostController::class, 'store']);
 
 /* Route::post('/inscription' ,[PostController::class,'inscription']); */
 Route::post('/login' ,[PostController::class,'login']);
 
 
+/* Route::get('lgin', [AuthenticatedSessionController::class, 'create']);
+/* ->name('lagin'); 
+
+Route::post('lgin', [AuthenticatedSessionController::class, 'store']); */
+
+Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 
