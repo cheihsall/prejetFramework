@@ -169,9 +169,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
 
        */
-   /*
-=======
->>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
+
+
     public function login(Request $request)
     {
         $request->validate([
@@ -466,7 +465,7 @@ class PostController extends Controller
         session_destroy();
         return redirect('/login');
     }
-
+<<<<<<< HEAD
  */
     function init_php_session():bool
     {
@@ -526,3 +525,4 @@ class PostController extends Controller
         ]);
     }
 }
+

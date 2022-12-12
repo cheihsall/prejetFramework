@@ -3,12 +3,12 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-<<<<<<< HEAD
 
 
-=======
+
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
->>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,13 +23,13 @@ use Illuminate\Support\Facades\Route;
 */
 /* Route::middleware('auth')->group(function () { */
 Route::get('/', function () {
-<<<<<<< HEAD
+
     return view('login');
 }) ->name('login');
-=======
+/* Route::middleware('/')->group(function () {
     return view('welcome');
-})->name('welcome');
->>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
+})->name('welcome'); */
+
 //Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
 
@@ -42,18 +42,18 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return view('user');
 });
-<<<<<<< HEAD
+
 ////////////////////////////////////////////////////////////////////////////
 
-Route::post('email',[PostController::class,'userAuth']);
+
 
 
 ////////////////////////////////////////////////////////////////////////
-=======
+
 /* });
 require __DIR__.'/auth.php'; */
 
->>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
+
 
 Route::get('inscription', function () {
 
