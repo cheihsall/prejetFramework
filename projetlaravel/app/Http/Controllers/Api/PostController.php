@@ -12,7 +12,6 @@ use App\Http\Controllers\Utilisateurs;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 
-
 class PostController extends Controller
 {
 
@@ -31,7 +30,9 @@ class PostController extends Controller
         }
 
         return '2022-' . $randomString;
+
     }
+
 
 
 
@@ -44,10 +45,13 @@ class PostController extends Controller
 
         $users = Utilisateur::where('etat', '=', "1")->paginate(8);
 
+
+
         return view("admin", [
             'users' => $users
         ]);
     }
+
 
 
 
@@ -68,9 +72,12 @@ class PostController extends Controller
 
 
 
+  
+
 
     public function listearchive()
     {
+
 
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
@@ -86,7 +93,6 @@ class PostController extends Controller
     }
 
 
-    //controle de saisie login
 
 
     public function login(Request $request)
@@ -95,6 +101,10 @@ class PostController extends Controller
             'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
             'passwords' => 'required', 'string',
         ]);
+
+
+
+
 
         $users = Utilisateur::all();
 
@@ -124,12 +134,14 @@ class PostController extends Controller
             };
         }
 
-
+ 
+      
         $valid = $request->validate([
             'msg' => 'accepted',
 
         ]);
     }
+
 
 
 
@@ -163,9 +175,13 @@ class PostController extends Controller
 
                     'email' => ['confirmed'],
 
-                ]);
+  ]);
             }
         }
+
+
+  $name = $request ->file('photo')->getClientOriginalName(); //recupere le nom de de l'image
+  $path = $request->file('photo')->store('public/image');  //recupere l'image dan la base de donnees et le mettre dans le dossier image
 
 
         $etat = '1';
@@ -177,10 +193,10 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
-        $user->photo = $request->get("photo");
+        $user->filename = $name;
+        $user->photo = $path;
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
@@ -189,6 +205,7 @@ class PostController extends Controller
         $user->save();
 
         return redirect("/pupop");
+
     }
 
 
@@ -321,7 +338,9 @@ class PostController extends Controller
         return view("admin", [
             "users" => $users
         ]);
+
     }
+
 
 
     public function Search(Request $request)
