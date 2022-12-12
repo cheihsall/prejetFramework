@@ -12,7 +12,6 @@ use App\Http\Controllers\Utilisateurs;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 
-
 class PostController extends Controller
 {
     function generateMatricule($n = 3)
@@ -36,13 +35,7 @@ class PostController extends Controller
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
 
-
-/*        ->paginate(10);
- */        $users = Utilisateur::all();
- 
-
         $users = Utilisateur::all();
-
         $u = [];
         foreach ($users as $user) {
             if ($user->etat == "1") {
@@ -51,8 +44,6 @@ class PostController extends Controller
             }
         }
         $users = $u;
-        $users = Utilisateur::paginate(10);
-
        // dd($u);
 
        /*  foreach($users as $user) { if ($user->etat =="0"){
@@ -61,13 +52,6 @@ class PostController extends Controller
 
 /*         $users = Utilisateur::all();
  */
-
-
-$users = Utilisateur::paginate(8);
-
-
-        //::paginate(10);
-
         return view("admin", [
             'users' => $users
         ]);
@@ -83,7 +67,7 @@ $users = Utilisateur::paginate(8);
 
    public function usersimple()
    {
-
+      
        $users = Utilisateur::all();
        $u = [];
        foreach ($users as $user) {
@@ -93,14 +77,12 @@ $users = Utilisateur::paginate(8);
        }
        $users = $u;
 
-       $users = Utilisateur::paginate(8);
-
        return view("user", [
            'users' => $users
        ]);
 
-
-  }
+    
+  } 
 
 
     public function listearchive()
@@ -112,8 +94,6 @@ $users = Utilisateur::paginate(8);
         foreach ($users as $user) {
             if ($user->etat == "0") {
                 array_push($u, $user);
-                $users = Utilisateur::paginate(10);
-
             }
         }
         $users = $u;
@@ -139,8 +119,7 @@ $users = Utilisateur::paginate(8);
         //
     }
 
-
-    /* public function inscription(Request $request){
+    public function inscription(Request $request){
 
         return $request->all();
 
@@ -159,8 +138,7 @@ $users = Utilisateur::paginate(8);
 
 
 
-
-    } */
+    } 
 
      //controle de saisie login
 
@@ -203,7 +181,6 @@ $users = Utilisateur::paginate(8);
  
 
 
-
     }
 
 
@@ -235,6 +212,7 @@ $users = Utilisateur::paginate(8);
         ])->onlyInput('email');
     }
  */
+
 
 
     /**
@@ -489,20 +467,12 @@ $users = Utilisateur::paginate(8);
    
 
     {
-                $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
-                $u = [];
-                foreach ($users as $user) {
-                    if ($user->etat == "1") {
-                        array_push($u, $user);
-                    }
-                }
-                $users = $u;
-                return view("admin", [
-                    "users" => $users
-                ]);
-
-
-
+        $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+/*          $users->etat =  "1";
+ */
+        return view("admin", [
+            "users" => $users
+        ]);
         }
 
         public function rechinactif(Request $request)
@@ -522,6 +492,5 @@ $users = Utilisateur::paginate(8);
 
 
             }
-
 
 }
