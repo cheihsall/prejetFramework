@@ -82,15 +82,15 @@
       <th scope="col">PRENOM</th>
       <th scope="col">E-MAIL</th>
       <th scope="col">Matricule</th>
-<<<<<<< HEAD
+
       <th scope="col">Photo</th>
       <th scope="col">Role</th>
 {{--       <th scope="col">Role</th> --}}
-=======
+
       
       <th scope="col">Role</th>
       
->>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
+
       <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
     {{--   <th scope="col">Pass</th> --}}
@@ -109,21 +109,19 @@
       
       <td>{{{ $user->role }}}</td>
 
-<<<<<<< HEAD
+
      {{--  <td>{{{ $user->motdepasse }}}</td> --}}
-=======
+
   
       {{-- <td>{{{ $user->motdepasse }}}</td> --}}
 
->>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
+
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img class="btn-outline-secondary" src="/image/change.png" alt="changer"></a>
 
-        {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
-        <button type="submit"><img src="/image/change.png" alt=""></button>
-    </form> --}}
+      
         <a href="/api/posts/archiv/{{$user->id}}"><img class="btn-outline-danger" src="/image/archiv.png" alt="archiver"></a>
         <a href="posts/editForm/{{$user->id}}"><img class="btn-outline-success" src="/image/edit.png" alt="modifier"></a>
-       {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
+      
   </td>
     </tr>
     @endforeach
