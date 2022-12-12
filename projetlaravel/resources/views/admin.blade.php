@@ -15,11 +15,10 @@
 
     <title>page admin</title>
 </head>
-
 <body>
 
     <header>
-     
+
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
                 <img src="/image/user.png" class="rounded-circle" height="100" width="100" alt="photo">
@@ -67,7 +66,6 @@
       <th scope="col">E-MAIL</th>
       <th scope="col">Matricule</th>
       <th scope="col">Photo</th>
-      <th scope="col">Role</th>
       <th scope="col">Role</th>
       <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
