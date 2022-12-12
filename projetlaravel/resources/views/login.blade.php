@@ -70,8 +70,7 @@
                         <p>Vous n'avez pas de compte?
 
                             <a href="inscription" style="text-decoration:none;" >S'inscrire</a>
-
-                        </p>
+       </p>
                     </span>
                 </form>
             </div>
