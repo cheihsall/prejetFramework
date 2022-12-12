@@ -27,7 +27,7 @@
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
                 <span class="text-light h3">prenom</span>&nbsp;&nbsp;
-                <span class="text-light h3">nom</span>&nbsp;
+                <span class="text-light h3">{{session('email')}}</span>&nbsp;
             </div>
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
@@ -68,7 +68,7 @@
       <th scope="col">Matricule</th>
       <th scope="col">Photo</th>
       <th scope="col">Role</th>
-      <th scope="col">Role</th>
+{{--       <th scope="col">Role</th> --}}
       <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
     {{--   <th scope="col">Pass</th> --}}
@@ -88,7 +88,7 @@
       <td>{{{ $user->role }}}</td>
      {{--  <td>{{{ $user->etat }}}</td> --}}
 
-      <td>{{{ $user->motdepasse }}}</td>
+     {{--  <td>{{{ $user->motdepasse }}}</td> --}}
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img class="btn-outline-secondary" src="/image/change.png" alt="changer"></a>
 n
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">

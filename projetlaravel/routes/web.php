@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-}) ->name('welcome');
+    return view('login');
+}) ->name('login');
 //Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
 
@@ -32,9 +33,12 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return view('user');
 });
+////////////////////////////////////////////////////////////////////////////
+
+Route::post('email',[PostController::class,'userAuth']);
 
 
-
+////////////////////////////////////////////////////////////////////////
 
 Route::get('inscription', function () {
 

@@ -64,6 +64,7 @@ Route::post('recherche', [PostController::class, "recherche"]);
 
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
+
 Route::get('/usersimple', [PostController::class, "usersimple"])->name('session');
 Route::get('session', [PostController::class, "session"]);
 

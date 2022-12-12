@@ -34,6 +34,7 @@ class PostController extends Controller
     {
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
+       
 
         $users = Utilisateur::all();
         $u = [];
@@ -141,6 +142,13 @@ class PostController extends Controller
     } 
 
      //controle de saisie login
+  public function userAuth(Request $request){
+    
+        $users= $request->input();
+        $request->session()->put('email', $users['email']);
+        return redirect("api/admin");
+
+    }
 
     public function login( Request $request){
 
@@ -152,6 +160,13 @@ class PostController extends Controller
             'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
             'passwords' => 'required', 'string',
         ]);
+        //
+        
+
+
+
+
+        ////////////////////////////////
        
 
 
@@ -162,10 +177,15 @@ class PostController extends Controller
         if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
        {
         if ($user->role === "administrateur"){
-          return redirect("/api/posts");  
+          return redirect("/api/admin");  
         }
         elseif ($user->role === "utilisateur") {
-            return view("inscription");
+            session_start();
+            $_SESSION["nom"]=$user->nom;
+            $_SESSION["prenom"]=$user->prenom;
+            $_SESSION["matricule"]=$user->matricule;
+            $_SESSION["photo"]=$user->photo;
+            return view("/");
         }
         
         };
@@ -443,7 +463,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deconnect(Request $request)
+
+    
+   /*  public function deconnect(Request $request)
     {
         Auth::guard('web')->logout();
 
@@ -453,7 +475,7 @@ class PostController extends Controller
 
         return redirect('/');
     }
-
+ */
     function init_php_session():bool
     {
         if(!session_id())
@@ -466,14 +488,14 @@ class PostController extends Controller
     }
    
 
-    {
+  /*   {
         $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
-/*          $users->etat =  "1";
- */
+         $users->etat =  "1";
+
         return view("admin", [
             "users" => $users
         ]);
-        }
+        } */
 
         public function rechinactif(Request $request)
         {
