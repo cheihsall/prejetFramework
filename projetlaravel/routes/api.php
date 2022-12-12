@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /* Route::post("/utilisateur/login",[Utilisateurs::class,'login']); */
 
+
 Route::post('posts/edit/{id}', [PostController::class, "edit"]);
 Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]);
 Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
@@ -61,19 +62,24 @@ Route::delete('posts/destroy/{id}', [PostController::class, "destroy"]);
 
 
 Route::post('recherche', [PostController::class, "recherche"]);
-
+Route::get('search', [PostController::class, "Search"]);
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
+<<<<<<< HEAD
 
 Route::get('/usersimple', [PostController::class, "usersimple"])->name('session');
+=======
+Route::get('/usersimple', [PostController::class, "usersimple"]);
+>>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
 Route::get('session', [PostController::class, "session"]);
-
+Route::get('search2', [PostController::class, "Search2"]);
 Route::post('recherche', [PostController::class, "recherche"]);
 Route::post('rechinactif', [PostController::class, "rechinactif"]);
 
 
+Route::get('logout', [PostController::class, 'deconnect']);
+               
 
-
-/* Route::post('posts/inscription' ,[PostController::class,'store']); */
+Route::post('posts/inscription' ,[PostController::class,'store']); 
 
 

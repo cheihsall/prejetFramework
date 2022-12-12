@@ -3,8 +3,12 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
+<<<<<<< HEAD
 
 
+=======
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+>>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +21,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/* Route::middleware('auth')->group(function () { */
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('login');
 }) ->name('login');
+=======
+    return view('welcome');
+})->name('welcome');
+>>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
 //Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
 
 
@@ -33,12 +42,18 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return view('user');
 });
+<<<<<<< HEAD
 ////////////////////////////////////////////////////////////////////////////
 
 Route::post('email',[PostController::class,'userAuth']);
 
 
 ////////////////////////////////////////////////////////////////////////
+=======
+/* });
+require __DIR__.'/auth.php'; */
+
+>>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
 
 Route::get('inscription', function () {
 
@@ -51,7 +66,17 @@ Route::get('pupop', function () {
 });
 
 
+
+
+
+
+Route::post('/inscription', [utilisateurs::class, 'inscription']);
+
+
+
+
 Route::post('/inscription' ,[PostController::class,'store']);
+
 
 
 
@@ -60,21 +85,30 @@ Route::get('/login', function () {
     return view('login');
 });
 //Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
+
+Route::post('/inscription', [PostController::class, 'store']);
+
 /* Route::post('/inscription' ,[PostController::class,'inscription']); */
 Route::post('/login' ,[PostController::class,'login']);
 
+
+/* Route::get('lgin', [AuthenticatedSessionController::class, 'create']);
+/* ->name('lagin'); 
+
+Route::post('lgin', [AuthenticatedSessionController::class, 'store']); */
+
+Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 
 
 
 
-Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
+Route::post('/login/save', [App\Http\Controllers\TestController::class, 'store'])->name('login.store');
+
 /*
 Route::get('/recherche', function () {
     return view('recherche');
 });
  */
-
-
-
