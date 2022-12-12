@@ -9,10 +9,7 @@ class Utilisateurs extends Controller
 {
 
 
-     //controle de saisie login
 
-
-     //controle de saisie login
 
 
     public function login(Request $request){

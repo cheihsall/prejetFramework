@@ -40,7 +40,7 @@ class PostController extends Controller
         foreach ($users as $user) {
             if ($user->etat == "1") {
                 array_push($u, $user);
-                
+
             }
         }
         $users = $u;
@@ -152,33 +152,33 @@ class PostController extends Controller
             'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
             'passwords' => 'required', 'string',
         ]);
-       
+
 
 
 
 
        $users= Utilisateur::all();
        foreach($users as $user){
-        if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) 
+        if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords"))
        {
         if ($user->role === "administrateur"){
-          return redirect("/api/posts");  
+          return redirect("/api/posts");
         }
         elseif ($user->role === "utilisateur") {
             return view("inscription");
         }
-        
+
         };
-       
+
        }
-   
-      
+
+
        $valid = $request->validate([
         'msg' => 'accepted',
-       
+
     ]);
-      
- 
+
+
 
 
     }
@@ -192,30 +192,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
 
-       */
-   /*
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'passwords' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/api/posts');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-    }
- */
 
 
 
-    /**
+
+
      * Stocker une ressource nouvellement créée dans le stockage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -263,7 +244,8 @@ class PostController extends Controller
 
 
 
-
+  $name = $request ->file('photo')->getClientOriginalName(); //recupere le nom de de l'image
+  $path = $request->file('photo')->store('public/image');  //recupere l'image dan la base de donnees et le mettre dans le dossier image
 
     $etat='1';
 
@@ -274,10 +256,10 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
-        $user->photo = $request->get("photo");
+        $user->filename = $name;
+        $user->photo = $path;
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
@@ -286,21 +268,6 @@ class PostController extends Controller
         $user->save();
 
         return redirect("/pupop");
-
-
-
-
-
-
-       /*  $user->save();
-        return redirect("/api/posts"); */
-
-
-
-
-        /*return redirect("/api/admin");*/
-
-
 
     }
 
@@ -422,7 +389,7 @@ class PostController extends Controller
             "users" => $users
         ]);
 
-        
+
         }
 
 
@@ -464,8 +431,8 @@ class PostController extends Controller
         }
         return false;
     }
-   
 
+    public function rechactif(Request $request)
     {
         $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
 /*          $users->etat =  "1";
