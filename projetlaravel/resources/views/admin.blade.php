@@ -31,14 +31,12 @@
                  <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
-<<<<<<< HEAD
-                <span class="text-light h3">prenom</span>&nbsp;&nbsp;
-                <span class="text-light h3">{{session('email')}}</span>&nbsp;
-=======
+
+               
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
              
->>>>>>> 05bfd83135843fdf3a9f88879be1d8fe47344930
+
             </div>
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">

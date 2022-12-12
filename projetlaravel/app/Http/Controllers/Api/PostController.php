@@ -106,11 +106,8 @@ class PostController extends Controller
      //controle de saisie login
   
 
-    public function login( Request $request){
+   /*  public function login( Request $request){
 
-       /*  $email = $request->get('email');
-        $mdp = $request->get('passwords');
- */
 
         $valid = $request->validate([
             'email' => ['required', 'email','regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
@@ -122,7 +119,6 @@ class PostController extends Controller
 
 
 
-        ////////////////////////////////
        
 
 
@@ -158,17 +154,10 @@ class PostController extends Controller
 
 
     }
+ */
 
 
 
-
-  /**
-     * Handle an authentication attempt.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-
-       */
 
 
     public function login(Request $request)
