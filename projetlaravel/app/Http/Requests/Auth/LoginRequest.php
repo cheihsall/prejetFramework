@@ -2,12 +2,18 @@
 
 namespace App\Http\Requests\Auth;
 
+
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+
+
 
 class LoginRequest extends FormRequest
 {
@@ -25,15 +31,15 @@ class LoginRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-      */
+     */
     public function rules()
     {
         return [
-            'email' => [ 'string', 'email'],
-            'passwords' => ['string'],
+            'email' => ['required', 'string', 'email'],
+            'passwords' => ['required', 'string'],
         ];
     }
- 
+
     /**
      * Attempt to authenticate the request's credentials.
      *
@@ -41,12 +47,16 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-     public function authenticate()
+    public function authenticate()
     {
+        $this->ensureIsNotRateLimited();
+
        
-        $this->authorize();
-       
-    } 
+           
+        
+
+        RateLimiter::clear($this->throttleKey());
+    }
 
     /**
      * Ensure the login request is not rate limited.
@@ -55,9 +65,12 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-   public function ensureIsNotRateLimited()
+    public function ensureIsNotRateLimited()
     {
-        
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+            return;
+        }
+
         event(new Lockout($this));
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
@@ -68,15 +81,15 @@ class LoginRequest extends FormRequest
                 'minutes' => ceil($seconds / 60),
             ]),
         ]);
-    } 
+    }
 
     /**
      * Get the rate limiting throttle key for the request.
      *
      * @return string
      */
-   public function throttleKey()
+    public function throttleKey()
     {
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
-    } 
+    }
 }

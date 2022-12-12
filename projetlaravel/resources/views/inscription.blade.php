@@ -13,7 +13,13 @@
 <body>
     <div class="container d-flex justify-content-center mt-5">
         <div class="col-md-8  mt-5">
+
             <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border " novalidate action="/inscription" method="POST">
+
+
+
+            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/inscription" method="POST">
+
                 @csrf
                 <nav class="navbar navbar-dark bg-success mt-0">
                     <div class="container-fluid d-flex justify-content-center">
@@ -88,7 +94,7 @@
                 <span class="text text-center mt-2">
 
                     <p> Si vous avez un compte
-                        <a href="" style="text-decoration:none;"> connectez-vous</a>
+                        <a href="login" style="text-decoration:none;"> Connectez-vous</a>
                     </p>
                 </span>
             </form>
