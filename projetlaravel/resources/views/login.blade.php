@@ -20,7 +20,7 @@
                 <span class="alert alert-danger h5">{{ $message }}</span>
                 <br>
             @enderror
-                <form method="post" action="" class="row g-2 d-block  col-md-8  bg-light needs-validation border" novalidate>
+                <form method="post" action="" class="row g-2 d-block  col-md-8  bg-light needs-validation border border-dark" novalidate>
                     @csrf
                     <nav class="navbar bg-success mt-0 col-md-12">
                         <div class="container d-flex justify-content-center col-md-12">
@@ -67,8 +67,8 @@
                     </div>
 
                     <span class="text text-center mt-2">
-                        <p>Vous n'avez pas de compte?
-D
+                        <p>Si vous n'avez pas de compte?
+
                             <a href="inscription" style="text-decoration:none;" >S'inscrire</a>
 
                         </p>

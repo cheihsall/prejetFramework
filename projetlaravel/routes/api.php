@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /* Route::post("/utilisateur/login",[Utilisateurs::class,'login']); */
 
+
 Route::post('posts/edit/{id}', [PostController::class, "edit"]);
 Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]);
 Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
@@ -64,14 +65,15 @@ Route::post('recherche', [PostController::class, "recherche"]);
 Route::get('search', [PostController::class, "Search"]);
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
-Route::get('/usersimple', [PostController::class, "usersimple"])->name('session');
+Route::get('/usersimple', [PostController::class, "usersimple"]);
 Route::get('session', [PostController::class, "session"]);
-
+Route::get('search2', [PostController::class, "Search2"]);
 Route::post('recherche', [PostController::class, "recherche"]);
 Route::post('rechinactif', [PostController::class, "rechinactif"]);
 
 
-
+Route::get('logout', [PostController::class, 'deconnect']);
+               
 
 Route::post('posts/inscription' ,[PostController::class,'store']); 
 

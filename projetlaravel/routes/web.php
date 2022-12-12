@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/* Route::middleware('auth')->group(function () { */
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -32,8 +32,8 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return view('user');
 });
-
-
+/* });
+require __DIR__.'/auth.php'; */
 
 
 Route::get('inscription', function () {
@@ -73,12 +73,13 @@ Route::post('/inscription', [PostController::class, 'store']);
 Route::post('/login' ,[PostController::class,'login']);
 
 
-Route::get('lgin', [AuthenticatedSessionController::class, 'create']);
-/* ->name('lagin'); */
+/* Route::get('lgin', [AuthenticatedSessionController::class, 'create']);
+/* ->name('lagin'); 
 
-Route::post('lgin', [AuthenticatedSessionController::class, 'store']);
+Route::post('lgin', [AuthenticatedSessionController::class, 'store']); */
 
-
+Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
 
 //Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
 

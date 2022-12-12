@@ -30,4 +30,5 @@ class utilisateur extends Model
 
 
     ];
+    
 }

@@ -30,13 +30,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        $request->authenticate(); 
         
         $request->session()->regenerate();
+        /* dump(session()->all());
+        die; */
      /*   $user = utilisateur::all(); */
-        return redirect()->intended("/api/admin", [
-            /* 'user' => $user */
-        ]);
+        return redirect()->intended("/api/admin");
         /* return redirect()->intended(RouteServiceProvider::HOME); */
     }
 
@@ -54,6 +54,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('login');
     }
 }
