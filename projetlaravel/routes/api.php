@@ -61,7 +61,7 @@ Route::delete('posts/destroy/{id}', [PostController::class, "destroy"]);
 
 
 Route::post('recherche', [PostController::class, "recherche"]);
-
+Route::get('search', [PostController::class, "Search"]);
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
 Route::get('/usersimple', [PostController::class, "usersimple"])->name('session');

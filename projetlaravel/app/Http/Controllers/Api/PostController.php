@@ -32,18 +32,42 @@ class PostController extends Controller
      */
     public function index()
     {
+
+        $users = Utilisateur::all();
+        $users->where('etat'=='1' )
+ 
+        /* $u = [];
+
        /*  return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']); */
        /*  $user = new utilisateur(); */
 
+
+
+/*        ->paginate(10);
+ */ /* $users = Utilisateur::all();*/
+ 
+
+       /*  $users = Utilisateur::all();
+
+
         $users = Utilisateur::all();
+
         $u = [];
+
         foreach ($users as $user) {
             if ($user->etat == "1") {
                 array_push($u, $user);
 
             }
         }
+
+        $users = $u() ;
+       
+
         $users = $u;
+
+        $users = Utilisateur::paginate(10); */
+
        // dd($u);
 
        /*  foreach($users as $user) { if ($user->etat =="0"){
@@ -51,15 +75,21 @@ class PostController extends Controller
         }} */
 
 /*         $users = Utilisateur::all();
- */
+
+
+
+/* $users = Utilisateur::paginate(8); */
+
+
+        ->orderBy('nom')
+        ->paginate(5);
+
+
+
+
         return view("admin", [
             'users' => $users
         ]);
-
-
-
-
-        /* return response()->json($users); */
    }
 
 
@@ -142,7 +172,9 @@ class PostController extends Controller
 
      //controle de saisie login
 
+
     public function login( Request $request){
+
 
        /*  $email = $request->get('email');
         $mdp = $request->get('passwords');
@@ -157,6 +189,7 @@ class PostController extends Controller
 
 
 
+ 
        $users= Utilisateur::all();
        foreach($users as $user){
         if($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords"))
@@ -181,6 +214,7 @@ class PostController extends Controller
 
 
 
+
     }
 
 
@@ -192,11 +226,6 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
 
-
-
-
-
-
      * Stocker une ressource nouvellement créée dans le stockage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -204,13 +233,11 @@ class PostController extends Controller
      */
 
 
+
     public function store(Request $request)
     {
         $u=new utilisateur();
         $email= $request->get('email');
-
-
-
 
 
 
@@ -271,6 +298,9 @@ class PostController extends Controller
 
     }
 
+
+
+
     /**
      * Affiche la ressource spécifiée.
      *
@@ -287,12 +317,22 @@ class PostController extends Controller
 /*         return response()->json($users); */
     }
 
+
+
+
+
+
     /**
      * Afficher le formulaire de modification de la ressource spécifiée.
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
+      
      */
+
+
+
+     
     public function edit(string $id, Request $request)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -302,6 +342,14 @@ class PostController extends Controller
         $user->save();
         return redirect("/api/admin");
     }
+
+
+
+
+
+
+
+
 
     public function switchRole(string $id)
     {
@@ -315,6 +363,13 @@ class PostController extends Controller
         return redirect("/api/admin");
     }
 
+
+
+
+
+
+
+
     public function editForm(string $id)
     {
         $user = Utilisateur::findOrFail($id);
@@ -322,6 +377,14 @@ class PostController extends Controller
             "user" => $user
         ]);
     }
+
+
+
+
+
+
+
+
     public function connection(){
 
     }
@@ -331,11 +394,25 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
      */
     public function update(Request $request, Post $post)
     {
         //
     }
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -343,6 +420,13 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
+
+
     public function destroy(string $id)
     {
         Utilisateur::destroy($id);
@@ -356,6 +440,8 @@ class PostController extends Controller
 
 
 
+
+
     public function archiv(string $id)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -363,6 +449,10 @@ class PostController extends Controller
         $user->save();
         return redirect("/api/admin");
     }
+
+
+
+
 
 
     public function desarchiv(string $id)
@@ -379,6 +469,11 @@ class PostController extends Controller
 
     }
 
+
+
+
+
+
     public function recherche(Request $request)
 
     {$users = Utilisateur::paginate(8);
@@ -393,6 +488,17 @@ class PostController extends Controller
         }
 
 
+        public function Search(Request $request)
+        {
+            $users = utilisateur::all();
+            $search = \Request::get('nom'); 
+            $users = utilisateur::where('nom','like','%'.$search.'%')
+                ->orderBy('nom')
+                ->paginate(5);
+                return view("admin" ,["users"=>$users]);
+        }
+     
+
 
 
         public function session(LoginRequest $request)
@@ -403,6 +509,10 @@ class PostController extends Controller
 
         return redirect("/api/admin");
     }
+
+
+
+
 
     /**
      * Destroy an authenticated session.
@@ -421,7 +531,13 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    function init_php_session():bool
+
+
+
+
+
+
+    /* function init_php_session():bool
     {
         if(!session_id())
         {
@@ -434,6 +550,23 @@ class PostController extends Controller
 
     public function rechactif(Request $request)
     {
+
+                $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
+                $u = [];
+                foreach ($users as $user) {
+                    if ($user->etat == "1") {
+                        array_push($u, $user);
+                    }
+                }
+                $users = $u;
+                return view("admin", [
+                    "users" => $users
+                ]);
+
+
+
+        } */
+
         $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
 /*          $users->etat =  "1";
  */
@@ -441,6 +574,7 @@ class PostController extends Controller
             "users" => $users
         ]);
         }
+
 
         public function rechinactif(Request $request)
         {

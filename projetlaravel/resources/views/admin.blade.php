@@ -39,10 +39,17 @@
 <
                     </button></a>
             </div>
-            <form class="d-flex" role="search" action="recherche" method="post">
+            {{-- <form class="d-flex" role="search" action="recherche" method="post">
                 <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
                 <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
-            </form>&nbsp;
+            </form>--}} <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
+                       <form class="d-flex" action="search" method="GET" role="search">
+                        <input class="form-control me-2" name="nom" type="search" placeholder="Recherche"
+                        required  aria-label="Search">
+                        <button class="btn btn-outline-light p-1" id="but" onclick="buts()"  type="submit">Search</button>
+                    </form>&nbsp; 
+                </div>
+
             <div class="nav-item mb-3 p-2" >
                 <a href="/api/admin">
                 <button type="button" id="quit" class="btn btn-outline-danger mt-3 p-1 " style="display:none">
@@ -68,7 +75,7 @@
       <th scope="col">Matricule</th>
       <th scope="col">Photo</th>
       <th scope="col">Role</th>
-      <th scope="col">Role</th>
+      <th scope="col">Etat</th>
       <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
     {{--   <th scope="col">Pass</th> --}}
@@ -86,9 +93,10 @@
        <td>{{{ $user->matricule }}}</td>
        <td>{{{ $user->photo }}}</td>
       <td>{{{ $user->role }}}</td>
-     {{--  <td>{{{ $user->etat }}}</td> --}}
 
-      <td>{{{ $user->motdepasse }}}</td>
+      <td>{{{ $user->etat }}}</td>
+      {{-- <td>{{{ $user->motdepasse }}}</td> --}}
+
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img class="btn-outline-secondary" src="/image/change.png" alt="changer"></a>
 n
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
@@ -117,7 +125,7 @@ n
 
 </script>
 <div class="d-flex justify-content-center col-">
-   {{--  {{ $users->links() }} --}}
+    {{ $users->links() }}
 </div>
 </div>
 </main>
