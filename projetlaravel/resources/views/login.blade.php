@@ -38,7 +38,7 @@
                             name='email' placeholder=" Email ">
 
                         @error('email')
-                    
+
                             <span class="text-danger">{{ $message }}</span>
                             <br>
                         @enderror
@@ -60,20 +60,17 @@
                     <div class="row d-flex justify-content-center mt-2">
                         <button type="submit" name="valid" data-dismiss="alert" class="btn btn-success  col-3" id="submit">
                             Connexion
-                           
+
                         </button>
-                       
+
 
                     </div>
 
                     <span class="text text-center mt-2">
                         <p>Vous n'avez pas de compte?
-<<<<<<< HEAD
+
                             <a href="inscription" style="text-decoration:none;" >S'inscrire</a>
-=======
-                            <a href="" style="text-decoration:none;">S'inscrire</a>
->>>>>>> 0b309da53551aabb2b4761716611a345d1adc412
-                        </p>
+       </p>
                     </span>
                 </form>
             </div>
