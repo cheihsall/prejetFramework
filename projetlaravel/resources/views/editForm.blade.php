@@ -64,7 +64,7 @@
             modifier
         </button>
         <button type="reset" class="btn btn-success col-3" id="submit">
-            <a href="/api/posts"> annuler</a>
+            <a href="/api/admin"> annuler</a>
         </button>
     </div>
 

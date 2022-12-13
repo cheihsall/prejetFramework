@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-success p-4">
           <div class="d-flex flex-column">
-            <img src="{{ $_SESSION['phot'] }}" class="rounded-circle" height="100" width="100" alt="photo">
+            <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo">
              <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
         </div>&nbsp;&nbsp;&nbsp;
         <div class="me-5 d-flex flex-row">
@@ -25,19 +25,29 @@
             <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
          
         </div>
+        
         <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
-          <a class="nav-link active text-light m-2 h3" aria-current="page" href="/api/admin">Actifs</a>
-        </div>
-        <form class="d-flex" role="search" action="rechinactif" method="post">
+          <a class="nav-link active text-light m-2" aria-current="page" href="/api/admin"><button type="button" class="btn btn-outline-success ">
+
+
+                  <img src="/image/presence.png" width="60"> User actifs
+
+
+
+              </button></a>
+      </div>
+      
+        <form class="d-flex" role="search" action="search3" method="post">
             <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
             <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
         </form>&nbsp;
+        <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
       <ul class="nav-item m-2">
-        <a href="/login">
+        <a href="/api/logout">
             <button type="button" class="btn btn-outline-success "><img src="/image/deconect.png" alt="deconnecter">Deconnecter</button>
         </a>
     </ul>
-</nav>
+</nav>{{-- /*the great suspender*/ --}}
     </header>
     <main>
         <div class="m-5">
@@ -60,8 +70,7 @@
       <td cope="row">{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
        <td>{{{ $user->matricule }}}</td>
-      <td>{{{ $user->date_archivage = date("d-m-y")
-    }}}</td>
+      <td>{{{ $user->date_archivage}}}</td>
      <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
