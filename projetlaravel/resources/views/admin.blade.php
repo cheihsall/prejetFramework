@@ -33,7 +33,7 @@
             <div class="me-5 d-flex flex-row">
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
-             
+
             </div>
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
@@ -53,7 +53,7 @@
                         <input class="form-control me-2" name="nom" type="search" placeholder="Recherche"
                         required  aria-label="Search">
                         <button class="btn btn-outline-light p-1" id="but" onclick="buts()"  type="submit">Search</button>
-                    </form>&nbsp; 
+                    </form>&nbsp;
                 </div>
 
             <div class="nav-item mb-3 p-2" >
@@ -79,9 +79,7 @@
       <th scope="col">PRENOM</th>
       <th scope="col">E-MAIL</th>
       <th scope="col">Matricule</th>
-      
       <th scope="col">Role</th>
-      
       <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
     {{--   <th scope="col">Pass</th> --}}
@@ -91,16 +89,15 @@
   <tbody>
 
   @foreach ($users as $user)
-    <tr>
 
+    <tr>
       <td cope="row">{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
       <td>{{{ $user->email }}}</td>
        <td>{{{ $user->matricule }}}</td>
-      
       <td>{{{ $user->role }}}</td>
 
-  
+
       {{-- <td>{{{ $user->motdepasse }}}</td> --}}
 
       <td><a href="/api/posts/switchRole/{{$user->id}}?post"><img class="btn-outline-secondary" src="/image/change.png" alt="changer"></a>
@@ -112,7 +109,8 @@
         <a href="posts/editForm/{{$user->id}}"><img class="btn-outline-success" src="/image/edit.png" alt="modifier"></a>
        {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
   </td>
-    </tr>
+</tr>
+
     @endforeach
   </tbody>
 </table>

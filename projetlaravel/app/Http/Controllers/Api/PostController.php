@@ -30,12 +30,7 @@ class PostController extends Controller
         }
 
         return '2022-' . $randomString;
-
     }
-
-
-
-
 
 
     public function index()
@@ -43,17 +38,14 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
 
-        $users = Utilisateur::where('etat', '=', "1")->paginate(8);
-
+        //
+        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
 
 
         return view("admin", [
             'users' => $users
         ]);
     }
-
-
-
 
 
     public function usersimple()
@@ -67,12 +59,6 @@ class PostController extends Controller
             'users' => $users
         ]);
     }
-
-
-
-
-
-  
 
 
     public function listearchive()
@@ -134,8 +120,8 @@ class PostController extends Controller
             };
         }
 
- 
-      
+
+
         $valid = $request->validate([
             'msg' => 'accepted',
 
@@ -175,13 +161,13 @@ class PostController extends Controller
 
                     'email' => ['confirmed'],
 
-  ]);
+                ]);
             }
         }
 
 
-  $name = $request ->file('photo')->getClientOriginalName(); //recupere le nom de de l'image
-  $path = $request->file('photo')->store('public/image');  //recupere l'image dan la base de donnees et le mettre dans le dossier image
+        $name = $request->file('photo')->getClientOriginalName(); //recupere le nom de de l'image
+        $path = $request->file('photo')->store('public/image');  //recupere l'image dan la base de donnees et le mettre dans le dossier image
 
 
         $etat = '1';
@@ -205,11 +191,7 @@ class PostController extends Controller
         $user->save();
 
         return redirect("/pupop");
-
     }
-
-
-
 
 
     public function show(string $id)
@@ -222,9 +204,6 @@ class PostController extends Controller
     }
 
 
-
-
-
     public function edit(string $id, Request $request)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -234,13 +213,6 @@ class PostController extends Controller
         $user->save();
         return redirect("/api/admin");
     }
-
-
-
-
-
-
-
 
 
     public function switchRole(string $id)
@@ -257,11 +229,6 @@ class PostController extends Controller
 
 
 
-
-
-
-
-
     public function editForm(string $id)
     {
         $user = Utilisateur::findOrFail($id);
@@ -269,11 +236,6 @@ class PostController extends Controller
             "user" => $user
         ]);
     }
-
-
-
-
-
 
 
 
@@ -312,9 +274,6 @@ class PostController extends Controller
 
 
 
-
-
-
     public function desarchiv(string $id)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -325,12 +284,10 @@ class PostController extends Controller
 
 
 
-
-
-
     public function recherche(Request $request)
 
-    {session_start();
+    {
+        session_start();
         $users = Utilisateur::paginate(8);
         $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
         /*          $users->etat =  "1";
@@ -338,13 +295,13 @@ class PostController extends Controller
         return view("admin", [
             "users" => $users
         ]);
-
     }
 
 
 
     public function Search(Request $request)
-    {session_start();
+    {
+        session_start();
         $users = utilisateur::all();
         $search = \Request::get('nom');
         $users = utilisateur::where('nom', 'like', '%' . $search . '%')
@@ -356,7 +313,8 @@ class PostController extends Controller
     }
 
     public function Search2(Request $request)
-    {session_start();
+    {
+        session_start();
         $users = utilisateur::all();
         $search = \Request::get('nom');
         $users = utilisateur::where('nom', 'like', '%' . $search . '%')

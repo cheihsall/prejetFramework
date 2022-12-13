@@ -17,28 +17,30 @@
 
             <div class="row d-flex justify-content-center bg-white-50 mt-5 ">
                 @error('msg')
-                <span class="alert alert-danger h5">{{ $message }}</span>
-                <br>
-            @enderror
-                <form method="post" action="" class="row g-2 d-block  col-md-8  bg-light needs-validation border border-dark" novalidate>
+                    <span class="alert alert-danger h5">{{ $message }}</span>
+                    <br>
+                @enderror
+                <form method="post" action=""
+                    class="row g-2 d-block  col-md-8  bg-light needs-validation border border-dark" novalidate>
                     @csrf
                     <nav class="navbar bg-success mt-0 col-md-12">
                         <div class="container d-flex justify-content-center col-md-12">
                             <a class="navbar-brand" href="#">
-                                <span class="text-white"><h3>Connexion</h3></span>
+                                <span class="text-white">
+                                    <h3>Connexion</h3>
+                                </span>
                             </a>
-                            </div>
+                        </div>
 
                     </nav>
 
 
                     <div class="col-md-12 mb-10">
-                        <label  class="form-label">Email<span class="text-danger">*</span></label>
+                        <label class="form-label">Email<span class="text-danger">*</span></label>
                         <input id="email" class="form-control border-dark p-2 " type='text' id="email"
                             name='email' placeholder=" Email ">
 
                         @error('email')
-
                             <span class="text-danger">{{ $message }}</span>
                             <br>
                         @enderror
@@ -58,7 +60,8 @@
                     </div>
 
                     <div class="row d-flex justify-content-center mt-2">
-                        <button type="submit" name="valid" data-dismiss="alert" class="btn btn-success  col-3" id="submit">
+                        <button type="submit" name="valid" data-dismiss="alert" class="btn btn-success  col-3"
+                            id="submit">
                             Connexion
 
                         </button>
@@ -70,7 +73,7 @@
 
                         <p>Si vous n'avez pas de compte?
 
-                            <a href="inscription" style="text-decoration:none;" >S'inscrire</a>
+                            <a href="inscription" style="text-decoration:none;">S'inscrire</a>
 
                         </p>
 
