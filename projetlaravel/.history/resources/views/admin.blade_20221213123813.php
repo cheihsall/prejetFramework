@@ -29,8 +29,8 @@
     @endif --}}
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
-                <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de profil">
-                 <span class="text-light h3" title="matricule">{{ $_SESSION['matricule'] }}</span>
+                <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de ">
+                 <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
 
@@ -46,8 +46,7 @@
 
 
 
-                    <i class="fa-solid fa-list" style="color:white; font-size:35px;padding-left:345px; padding-top:4px;"></i> Utilisateurs Archivés
-
+                    <i class="fa-solid fa-list" style="color:white; font-size:35px; padding-top:25px;"></i> 
 
 
 
@@ -119,10 +118,9 @@
       <td>{{{ $user->email }}}</td>
       <td>{{{ $user->role }}}</td>
       <td>
-        <a href="/api/posts/switchRole/{{$user->id}}?post"><i class="fa-solid fa-rotate-right" style="color: black"title="Changer de role"></i></a>
-        <a href="/api/posts/archiv/{{$user->id}}"><i class="fa-solid fa-box-archive"style="color:red"title="Archiver"></i></a>
-        <a href="posts/editForm/{{$user->id}}"><i class="fa-solid fa-pen-to-square"style="color:blue"title="Modifier"></i></a>
-   
+        <a href="/api/posts/switchRole/{{$user->id}}?post"><i class="fa-solid fa-rotate-right" style="color:red"></i></a>
+        <a href="/api/posts/archiv/{{$user->id}}"><i class="fa-solid fa-box-archive "style="color: black"></i></a>
+        <a href="posts/editForm/{{$user->id}}"><i class="fa-solid fa-pen-to-square "style="color: blue"></i></a>
      </td>
     </tr>
     @endforeach

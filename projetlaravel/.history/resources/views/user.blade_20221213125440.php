@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <title>page user</title>
 </head>
@@ -18,8 +17,8 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
-                <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de Profil">
-                 <span class="text-light h3" title="Matricule">{{ $_SESSION['matricule'] }}</span>
+                <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="">
+                 <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
@@ -27,7 +26,13 @@
               
             </div>
 
-    
+    <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
+        <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
+                <img src="./image/dearchiv.png" alt=""> Liste des archivés
+            </button></a>
+    </div>
+
+            
             <div class=" mt-3 " style="margin-left:50rem;max-height: 2.5rem;">
            {{-- a ne  --}}
 
@@ -39,8 +44,7 @@
             </div>
     <div class=" " style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;"> 
     <a href="/api/logout">
-        <button type="button" class="btn btn-outline-success "><i
-            class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
+        <button type="button" class="btn btn-outline-success "><img src="/image/deconect.png" alt="deconnecter">Deconnecter</button>
     </a>
             </div>
 </nav>

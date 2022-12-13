@@ -81,7 +81,7 @@
     </form> --}}
    
         <a href="/api/posts/desarchiv/{{$user->id}}"> <span class="material-symbols-outlined"style="color:#334155; padding-left:25px"title="Désarchiver">
-          restore_from_trash
+         
           </span></a>
        {{--  <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a> --}}
        {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}

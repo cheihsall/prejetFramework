@@ -80,7 +80,7 @@
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}
    
-        <a href="/api/posts/desarchiv/{{$user->id}}"> <span class="material-symbols-outlined"style="color:#334155; padding-left:25px"title="Désarchiver">
+        <a href="/api/posts/desarchiv/{{$user->id}}"> <span class="material-symbols-outlined">
           restore_from_trash
           </span></a>
        {{--  <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a> --}}
