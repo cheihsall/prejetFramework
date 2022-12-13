@@ -9,8 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Utilisateurs;
-use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class PostController extends Controller
 {
@@ -30,12 +30,7 @@ class PostController extends Controller
         }
 
         return '2022-' . $randomString;
-
     }
-
-
-
-
 
 
     public function index()
@@ -43,17 +38,19 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
 
-        $users = Utilisateur::where('etat', '=', "1")->paginate(8);
+
+        //
+        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
+
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
 
 
 
         return view("admin", [
-            'users' => $users
+            'users' => $users,
+            'nbr'=> $nbr
         ]);
     }
-
-
-
 
 
     public function usersimple()
@@ -68,13 +65,6 @@ class PostController extends Controller
         ]);
     }
 
-
-
-
-
-
-
-
     public function listearchive()
     {
 
@@ -82,8 +72,10 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
         $users = Utilisateur::where('etat', '=', "0")->paginate(8);
+        $nbr =Utilisateur::where('etat', '=', "0")->count();
         return view("listearchive", [
-            'users' => $users
+            'users' => $users,
+            'nbr' => $nbr
         ]);
     }
 
@@ -109,7 +101,9 @@ class PostController extends Controller
         $users = Utilisateur::all();
 
         foreach ($users as $user) {
+
             if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) {
+
 
                 if ($user->role === "administrateur") {
                     /*   Auth::login($user);   */
@@ -117,7 +111,7 @@ class PostController extends Controller
                     $_SESSION['nom'] = $user->nom;
                     $_SESSION['matricule'] = $user->matricule;
                     $_SESSION['prenom'] = $user->prenom;
-                    $_SESSION['phot'] = $user->photo;
+                    $_SESSION['photo'] = $user->photo;
                     $_SESSION['prenom'] = $user->prenom;
 
                     return redirect("/api/admin");
@@ -127,10 +121,11 @@ class PostController extends Controller
                     $_SESSION['nom'] = $user->nom;
                     $_SESSION['matricule'] = $user->matricule;
                     $_SESSION['prenom'] = $user->prenom;
-                    $_SESSION['phot'] = $user->photo;
+                    $_SESSION['photo'] = $user->photo;
                     $_SESSION['prenom'] = $user->prenom;
                     return redirect("/api/usersimple");
                 }
+
             };
         }
 
@@ -170,13 +165,12 @@ class PostController extends Controller
 
                     'email' => ['confirmed'],
 
-  ]);
+                ]);
             }
         }
 
 
-  $name = $request ->file('photo')->getClientOriginalName(); //recupere le nom de de l'image
-  $path = $request->file('photo')->store('public/image');  //recupere l'image dan la base de donnees et le mettre dans le dossier image
+
 
 
         $etat = '1';
@@ -190,8 +184,22 @@ class PostController extends Controller
         $user->email = $request->get('email');
         $user->motdepasse = $request->get('passwords');
         $user->role = $request->get('roles');
-        $user->filename = $name;
+
+        if($request->hasFile('photo')){
+          $file= $request->file('photo');
+          $extension = $file ->getClientOriginalExtension();
+          $filename= time().'.'.$extension;
+          $file->move('uploads/user/',$filename);
+          $user->photo=$filename;}
+          else{
+            return $request;
+            $user->image='';
+          }
+
+
+        /* $user->filename = $name;
         $user->photo = $path;
+        $user->imageUrl: $url + '/public/' + $req.file.filename; */
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
@@ -200,11 +208,7 @@ class PostController extends Controller
         $user->save();
 
         return redirect("/pupop");
-
     }
-
-
-
 
 
     public function show(string $id)
@@ -217,20 +221,16 @@ class PostController extends Controller
     }
 
 
-
-
-
     public function edit(string $id, Request $request)
     {
         $user =  Utilisateur::findOrFail($id);
         $user->nom = $request->get("nom");
         $user->prenom = $request->get("prenom");
         $user->email = $request->get("email");
+        $user->date_modification = date("y-m-d h:i:s");
         $user->save();
         return redirect("/api/admin");
     }
-
-
 
     public function switchRole(string $id)
     {
@@ -243,8 +243,7 @@ class PostController extends Controller
         $user->save();
         return redirect("/api/admin");
     }
-
-
+    
     public function editForm(string $id)
     {
         $user = Utilisateur::findOrFail($id);
@@ -252,7 +251,7 @@ class PostController extends Controller
             "user" => $user
         ]);
     }
-
+    
     public function connection()
     {
     }
@@ -280,6 +279,8 @@ class PostController extends Controller
     {
         $user =  Utilisateur::findOrFail($id);
         $user->etat = "0";
+        $user->date_archivage= date("y-m-d h:i:s");
+
         $user->save();
         return redirect("/api/admin");
     }
@@ -298,38 +299,43 @@ class PostController extends Controller
     {
         session_start();
         $users = utilisateur::all();
+        $nbr =Utilisateur::where('etat', '=', "0")->count();
         $search = \Request::get('prenom');
         $users =  Utilisateur::where('prenom', 'like', '%' .$search .'%')->where("etat", "=", "0")
                 ->orderBy('prenom')
                 ->paginate(8);
-                return view("listearchive", ["users" => $users]);
+                return view("listearchive", ["users" => $users,  'nbr' => $nbr]);
 
-
-
-    }
 
 
     public function Search(Request $request)
-    {session_start();
+    {
+        session_start();
         $users = utilisateur::all();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('prenom');
         $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
 
             ->orderBy('prenom')
-            ->paginate(8);
-        return view("admin", ["users" => $users]);
+            ->paginate(5);
+        return view("admin", ["users" => $users,
+        'nbr' => $nbr]);
     }
 
     public function Search2(Request $request)
-    {session_start();
+    {
+        session_start();
         $users = utilisateur::all();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('prenom');
         $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
 
 
             ->orderBy('prenom')
-            ->paginate(8);
-        return view("user", ["users" => $users]);
+            ->paginate(5);
+        return view("user", ["users" => $users,
+        'nbr' => $nbr
+    ]);
     }
 
 
@@ -342,7 +348,6 @@ class PostController extends Controller
         session_destroy();
         return redirect('/login');
     }
-
 
 
 }

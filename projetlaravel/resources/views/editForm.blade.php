@@ -66,6 +66,7 @@
 
         <button type="reset" class="btn btn-danger col-3" id="submit">
             <a class="text-light text-decoration-none" href="/api/admin"> Annuler</a>
+
         </button>
     </div>
 
