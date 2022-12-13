@@ -29,7 +29,7 @@
     @endif
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
-                <img src="{{ $_SESSION['phot'] }}" class="rounded-circle" height="100" width="100" alt="photo">
+                <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo">
                  <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
@@ -37,6 +37,7 @@
                
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
+                
              
 
             </div>
@@ -44,7 +45,9 @@
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
 
 
+
                     <i class="fa-solid fa-list" style="color:white; font-size:35px; padding-top:25px;padding-left:25em"></i> 
+
 
 
 
@@ -53,14 +56,17 @@
             {{-- <form class="d-flex" role="search" action="recherche" method="post">
                 <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
                 <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
-            </form>--}} <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
+                
+            </form>--}} 
+           {{--  <span class="text-light">Utilisateurs actifs:&nbsp; {{ $nbr }}</span>&nbsp; --}}
+            <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
                        <form class="d-flex" action="search" method="GET" role="search">
                         <input class="form-control me-2" name="nom" type="search" placeholder="Recherche"
                         required  aria-label="Search">
                         <button class="btn btn-outline-light p-1" id="but" onclick="buts()"  type="submit">Search</button>
                     </form>&nbsp; 
                 </div>
-
+                 <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
             <div class="nav-item mb-3 p-2" >
                 <a href="/api/admin">
                 <button type="button" id="quit" class="btn btn-outline-danger mt-3 p-1 " style="display:none">
@@ -73,7 +79,7 @@
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
             </a>
         </nav>
-
+       
 
     </header>
     <main>

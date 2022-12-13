@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
-                <img src="{{ $_SESSION['phot'] }}" class="rounded-circle" height="100" width="100" alt="photo">
+                <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo">
                  <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
