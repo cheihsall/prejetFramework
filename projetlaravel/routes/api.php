@@ -68,13 +68,12 @@ Route::get('/listearchive', [PostController::class, "listearchive"]);
 Route::get('/usersimple', [PostController::class, "usersimple"]);
 Route::get('session', [PostController::class, "session"]);
 Route::get('search2', [PostController::class, "Search2"]);
-Route::post('recherche', [PostController::class, "recherche"]);
-Route::post('rechinactif', [PostController::class, "rechinactif"]);
+Route::get('rechinactif', [PostController::class, "rechinactif"]);
 
 
 Route::get('logout', [PostController::class, 'deconnect']);
-               
 
-Route::post('posts/inscription' ,[PostController::class,'store']); 
+
+Route::post('posts/inscription' ,[PostController::class,'store']);
 
 

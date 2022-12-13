@@ -23,18 +23,25 @@
             <div class="me-5 d-flex flex-row">
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
-              
+
             </div>
-    <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
-        <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
-                <img src="./image/dearchiv.png" alt=""> Liste des archivés
-            </button></a>
-    </div>
+
     <form class="d-flex" action="search2" method="GET" role="search">
-        <input class="form-control me-2" name="nom" type="search" placeholder="Recherche"
+        <input class="form-control me-2 px-4" name="prenom" type="search" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
         required  aria-label="Search">
-        <button class="btn btn-outline-light p-1" id="but" onclick="buts()"  type="submit">Search</button>
-    </form>&nbsp; 
+        <a style="position: absolute; right: 10;" href="/api/admin">
+            <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
+
+    </a>
+        <button class="btn btn-outline-light p-1" id="but"  type="submit">rechercher</button>
+    </form>&nbsp;
+   {{--  <div class="nav-item mb-3 p-2" >
+        <a href="/api/listearchive">
+        <button type="button" id="quit" class="btn btn-outline-danger mt-4 p-1 " style="display:none">
+            <img src="/image/quit.png" alt="quitter" width="30">
+        </button>
+    </a>
+</div> --}}
     <a href="/api/logout">
         <button type="button" class="btn btn-outline-success "><img src="/image/deconect.png" alt="deconnecter">Deconnecter</button>
     </a>
@@ -54,7 +61,7 @@
     </tr>
   </thead>
   <tbody>
-
+    @if ($users->count() > 0)
     @foreach ($users as $user)
     <tr>
 
@@ -67,14 +74,19 @@
 
     </tr>
     @endforeach
+    @else:
+      <span id="ok" class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none t  text-danger">
+        L'utilisateur recherché ne figure pas sur cette liste !
+    </span>
+    @endif
   </tbody>
 </table>
-<div class="d-flex justify-content-center col-">
+<div class="pagination d-flex justify-content-center fixed-bottom">
     {{ $users->links() }}
 </div>
 </div>
 </main>
-<script>
+{{-- <script>
     function search(){
     let recherche = document.getElementById('recherche');
     let quit = document.getElementById('quit');
@@ -85,6 +97,6 @@
     }
     }
 
-</script>
+</script> --}}
 </body>
 </html>

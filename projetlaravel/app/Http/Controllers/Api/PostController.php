@@ -72,7 +72,7 @@ class PostController extends Controller
 
 
 
-  
+
 
 
     public function listearchive()
@@ -134,16 +134,11 @@ class PostController extends Controller
             };
         }
 
- 
-      
         $valid = $request->validate([
             'msg' => 'accepted',
 
         ]);
     }
-
-
-
 
     public function store(Request $request)
     {
@@ -237,12 +232,6 @@ class PostController extends Controller
 
 
 
-
-
-
-
-
-
     public function switchRole(string $id)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -256,12 +245,6 @@ class PostController extends Controller
     }
 
 
-
-
-
-
-
-
     public function editForm(string $id)
     {
         $user = Utilisateur::findOrFail($id);
@@ -269,13 +252,6 @@ class PostController extends Controller
             "user" => $user
         ]);
     }
-
-
-
-
-
-
-
 
     public function connection()
     {
@@ -285,8 +261,6 @@ class PostController extends Controller
     {
         //
     }
-
-
 
     public function destroy(string $id)
     {
@@ -312,9 +286,6 @@ class PostController extends Controller
 
 
 
-
-
-
     public function desarchiv(string $id)
     {
         $user =  Utilisateur::findOrFail($id);
@@ -323,47 +294,41 @@ class PostController extends Controller
         return redirect("/api/listearchive");
     }
 
+    public function rechinactif(Request $request)
+    {
+        session_start();
+        $users = utilisateur::all();
+        $search = \Request::get('prenom');
+        $users =  Utilisateur::where('prenom', 'like', '%' .$search .'%')->where("etat", "=", "0")
+                ->orderBy('prenom')
+                ->paginate(8);
+                return view("listearchive", ["users" => $users]);
 
 
-
-
-
-    public function recherche(Request $request)
-
-    {session_start();
-        $users = Utilisateur::paginate(8);
-        $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
-        /*          $users->etat =  "1";
- */
-        return view("admin", [
-            "users" => $users
-        ]);
 
     }
-
 
 
     public function Search(Request $request)
     {session_start();
         $users = utilisateur::all();
-        $search = \Request::get('nom');
-        $users = utilisateur::where('nom', 'like', '%' . $search . '%')
+        $search = \Request::get('prenom');
+        $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
 
-
-            ->orderBy('nom')
-            ->paginate(5);
+            ->orderBy('prenom')
+            ->paginate(8);
         return view("admin", ["users" => $users]);
     }
 
     public function Search2(Request $request)
     {session_start();
         $users = utilisateur::all();
-        $search = \Request::get('nom');
-        $users = utilisateur::where('nom', 'like', '%' . $search . '%')
+        $search = \Request::get('prenom');
+        $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
 
 
-            ->orderBy('nom')
-            ->paginate(5);
+            ->orderBy('prenom')
+            ->paginate(8);
         return view("user", ["users" => $users]);
     }
 
@@ -379,18 +344,5 @@ class PostController extends Controller
     }
 
 
-    public function rechinactif(Request $request)
-    {
-        $users =  Utilisateur::where('prenom', $request->get('prenom'))->get();
-        $u = [];
-        foreach ($users as $user) {
-            if ($user->etat == "0") {
-                array_push($u, $user);
-            }
-        }
-        $users = $u;
-        return view("admin", [
-            "users" => $users
-        ]);
-    }
+
 }
