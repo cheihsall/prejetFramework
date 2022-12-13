@@ -65,10 +65,19 @@ Route::post('recherche', [PostController::class, "recherche"]);
 Route::get('search', [PostController::class, "Search"]);
 
 Route::get('/listearchive', [PostController::class, "listearchive"]);
+
+
+Route::get('/usersimple', [PostController::class, "usersimple"])->name('session');
+
 Route::get('/usersimple', [PostController::class, "usersimple"]);
+
 Route::get('session', [PostController::class, "session"]);
+
 Route::get('search2', [PostController::class, "Search2"]);
 Route::get('rechinactif', [PostController::class, "rechinactif"]);
+Route::get('search3', [PostController::class, "Search3"]);
+Route::post('recherche', [PostController::class, "recherche"]);
+
 
 
 Route::get('logout', [PostController::class, 'deconnect']);
