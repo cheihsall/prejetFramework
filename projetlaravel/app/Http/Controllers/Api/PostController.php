@@ -40,7 +40,7 @@ class PostController extends Controller
 
 
         //
-        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
+        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(5);
 
         $nbr =Utilisateur::where('etat', '=', "1")->count();
 
@@ -243,7 +243,7 @@ class PostController extends Controller
         $user->save();
         return redirect("/api/admin");
     }
-    
+
     public function editForm(string $id)
     {
         $user = Utilisateur::findOrFail($id);
@@ -251,7 +251,7 @@ class PostController extends Controller
             "user" => $user
         ]);
     }
-    
+
     public function connection()
     {
     }
@@ -299,14 +299,14 @@ class PostController extends Controller
     {
         session_start();
         $users = utilisateur::all();
-        $nbr =Utilisateur::where('etat', '=', "0")->count();
+        $nbr = Utilisateur::where('etat', '=', "0")->count();
         $search = \Request::get('prenom');
-        $users =  Utilisateur::where('prenom', 'like', '%' .$search .'%')->where("etat", "=", "0")
-                ->orderBy('prenom')
-                ->paginate(8);
-                return view("listearchive", ["users" => $users,  'nbr' => $nbr]);
+        $users = Utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "0")
+            ->orderBy('prenom')
+            ->paginate(8);
+        return view("listearchive", ["users" => $users, 'nbr' => $nbr]);
 
-
+    }
 
     public function Search(Request $request)
     {

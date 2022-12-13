@@ -26,7 +26,7 @@
             <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
 
         </div>
-        
+
         <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
 
           <a class="nav-link active text-light m-2" aria-current="page" href="/api/admin"><button type="button" class="btn btn-outline-success ">
@@ -38,15 +38,18 @@
 
               </button></a>
       </div>
-      
-         <form class="d-flex" role="search" action="rechinactif" method="GET">
-            <input class="form-control me-2 px-4" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
-            <a style="position: absolute; right: 10;" href="/api/admin">
-              <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
 
-      </a>
-            <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
-        </form>&nbsp;
+      <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
+        <form style="position: relative" class="d-flex" action="rechinactif" method="GET" role="search">
+         <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" type="search" placeholder="Recherche par prenom"
+         required  aria-label="Search">
+         <a style=" margin-left: -38px;" href="/api/listearchive">
+                 <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
+
+         </a>
+         <button style="margin-left: 15px;" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
+     </form>
+ </div>
         <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
 
       <ul class="nav-item m-2">
@@ -86,7 +89,7 @@
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}
-   
+
         <a href="/api/posts/desarchiv/{{$user->id}}"> <span class="material-symbols-outlined"style="color:#334155; padding-left:25px"title="Désarchiver">
           restore_from_trash
           </span></a>

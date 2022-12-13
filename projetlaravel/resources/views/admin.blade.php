@@ -42,13 +42,7 @@
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
 
-
                     <i class="fa-solid fa-list" style="color:white; font-size:35px;padding-left:345px; padding-top:4px;"></i> Utilisateurs Archivés
-
-
-
-
-
 
                     </button></a>
             </div>
@@ -62,22 +56,15 @@
                        <form style="position: relative" class="d-flex" action="search" method="GET" role="search">
                         <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" type="search" placeholder="Recherche par prenom"
                         required  aria-label="Search">
-                        <a style="position: absolute; right: 10;" href="/api/admin">
+                        <a style=" margin-left: -38px;" href="/api/admin">
                                 <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
 
                         </a>
-                        <button class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
+                        <button style="margin-left: 15px;" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
                     </form>
                 </div>
                  <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
-            <div class="nav-item mb-3 p-2" >
 
-                <a href="/api/admin">
-                <button type="button" id="quit" class="btn mt-4 p-1 " style="">
-                    <img src="/image/quit.png" alt="quitter" width="30">
-                </button>
-            </a>
-        </div> --}}
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
