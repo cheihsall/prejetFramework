@@ -24,10 +24,11 @@
         <div class="me-5 d-flex flex-row">
             <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
             <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
-         
+
         </div>
         
         <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
+
           <a class="nav-link active text-light m-2" aria-current="page" href="/api/admin"><button type="button" class="btn btn-outline-success ">
 
 
@@ -38,11 +39,16 @@
               </button></a>
       </div>
       
-        <form class="d-flex" role="SEARCH" action="search3" method="get">
-            <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
+         <form class="d-flex" role="search" action="rechinactif" method="GET">
+            <input class="form-control me-2 px-4" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
+            <a style="position: absolute; right: 10;" href="/api/admin">
+              <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
+
+      </a>
             <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
         </form>&nbsp;
         <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
+
       <ul class="nav-item m-2">
 
         <a href="/api/logout">
@@ -67,12 +73,13 @@
     </tr>
   </thead>
   <tbody>
-
-  @foreach ($users as $user)
+  @if ($users->count() > 0)
+    @foreach ($users as $user)
     <tr>
 
       <td cope="row">{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
+
        <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->date_archivage}}}</td>
      <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}
@@ -88,16 +95,35 @@
   </td>
     </tr>
     @endforeach
+  @else:
+    <span id="ok" class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none t  text-danger">
+      L'utilisateur recherché ne figure pas sur cette liste !
+  </span>
+  @endif
+
 
   </tbody>
 </table>
-<div class="pagination d-flex bg-black justify-content-center ">
+
+<div class="pagination d-flex justify-content-center fixed-bottom">
+
   {{$users->links()}}
 </div>
 </div>
 
 </main>
 </body>
+{{-- <script>
+  function search(){
+  let recherche = document.getElementById('recherche');
+  let quit = document.getElementById('quit');
 
+  if (recherche.value !=" "){
+       quit.style.display = "block";
+
+  }
+  }
+
+</script> --}}
 </html>
 

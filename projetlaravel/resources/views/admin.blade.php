@@ -43,7 +43,6 @@
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
 
 
-
                     <i class="fa-solid fa-list" style="color:white; font-size:35px;padding-left:345px; padding-top:4px;"></i> Utilisateurs Archivés
 
 
@@ -59,21 +58,26 @@
 
             </form>--}}
            {{--  <span class="text-light">Utilisateurs actifs:&nbsp; {{ $nbr }}</span>&nbsp; --}}
-            <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
-                       <form class="d-flex" action="search" method="GET" role="search">
-                        <input class="form-control me-2" name="nom" type="search" placeholder="Recherche"
+              <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
+                       <form style="position: relative" class="d-flex" action="search" method="GET" role="search">
+                        <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" type="search" placeholder="Recherche par prenom"
                         required  aria-label="Search">
-                        <button class="btn btn-outline-light p-1" id="but" onclick="buts()"  type="submit">Search</button>
-                    </form>&nbsp;
+                        <a style="position: absolute; right: 10;" href="/api/admin">
+                                <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
+
+                        </a>
+                        <button class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
+                    </form>
                 </div>
                  <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
             <div class="nav-item mb-3 p-2" >
+
                 <a href="/api/admin">
-                <button type="button" id="quit" class="btn btn-outline-danger mt-3 p-1 " style="display:none">
+                <button type="button" id="quit" class="btn mt-4 p-1 " style="">
                     <img src="/image/quit.png" alt="quitter" width="30">
                 </button>
             </a>
-        </div>
+        </div> --}}
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
@@ -91,24 +95,15 @@
       <th scope="col">NOM</th>
       <th scope="col">PRENOM</th>
       <th scope="col">Matricule</th>
-
       <th scope="col">E-MAIL</th>
-
       <th scope="col">Role</th>
-{{--       <th scope="col">Role</th> --}}
-
-
-
-
-
       <th scope="col">ACTION</th>
-      {{-- <th scope="col">Etat</th> --}}
-    {{--   <th scope="col">Pass</th> --}}
+
     </tr>
   </thead>
 
   <tbody>
-
+    @if ($users->count() > 0)
   @foreach ($users as $user)
 
 
@@ -117,6 +112,7 @@
       <td>{{{ $user->prenom }}}</td>
       <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->email }}}</td>
+
       <td>{{{ $user->role }}}</td>
       <td>
         <a href="/api/posts/switchRole/{{$user->id}}?post"><i class="fa-solid fa-rotate-right" style="color: black"title="Changer de role"></i></a>
@@ -127,15 +123,32 @@
     </tr>
 
     @endforeach
+     @else:
+      <span id="ok" class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none text-danger">
+        L'utilisateur recherché ne figure pas sur cette liste !
+    </span>
+    @endif
   </tbody>
 </table>
-   <div class="pagination d-flex justify-content-center ">
+   <div class="pagination d-flex justify-content-center fixed-bottom ">
          {{$users->links()}}
 
+       {{--   <script>
+            function search(){
+        let recherche = document.getElementById('recherche');
+        let quit = document.getElementById('quit');
+
+        if (recherche.value !=" "){
+            quit.style.display = "block";
+
+        }
+    }
+
+         </script> --}}
+</div>
  
 </div>
 </main>
-
 </body>
 </html>
 
