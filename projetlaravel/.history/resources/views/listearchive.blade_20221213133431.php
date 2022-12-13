@@ -75,14 +75,14 @@
       <td>{{{ $user->prenom }}}</td>
        <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->date_archivage}}}</td>
-     <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}
+     <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}style="color:#334155; padding-left:25px"title="Désarchiver"
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}
-   
-        <a href="/api/posts/desarchiv/{{$user->id}}"> <span class="material-symbols-outlined"style="color:#334155; padding-left:25px"title="Désarchiver">
-          restore_from_trash
-          </span></a>
+    <span class="material-symbols-outlined">
+      restore_from_trash
+      </span>
+        <a href="/api/posts/desarchiv/{{$user->id}}"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
        {{--  <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a> --}}
        {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
   </td>

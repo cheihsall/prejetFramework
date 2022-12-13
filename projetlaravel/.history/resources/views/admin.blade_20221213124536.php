@@ -30,13 +30,15 @@
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
                 <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de profil">
-                 <span class="text-light h3" title="matricule">{{ $_SESSION['matricule'] }}</span>
+                 <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
 
-
+               
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
+                
+             
 
             </div>
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
@@ -44,8 +46,7 @@
 
 
 
-                    <i class="fa-solid fa-list" style="color:white; font-size:35px;padding-left:345px; padding-top:4px;"></i> Utilisateurs Archivés
-
+                    <i class="fa-solid fa-list" style="color:white; font-size:35px;padding-left:245px; padding-top:25px;"></i> User actifs
 
 
 
@@ -56,15 +57,15 @@
             {{-- <form class="d-flex" role="search" action="recherche" method="post">
                 <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
                 <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
-
-            </form>--}}
+                
+            </form>--}} 
            {{--  <span class="text-light">Utilisateurs actifs:&nbsp; {{ $nbr }}</span>&nbsp; --}}
             <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
                        <form class="d-flex" action="search" method="GET" role="search">
                         <input class="form-control me-2" name="nom" type="search" placeholder="Recherche"
                         required  aria-label="Search">
                         <button class="btn btn-outline-light p-1" id="but" onclick="buts()"  type="submit">Search</button>
-                    </form>&nbsp;
+                    </form>&nbsp; 
                 </div>
                  <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
             <div class="nav-item mb-3 p-2" >
@@ -79,7 +80,7 @@
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
             </a>
         </nav>
-
+       
 
     </header>
     <main>
@@ -87,19 +88,19 @@
         <table class="table caption-top border border-dark">
         <thead class="table-success">
     <tr>
-
+     
       <th scope="col">NOM</th>
       <th scope="col">PRENOM</th>
       <th scope="col">Matricule</th>
-
       <th scope="col">E-MAIL</th>
+     
 
+      
       <th scope="col">Role</th>
 {{--       <th scope="col">Role</th> --}}
 
-
-
-
+      
+      
 
       <th scope="col">ACTION</th>
       {{-- <th scope="col">Etat</th> --}}
@@ -110,29 +111,39 @@
   <tbody>
 
   @foreach ($users as $user)
-
-
     <tr>
-      <td cope="row">{{{ $user->nom }}}</td>
+      
+      <td >{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
       <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->email }}}</td>
       <td>{{{ $user->role }}}</td>
       <td>
         <a href="/api/posts/switchRole/{{$user->id}}?post"><i class="fa-solid fa-rotate-right" style="color: black"title="Changer de role"></i></a>
-        <a href="/api/posts/archiv/{{$user->id}}"><i class="fa-solid fa-box-archive"style="color:red"title="Archiver"></i></a>
         <a href="posts/editForm/{{$user->id}}"><i class="fa-solid fa-pen-to-square"style="color:blue"title="Modifier"></i></a>
-   
+        <a href="/api/posts/archiv/{{$user->id}}"><i class="fa-solid fa-box-archive"style="color:red"title="Archiver"></i></a>
      </td>
     </tr>
-
     @endforeach
   </tbody>
 </table>
    <div class="pagination d-flex justify-content-center ">
          {{$users->links()}}
 
- 
+ {{--    function search(){
+    let recherche = document.getElementById('recherche');
+    let quit = document.getElementById('quit');
+
+    if (recherche.value !=" "){
+         quit.style.display = "block";
+
+    }
+    }
+
+
+<div class="d-flex justify-content-center col-">
+    {{ $users->links() }}
+</div> --}}
 </div>
 </main>
 

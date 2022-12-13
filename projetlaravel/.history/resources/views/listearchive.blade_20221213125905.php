@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
     <title>page admin</title>
 </head>
 
@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-lg bg-success p-4">
           <div class="d-flex flex-column">
             <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de Profil">
-             <span class="text-light h3"title="matricule">{{ $_SESSION['matricule'] }}</span>
+             <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
         </div>&nbsp;&nbsp;&nbsp;
         <div class="me-5 d-flex flex-row">
             <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
@@ -75,14 +75,11 @@
       <td>{{{ $user->prenom }}}</td>
        <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->date_archivage}}}</td>
-     <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}
+     <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}style="color:red; padding-left:25px"title="Désarchiver"
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}
-   
-        <a href="/api/posts/desarchiv/{{$user->id}}"> <span class="material-symbols-outlined"style="color:#334155; padding-left:25px"title="Désarchiver">
-          restore_from_trash
-          </span></a>
+        <a href="/api/posts/desarchiv/{{$user->id}}"><i class="fa-solid fa-inbox-out"></i></a>
        {{--  <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a> --}}
        {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
   </td>
