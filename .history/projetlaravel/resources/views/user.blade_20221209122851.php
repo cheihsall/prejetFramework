@@ -30,7 +30,7 @@
             </button></a>
     </div>
     <form class="d-flex" role="search" action="recherche" method="post">
-        <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
+        <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" >
         <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
     </form>&nbsp;
     <a href="/login">

@@ -33,7 +33,7 @@
             <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
         </form>&nbsp;
         <div class="nav-item mb-3 p-2" >
-          <a href="/api/listearchive">
+          <a href="/api/listearchi">
           <button type="button" id="quit" class="btn btn-outline-danger mt-3 p-1 " style="display:none">
               <img src="/image/quit.png" alt="quitter" width="30">
           </button>

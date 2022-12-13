@@ -69,8 +69,7 @@
 </table>
 </div>
 </main>
-<script>
-    function search(){
+function search(){
     let recherche = document.getElementById('recherche');
     let quit = document.getElementById('quit');
 
@@ -80,6 +79,5 @@
     }
     }
 
-</script>
 </body>
 </html>
