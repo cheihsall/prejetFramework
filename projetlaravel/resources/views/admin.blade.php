@@ -46,7 +46,7 @@
 
 
 
-                    <i class="fa-solid fa-list" style="color:white; font-size:35px; padding-top:25px;padding-left:25em"></i> 
+                    <i class="fa-solid fa-list" style="color:white; font-size:35px; padding-top:25px;"></i> 
 
 
 
@@ -87,9 +87,10 @@
         <table class="table caption-top border border-dark">
         <thead class="table-success">
     <tr>
-     <th scope="col">Matricule</th>
+     
       <th scope="col">NOM</th>
       <th scope="col">PRENOM</th>
+      <th scope="col">Matricule</th>
       <th scope="col">E-MAIL</th>
      
 
@@ -110,9 +111,10 @@
 
   @foreach ($users as $user)
     <tr>
-      <td>{{{ $user->matricule }}}</td>
+      
       <td >{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
+      <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->email }}}</td>
       <td>{{{ $user->role }}}</td>
       <td>

@@ -369,38 +369,45 @@ class PostController extends Controller
     public function Search(Request $request)
     {session_start();
         $users = utilisateur::all();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('nom');
         $users = utilisateur::where('nom', 'like', '%' . $search . '%')
 
 
             ->orderBy('nom')
             ->paginate(5);
-        return view("admin", ["users" => $users]);
+        return view("admin", ["users" => $users,
+        'nbr' => $nbr]);
     }
 
     public function Search2(Request $request)
     {session_start();
         $users = utilisateur::all();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('nom');
         $users = utilisateur::where('nom', 'like', '%' . $search . '%')
 
 
             ->orderBy('nom')
             ->paginate(5);
-        return view("user", ["users" => $users]);
+        return view("user", ["users" => $users,
+        'nbr' => $nbr
+    ]);
     }
 
 
     public function Search3(Request $request)
     {session_start();
         $users = utilisateur::all();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('nom');
         $users = utilisateur::where('nom', 'like', '%' . $search . '%')
 
 
             ->orderBy('nom')
             ->paginate(5);
-        return view("user", ["users" => $users]);
+            return view("admin", ["users" => $users,
+            'nbr' => $nbr]);
     }
 
 
