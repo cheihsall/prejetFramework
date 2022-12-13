@@ -306,7 +306,7 @@ class PostController extends Controller
                 ->paginate(8);
                 return view("listearchive", ["users" => $users,  'nbr' => $nbr]);
 
-
+    }
 
     public function Search(Request $request)
     {
