@@ -9,8 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Utilisateurs;
-use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class PostController extends Controller
 {
@@ -112,7 +112,9 @@ class PostController extends Controller
         $users = Utilisateur::all();
 
         foreach ($users as $user) {
-            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords") ) {
+
+            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) {
+
 
                 if ($user->role === "administrateur") {
                     /*   Auth::login($user);   */
