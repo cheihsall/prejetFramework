@@ -26,7 +26,7 @@
         <div class="container-fluid d-flex justify-content-center">
             <a class="navbar-brand pe-none" href="#">
                 <b> modification</b>
-            </a>   
+            </a>
         </div>
     </nav>
     <div class="col-md-6 input-control">
@@ -39,7 +39,7 @@
 
     <div class="col-md-6 input-control">
         <label for="input2" class="form-label">Prenom<span style="color: red;">*</span></label>
-        <input type="text" class="form-control border-dark p-2 {{-- @error('prenom') is-invalid @enderror --}}" value="{{{ $user->prenom }}}" name="prenom" id="prenom" required> 
+        <input type="text" class="form-control border-dark p-2 {{-- @error('prenom') is-invalid @enderror --}}" value="{{{ $user->prenom }}}" name="prenom" id="prenom" required>
        {{--  @error('prenom')
         <div class="text-danger">{{ $message }}</div>
         @enderror --}}
@@ -58,17 +58,17 @@
         <label for="input4" class="form-label">Photo de profil</label>
         <input type="file" name="photo" accept=".jpg,.png,.jpeg" class="form-control border-dark p-2">
     </div>
-     
+
     <div class="row d-flex justify-content-center mt-2">
         <button type="submit" class="btn btn-success col-3" id="submit">
             modifier
         </button>
         <button type="reset" class="btn btn-success col-3" id="submit">
-            <a href="/api/admin"> annuler</a>
+            <a href="/api/admin" style="color: white; text-decoration: none"> annuler</a>
         </button>
     </div>
 
-    
+
 </form>
 </div>
 </div>
