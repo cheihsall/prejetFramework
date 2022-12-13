@@ -295,7 +295,7 @@ class PostController extends Controller
         return redirect("/api/listearchive");
     }
 
-    public function rechinactif(Request $request)
+      public function rechinactif(Request $request)
     {
         session_start();
         $users = utilisateur::all();
@@ -307,6 +307,7 @@ class PostController extends Controller
         return view("listearchive", ["users" => $users, 'nbr' => $nbr]);
 
     }
+
 
     public function Search(Request $request)
     {
