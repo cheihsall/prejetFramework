@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'accepted' => 'The :attribute must be accepted.',
+    'accepted' => 'mail ou mot de passe n`existe pas.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',
     'after' => 'The :attribute must be a date after :date.',
@@ -31,7 +31,7 @@ return [
         'string' => 'The :attribute must be between :min and :max characters.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
+    'confirmed' => 'Email existe deja.',
     'current_password' => 'The password is incorrect.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
@@ -119,6 +119,7 @@ return [
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'Le format email est invalide.',
     'required' => 'Ce champ est requis',
+    
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
