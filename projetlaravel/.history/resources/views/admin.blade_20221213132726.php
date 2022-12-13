@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
                 <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de profil">
-                 <span class="text-light h3" title="matricule">{{ $_SESSION['matricule'] }}</span>
+                 <span class="text-light h3"title="matricule">{{ $_SESSION['matricule'] }}</span>
             </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
 
