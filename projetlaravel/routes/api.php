@@ -72,7 +72,9 @@ Route::get('/usersimple', [PostController::class, "usersimple"])->name('session'
 Route::get('/usersimple', [PostController::class, "usersimple"]);
 
 Route::get('session', [PostController::class, "session"]);
+
 Route::get('search2', [PostController::class, "Search2"]);
+Route::get('search3', [PostController::class, "Search3"]);
 Route::post('recherche', [PostController::class, "recherche"]);
 Route::post('rechinactif', [PostController::class, "rechinactif"]);
 

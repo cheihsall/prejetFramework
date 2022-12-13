@@ -25,13 +25,13 @@
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
               
             </div>
-
+<<<<<<< HEAD
     <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
         <a class="nav-link active text-light m-2" aria-current="page" href="#"><button type="button" class="btn btn-outline-success ">
                 <img src="./image/dearchiv.png" alt=""> Liste des archivés
             </button></a>
     </div>
-
+=======
             
             <div class=" mt-3 " style="margin-left:50rem;max-height: 2.5rem;">
            {{-- a ne  --}}
