@@ -24,7 +24,7 @@
                 @enderror
                 <form method="post" action=""
                     class="row g-2 d-block  col-md-8  bg-light needs-validation border border-dark" novalidate>
-
+>>>>>>> c2a20325c77e94fbdd6befbae7729fc725f92e45
                     @csrf
                     <nav class="navbar bg-success mt-0 col-md-12">
                         <div class="container d-flex justify-content-center col-md-12">

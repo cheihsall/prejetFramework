@@ -38,12 +38,16 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
 
+<<<<<<< HEAD
+        $users = Utilisateur::where('etat', '=', "1")->paginate(8);
+
+=======
 
         //
         $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
 
         $nbr =Utilisateur::where('etat', '=', "1")->count();
-
+>>>>>>> c2a20325c77e94fbdd6befbae7729fc725f92e45
 
 
 
@@ -123,7 +127,10 @@ class PostController extends Controller
                     $_SESSION['prenom'] = $user->prenom;
                     return redirect("/api/usersimple");
                 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> c2a20325c77e94fbdd6befbae7729fc725f92e45
             };
         }
 
@@ -193,6 +200,12 @@ class PostController extends Controller
             return $request;
             $user->image='';
           }
+
+
+        /* $user->filename = $name;
+>>>>>>> c2a20325c77e94fbdd6befbae7729fc725f92e45
+        $user->photo = $path;
+        $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
         $user->date_modification = null;
@@ -270,10 +283,11 @@ class PostController extends Controller
     {
         $user =  Utilisateur::findOrFail($id);
         $user->etat = "0";
-
+<<<<<<< HEAD
+=======
         $user->date_archivage= date("y-m-d h:i:s");
 
-
+>>>>>>> c2a20325c77e94fbdd6befbae7729fc725f92e45
         $user->save();
         return redirect("/api/admin");
     }
@@ -305,11 +319,14 @@ class PostController extends Controller
     {
         session_start();
         $users = utilisateur::all();
-
+<<<<<<< HEAD
+        $search = \Request::get('nom');
+        $users = utilisateur::where('nom', 'like', '%' . $search . '%')
+=======
         $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('prenom');
         $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
-
+>>>>>>> c2a20325c77e94fbdd6befbae7729fc725f92e45
 
             ->orderBy('prenom')
             ->paginate(5);

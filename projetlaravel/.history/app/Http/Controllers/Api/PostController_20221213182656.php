@@ -305,11 +305,14 @@ class PostController extends Controller
     {
         session_start();
         $users = utilisateur::all();
-
+<<<<<<< HEAD
+        $search = \Request::get('nom');
+        $users = utilisateur::where('nom', 'like', '%' . $search . '%')
+=======
         $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('prenom');
         $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
-
+>>>>>>> c2a20325c77e94fbdd6befbae7729fc725f92e45
 
             ->orderBy('prenom')
             ->paginate(5);
