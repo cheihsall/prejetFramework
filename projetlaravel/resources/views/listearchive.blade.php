@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>page admin</title>
 </head>
 
@@ -18,31 +18,37 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-success p-4">
           <div class="d-flex flex-column">
-            <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo">
-             <span class="text-light h3">{{ $_SESSION['matricule'] }}</span>
+            <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de Profil">
+             <span class="text-light h3"title="matricule">{{ $_SESSION['matricule'] }}</span>
         </div>&nbsp;&nbsp;&nbsp;
         <div class="me-5 d-flex flex-row">
             <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
             <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
-         
+
         </div>
         
         <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
+
           <a class="nav-link active text-light m-2" aria-current="page" href="/api/admin"><button type="button" class="btn btn-outline-success ">
 
 
-                  <img src="/image/presence.png" width="60"> User actifs
+            <i class="fa-solid fa-user-check" style="color:white; font-size:35px;padding-left:345px; padding-top:4px;"></i> Utilisateurs actifs
 
 
 
               </button></a>
       </div>
       
-        <form class="d-flex" role="SEARCH" action="search3" method="get">
-            <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
+         <form class="d-flex" role="search" action="rechinactif" method="GET">
+            <input class="form-control me-2 px-4" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
+            <a style="position: absolute; right: 10;" href="/api/admin">
+              <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
+
+      </a>
             <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
         </form>&nbsp;
         <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
+
       <ul class="nav-item m-2">
 
         <a href="/api/logout">
@@ -67,34 +73,57 @@
     </tr>
   </thead>
   <tbody>
-
-  @foreach ($users as $user)
+  @if ($users->count() > 0)
+    @foreach ($users as $user)
     <tr>
 
       <td cope="row">{{{ $user->nom }}}</td>
       <td>{{{ $user->prenom }}}</td>
+
        <td>{{{ $user->matricule }}}</td>
       <td>{{{ $user->date_archivage}}}</td>
      <td> {{-- <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/change.png" alt=""></a> --}}
         {{-- <form action="/api/posts/switchRole/{{$user->id}}" method="post">
         <button type="submit"><img src="/image/change.png" alt=""></button>
     </form> --}}
-        <a href="/api/posts/desarchiv/{{$user->id}}"><i class="fa-sharp fa-solid fa-box-archive"style="color:black; padding-left:25px"></i></a>
+   
+        <a href="/api/posts/desarchiv/{{$user->id}}"> <span class="material-symbols-outlined"style="color:#334155; padding-left:25px"title="Désarchiver">
+          restore_from_trash
+          </span></a>
        {{--  <a href="posts/editForm/{{$user->id}}"><img src="/image/edit.png" alt=""></a> --}}
        {{--  <a href="/api/posts/switchRole/{{$user->id}}?post"><img src="/image/edit.png" alt=""></a> --}}
   </td>
     </tr>
     @endforeach
+  @else:
+    <span id="ok" class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none t  text-danger">
+      L'utilisateur recherché ne figure pas sur cette liste !
+  </span>
+  @endif
+
 
   </tbody>
 </table>
-<div class="pagination d-flex bg-black justify-content-center ">
+
+<div class="pagination d-flex justify-content-center fixed-bottom">
+
   {{$users->links()}}
 </div>
 </div>
 
 </main>
 </body>
+{{-- <script>
+  function search(){
+  let recherche = document.getElementById('recherche');
+  let quit = document.getElementById('quit');
 
+  if (recherche.value !=" "){
+       quit.style.display = "block";
+
+  }
+  }
+
+</script> --}}
 </html>
 
