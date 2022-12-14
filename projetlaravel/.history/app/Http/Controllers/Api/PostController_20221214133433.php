@@ -40,17 +40,15 @@ class PostController extends Controller
 
 
         //
+        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(5);
 
-        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
-
-
-        $nbr = Utilisateur::where('etat', '=', "1")->count();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
 
 
 
         return view("admin", [
             'users' => $users,
-            'nbr' => $nbr
+            'nbr'=> $nbr
         ]);
     }
 
@@ -74,7 +72,7 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
         $users = Utilisateur::where('etat', '=', "0")->paginate(8);
-        $nbr = Utilisateur::where('etat', '=', "0")->count();
+        $nbr =Utilisateur::where('etat', '=', "0")->count();
         return view("listearchive", [
             'users' => $users,
             'nbr' => $nbr
@@ -92,7 +90,7 @@ class PostController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
+            'email' => ['required 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
             'passwords' => 'required', 'string',
         ]);
            
@@ -105,34 +103,33 @@ class PostController extends Controller
 
         foreach ($users as $user) {
 
-            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) {
+            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
                 if ($user->etat === "1") {
 
-                    if ($user->role === "administrateur") {
-                        /*   Auth::login($user);   */
-                        session_start();
-                        $_SESSION['nom'] = $user->nom;
-                        $_SESSION['matricule'] = $user->matricule;
-                        $_SESSION['prenom'] = $user->prenom;
-                        $_SESSION['photo'] = $user->photo;
-                        $_SESSION['prenom'] = $user->prenom;
+                if ($user->role === "administrateur") {
+                    /*   Auth::login($user);   */
+                    session_start();
+                    $_SESSION['nom'] = $user->nom;
+                    $_SESSION['matricule'] = $user->matricule;
+                    $_SESSION['prenom'] = $user->prenom;
+                    $_SESSION['photo'] = $user->photo;
+                    $_SESSION['prenom'] = $user->prenom;
 
-                        return redirect("/api/admin");
-                    } elseif ($user->role === "utilisateur") {
+                    return redirect("/api/admin");
+                } elseif ($user->role === "utilisateur") {
 
-                        session_start();
-                        $_SESSION['nom'] = $user->nom;
-                        $_SESSION['matricule'] = $user->matricule;
-                        $_SESSION['prenom'] = $user->prenom;
-                        $_SESSION['photo'] = $user->photo;
-                        $_SESSION['prenom'] = $user->prenom;
-                        return redirect("/api/usersimple");
-                    }
+                    session_start();
+                    $_SESSION['nom'] = $user->nom;
+                    $_SESSION['matricule'] = $user->matricule;
+                    $_SESSION['prenom'] = $user->prenom;
+                    $_SESSION['photo'] = $user->photo;
+                    $_SESSION['prenom'] = $user->prenom;
+                    return redirect("/api/usersimple");
                 }
-                $valid = $request->validate([
-                    'msg' => 'present',
+}$valid = $request->validate([
+    'msg' => 'present',
 
-                ]);
+]);
             };
         }
 
@@ -189,22 +186,20 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-
-        $user->motdepasse = $request->get('passwords');
-
+        $user->motdepasse =$request->get('passwords');
+        
         $user->role = $request->get('roles');
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/user/', $filename);
-            $user->photo = $filename;
-        } else {
-
-            $user->photo = 'avatarr.jpg';
-        }
-
+        if($request->hasFile('photo')){
+          $file= $request->file('photo');
+          $extension = $file ->getClientOriginalExtension();
+          $filename= time().'.'.$extension;
+          $file->move('uploads/user/',$filename);
+          $user->photo=$filename;}
+          else{
+          
+            $user->photo='avatarr.jpg';
+          }
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
@@ -284,7 +279,7 @@ class PostController extends Controller
     {
         $user =  Utilisateur::findOrFail($id);
         $user->etat = "0";
-        $user->date_archivage = date("y-m-d h:i:s");
+        $user->date_archivage= date("y-m-d h:i:s");
 
         $user->save();
         return redirect("/api/admin");
@@ -300,7 +295,7 @@ class PostController extends Controller
         return redirect("/api/listearchive");
     }
 
-    public function rechinactif(Request $request)
+      public function rechinactif(Request $request)
     {
         session_start();
         $users = utilisateur::all();
@@ -310,6 +305,7 @@ class PostController extends Controller
             ->orderBy('prenom')
             ->paginate(8);
         return view("listearchive", ["users" => $users, 'nbr' => $nbr]);
+
     }
 
 
@@ -317,33 +313,30 @@ class PostController extends Controller
     {
         session_start();
         $users = utilisateur::all();
-        $nbr = Utilisateur::where('etat', '=', "1")->count();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('prenom');
         $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
 
             ->orderBy('prenom')
             ->paginate(5);
-        return view("admin", [
-            "users" => $users,
-            'nbr' => $nbr
-        ]);
+        return view("admin", ["users" => $users,
+        'nbr' => $nbr]);
     }
 
     public function Search2(Request $request)
     {
         session_start();
         $users = utilisateur::all();
-        $nbr = Utilisateur::where('etat', '=', "1")->count();
+        $nbr =Utilisateur::where('etat', '=', "1")->count();
         $search = \Request::get('prenom');
         $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
 
 
             ->orderBy('prenom')
             ->paginate(5);
-        return view("user", [
-            "users" => $users,
-            'nbr' => $nbr
-        ]);
+        return view("user", ["users" => $users,
+        'nbr' => $nbr
+    ]);
     }
 
 
@@ -356,4 +349,6 @@ class PostController extends Controller
         session_destroy();
         return redirect('/login');
     }
+
+
 }
