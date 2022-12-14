@@ -22,12 +22,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                Voulez-vous restez sur cette page ?
+                Voulez-vous vous connecter?
             </div>
             <div class="modal-footer">
 
-                <button type="button" class="btn btn-danger" data-dismiss="modal" ><a href="login" class="login" style="color: white">Non</a></button>
-                <button type="button" class="btn btn-success" data-dismiss="modal"><a href="inscription" class="login" style="color: white">Oui</a></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ><a href="inscription" class="login" style="color: white">Non</a></button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"><a href="login" class="login" style="color: white">Oui</a></button>
 
             </div>
         </div>
