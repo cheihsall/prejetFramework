@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'accepted' => 'mail ou mot de passe n`existe pas.',
-    'accepted_if' => 'The :attribute must be accepted when :other is :value.',
+    'accepted' => 'Email ou mot de passe icorrect !',
+    'accepted_if' => 'Compte archivé!',
     'active_url' => 'The :attribute is not a valid URL.',
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
@@ -112,7 +112,7 @@ return [
         'symbols' => 'The :attribute must contain at least one symbol.',
         'uncompromised' => 'The given :attribute has appeared in a data leak. Please choose a different :attribute.',
     ],
-    'present' => 'The :attribute field must be present.',
+    'present' => 'Compte archivé!',
     'prohibited' => 'The :attribute field is prohibited.',
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
