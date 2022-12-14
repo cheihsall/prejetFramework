@@ -46,18 +46,9 @@
                 </a>
             </div>
             </form>
-           
+
      </div>
 
-
-    <div class="" style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;">
-      <a href="/api/logout">
-
-
-        <button type="button" class="btn btn-outline-success "><i
-            class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
-    </a>
-            </div>
 
 </nav>
     </header>
