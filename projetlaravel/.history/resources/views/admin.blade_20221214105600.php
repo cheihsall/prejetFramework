@@ -58,7 +58,7 @@
 
                {{--  <a href="/api/admin">
                 <button type="button" id="quit" class="btn mt-4 p-1 " style="">
-                    <img src="/im8age/quit.png" alt="quitter" width="30">
+                    <img src="/image/quit.png" alt="quitter" width="30">
                 </button> --}}
 
         </div> 

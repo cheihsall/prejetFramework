@@ -20,7 +20,7 @@
             <div class="d-flex flex-column">
                 <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de Profil">
                  <span class="text-light h3" title="Matricule">{{ $_SESSION['matricule'] }}</span>
-            </div>
+            </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
