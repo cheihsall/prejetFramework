@@ -40,7 +40,7 @@ class PostController extends Controller
 
 
         //
-        $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(5);
+        $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
 
         $nbr = Utilisateur::where('etat', '=', "1")->count();
 
