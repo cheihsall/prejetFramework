@@ -35,7 +35,7 @@
             <form style="position: relative" class="d-flex" action="search2" method="GET" role="search">
              <input style="height:36px" class="form-control me-2" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
                aria-label="Search">
-             <a style=" margin-left: -38px;" href="/api/user">
+             <a style=" margin-left: -38px;" href="/api/usersimple">
                      <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
              </a>
              <button style="margin-left: 15px;height:36px" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
@@ -48,11 +48,17 @@
             </form>
            
      </div>
-    
 
 
-    
-           
+    <div class="" style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;">
+      <a href="/api/logout">
+
+
+        <button type="button" class="btn btn-outline-success "><i
+            class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
+    </a>
+            </div>
+
 </nav>
     </header>
     <main>
@@ -72,18 +78,17 @@
     @if ($users->count() > 0)
     @foreach ($users as $user)
     <tr>
-
-      <td cope="row">{{{ $user->nom }}}</td>
-      <td>{{{ $user->prenom }}}</td>
-      <td>{{{ $user->email }}}</td>
-       <td>{{{ $user->matricule }}}</td>
-       <td>{{{ $user->date_inscription = date("d-m-y")}}}</td>
+      <td cope="row"><b>{{{ $user->nom }}}</b></td>
+      <td><b>{{{ $user->prenom }}}</b></td>
+      <td><b>{{{ $user->email }}}</b></td>
+       <td><b>{{{ $user->matricule }}}</b></td>
+       <td><b>{{{ $user->date_inscription = date("d-m-y")}}}</b></td>
 
 
     </tr>
     @endforeach
     @else:
-      <span id="ok" class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none t  text-danger">
+      <span class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none text-danger">
         L'utilisateur recherché ne figure pas sur cette liste !
     </span>
     @endif

@@ -3,13 +3,9 @@
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Utilisateurs;
 use App\Models\utilisateur;
-
-
-
-
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /* Route::middleware('auth')->group(function () { */
-Route::get('/login', function () {
-
-    return view('login');
-}) ->name('login');
+    Route::get('/', function () {
+        return redirect('login');
+    });
 
 ///
 Route::middleware('/')->group(function () {
@@ -95,7 +90,7 @@ Route::post('/login' ,[PostController::class,'login']);
 
 
 /* Route::get('lgin', [AuthenticatedSessionController::class, 'create']);
-/* ->name('lagin'); 
+/* ->name('lagin');
 
 Route::post('lgin', [AuthenticatedSessionController::class, 'store']); */
 
