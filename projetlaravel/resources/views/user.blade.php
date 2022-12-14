@@ -54,8 +54,7 @@
       <a href="/api/logout">
 
 
-        <button type="button" class="btn btn-outline-success "><i
-            class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
+        
     </a>
             </div>
 
@@ -82,7 +81,7 @@
       <td><b>{{{ $user->prenom }}}</b></td>
       <td><b>{{{ $user->email }}}</b></td>
        <td><b>{{{ $user->matricule }}}</b></td>
-       <td><b>{{{ $user->date_inscription = date("d-m-y")}}}</b></td>
+       <td><b>{{{ $user->created_at }}}</b></td>
 
 
     </tr>
