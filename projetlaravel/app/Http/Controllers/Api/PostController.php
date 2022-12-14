@@ -295,19 +295,19 @@ class PostController extends Controller
         return redirect("/api/listearchive");
     }
 
-    public function rechinactif(Request $request)
+      public function rechinactif(Request $request)
     {
         session_start();
         $users = utilisateur::all();
         $nbr = Utilisateur::where('etat', '=', "0")->count();
         $search = \Request::get('prenom');
-
         $users = Utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "0")
             ->orderBy('prenom')
             ->paginate(8);
         return view("listearchive", ["users" => $users, 'nbr' => $nbr]);
 
     }
+
 
     public function Search(Request $request)
     {
