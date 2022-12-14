@@ -32,8 +32,8 @@
            {{-- a ne  --}}
            <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
             <form style="position: relative" class="d-flex" action="search2" method="GET" role="search">
-             <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" type="search" placeholder="Recherche par prenom"
-             required  aria-label="Search">
+             <input class="form-control me-2" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
+               aria-label="Search">
              <a style=" margin-left: -38px;" href="/api/user">
                      <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
 
