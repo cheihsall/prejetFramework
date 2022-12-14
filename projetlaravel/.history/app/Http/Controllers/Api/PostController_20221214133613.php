@@ -90,7 +90,7 @@ class PostController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
+            'email' => 'required | regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'passwords' => 'required', 'string',
         ]);
            
