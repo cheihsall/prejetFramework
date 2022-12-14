@@ -127,13 +127,7 @@ class PostController extends Controller
                 }
 
             };
-            else{
-                $valid = $request->validate([
-                    'msg' => 'accepted',
-        
-                ]);
-
-            }
+          
         }
 
         $valid = $request->validate([

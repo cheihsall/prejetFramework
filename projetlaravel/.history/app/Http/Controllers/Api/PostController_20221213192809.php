@@ -105,7 +105,7 @@ class PostController extends Controller
             if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) {
 
 
-                if ($user->role === "administrateur" && $user->etat ==) {
+                if ($user->role === "administrateur" ) {
                     /*   Auth::login($user);   */
                     session_start();
                     $_SESSION['nom'] = $user->nom;

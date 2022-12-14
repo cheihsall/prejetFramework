@@ -29,7 +29,7 @@
 
     
             <div class=" mt-3 " style="margin-left:50rem;max-height: 2.5rem;">
-        
+           {{-- a ne  --}}
 
     <form class="d-flex" action="search2" method="GET" role="search">
         <input class="form-control me-2 px-4" name="prenom" type="search" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
@@ -44,7 +44,8 @@
     <div class=" " style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;"> 
 
     <a href="/api/logout">
-        <button type="button" class="btn btn-outline-success "><i class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
+        <button type="button" class="btn btn-outline-success "><i
+            class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
     </a>
             </div>
 </nav>
