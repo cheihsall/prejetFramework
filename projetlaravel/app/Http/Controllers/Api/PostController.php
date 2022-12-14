@@ -60,7 +60,7 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
 
-        $users = Utilisateur::where('etat', '=', "1")->paginate(8);
+        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
 
         return view("user", [
             'users' => $users
