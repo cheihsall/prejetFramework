@@ -54,9 +54,6 @@
 
         </div>
 
-
-
-
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>

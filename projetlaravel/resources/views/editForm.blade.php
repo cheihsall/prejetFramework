@@ -62,9 +62,7 @@
             </form>
         </div>
     </div>
-</body>
 
-</html>
 <script>
     let erreur_email = document.getElementById("erreur_email")
     let erreur_email2 = document.getElementById("erreur_email2")

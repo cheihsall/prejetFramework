@@ -18,12 +18,12 @@ class PostController extends Controller
 
 
 
-
-    function generateMatricule($n = 3)
+/* creation d'une fonction pour l'ajout des matricules pour chaque utilisateur */
+    function generateMatricule($n = 3) /* creation de la fonction avec ses parametres */
     {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
-/* boucle for qui nous permet d'incre */
+/* cette boucle nous permet de parcourir la chaine de caractére et d'incrementé de 3 lettre aléatoirement */
         for ($i = 0; $i < $n; $i++) {
             $index = rand(0, strlen($characters) - 1);
             $randomString .= $characters[$index];
@@ -288,35 +288,40 @@ class PostController extends Controller
         $user->save();
         return redirect("/api/listearchive");
     }
-
+/* cette fonction permet de faire la recherche d'un utilisateur sur la page listeArchive les personnes archivés */
     public function rechinactif(Request $request)
     {
-        session_start();
-        $users = utilisateur::all();
-        $nbr = Utilisateur::where('etat', '=', "0")->count();
-        $search = \Request::get('prenom');
-        $users = Utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "0")
-            ->orderBy('prenom')
-            ->paginate(8);
-        return view("listearchive", ["users" => $users, 'nbr' => $nbr]);
+        session_start(); /* demarrage de la session */
+        $users = utilisateur::all(); /* recuperation de tous les utilisateurs et stocké dans la variable $users */
+        $nbr = Utilisateur::where('etat', '=', "0")->count(); /* recuperation des utilisateurs dont leur etat est egal à 0 c'est à dire archivé et stocké dans la variable $nbr */
+        $search = \Request::get('prenom'); /* requete pour obtenir le prenom utilisé pour la recherche */
+        $users = Utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "0")/* recuperation des prenom d'utilisateurs  ou a peu prés qui ont comme etat 0 et stocké dans la variable $users */
+
+            ->paginate(8); /* chaque page on aura maximum 8 utilisateurs si la recherche affiche plusieurs resultats*/
+        return view("listearchive", ["users" => $users, 'nbr' => $nbr]); /* retourner la page listearchive avec un tableau des utilisateurs trouvés et le nombres total des personnes archivés */
     }
 
 
+    /* cette fonction permet de faire la recherche d'un utilisateur sur la page admin les personnes actives */
     public function Search(Request $request)
     {
         session_start();
         $users = utilisateur::all();
-        $nbr = Utilisateur::where('etat', '=', "1")->count();
+        $nbr = Utilisateur::where('etat', '=', "1")->count();/* recuperation des utilisateurs dont leur etat est egal à 1 c'est à dire archivé et stocké dans la variable $nbr */
         $search = \Request::get('prenom');
-        $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
+        $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")/* recuperation des prenom d'utilisateurs  ou a peu prés qui ont comme etat 1 et stocké dans la variable $users */
 
-            ->orderBy('prenom')
-            ->paginate(5);
+            ->paginate(5);    /* chaque page on aura maximum 5 utilisateurs si la recherche affiche plusieurs resultats*/
+
+            /* retourner la page admin avec un tableau des utilisateurs trouvés et le nombres total des personnes actives */
         return view("admin", [
             "users" => $users,
             'nbr' => $nbr
         ]);
     }
+
+
+        /* cette fonction permet de faire la recherche d'un utilisateur sur la page user les personnes actives */
 
     public function Search2(Request $request)
     {
@@ -326,9 +331,9 @@ class PostController extends Controller
         $search = \Request::get('prenom');
         $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
 
-
-            ->orderBy('prenom')
             ->paginate(5);
+
+            /* retourner la page utilisateur simple avec un tableau des utilisateurs trouvés et le nombres total des personnes actives */
         return view("user", [
             "users" => $users,
             'nbr' => $nbr
