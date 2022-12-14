@@ -62,6 +62,7 @@ class PostController extends Controller
 
         $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);  //recuperation de la session matricule et filftrage de user connecté dans la liste
 
+
         return view("user", [
             'users' => $users
         ]);
@@ -87,12 +88,13 @@ class PostController extends Controller
     }
 
 
+//Debut créationn de la page de connexion
 
-
-    public function login(Request $request)
+    public function login(Request $request) //creation de la fonction login 
     {
-        $request->validate([
-            'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
+        $request->validate([ // creation d'une variable reponse puis intégration de la méthode validate pour accepter si les règles de validation sont acceptées   non
+            ////////////
+            'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],//require pour controler que le champ est obigatoire ,regex:pour verifier le format de l'email
             'passwords' => 'required', 'string',
         ]);
 
@@ -101,41 +103,42 @@ class PostController extends Controller
 
 
 
-        $users = Utilisateur::all();
+        $users = Utilisateur::all(); //Récuperation de toutes les users de la base de donnée
 
-        foreach ($users as $user) {
+        foreach ($users as $user) {  //Parcourir les utilisateurs
 
-            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) {
-                if ($user->etat === "1") {
+            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) { //Verifier si les identifiants saisie correspond aux identifiants de l'utilisateur dans la base de donnée
+                if ($user->etat === "1") { //Voir si le user qui veut se connecter est archivé ou pas à partir de son etat
 
-                    if ($user->role === "administrateur") {
+                    if ($user->role === "administrateur") { // Vérification à la page admin à partir du role s'il est un administrateur
                         /*   Auth::login($user);   */
-                        session_start();
-                        $_SESSION['nom'] = $user->nom;
-                        $_SESSION['matricule'] = $user->matricule;
-                        $_SESSION['prenom'] = $user->prenom;
-                        $_SESSION['photo'] = $user->photo;
-                        $_SESSION['prenom'] = $user->prenom;
+                        session_start();//demarrage de la session pour afficher:
+                        $_SESSION['nom'] = $user->nom; // Recuperatio session nom
+                        $_SESSION['matricule'] = $user->matricule;//Recup matricule
+                        $_SESSION['prenom'] = $user->prenom;//Recup prenom 
+                        $_SESSION['photo'] = $user->photo;//Recup photo 
+                       
 
-                        return redirect("/api/admin");
+                        return redirect("/api/admin"); 
                     } elseif ($user->role === "utilisateur") {
 
-                        session_start();
+                        session_start(); 
                         $_SESSION['nom'] = $user->nom;
                         $_SESSION['matricule'] = $user->matricule;
                         $_SESSION['prenom'] = $user->prenom;
                         $_SESSION['photo'] = $user->photo;
-                        $_SESSION['prenom'] = $user->prenom;
+                     
                         return redirect("/api/usersimple");
                     }
                 }
+                //afficher message quand l'utilisateur est archivé :compte archivé
                 $valid = $request->validate([
                     'msg' => 'present',
 
                 ]);
             };
         }
-
+                 //afficher message quand l'utilisateur a saisie le mauvais mot de passe ou le mauvais email
         $valid = $request->validate([
             'msg' => 'accepted',
 
@@ -143,6 +146,7 @@ class PostController extends Controller
     }
 
     public function store(Request $request)  // function qui fait le controle de saisi
+
     {
         $u = new utilisateur();
         $email = $request->get('email'); //reuperation email
