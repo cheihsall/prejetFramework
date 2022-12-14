@@ -41,7 +41,7 @@
       
          <form class="d-flex" role="search" action="rechinactif" method="GET">
             <input class="form-control me-2 px-4" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
-            <a style="position: absolute; right: 10;" href="/api/admin">
+            <a style="position: absolute; right: 10;" href="/api/listearchive">
               <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
 
       </a>

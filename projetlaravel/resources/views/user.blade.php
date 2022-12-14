@@ -34,12 +34,11 @@
     <form class="d-flex" action="search2" method="GET" role="search">
         <input class="form-control me-2 px-4" name="prenom" type="search" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
         required  aria-label="Search">
-        <a style="position: absolute; right: 10;" href="/api/admin">
+        <a style="position: absolute; right: 10;" href="/api/usersimple">
             <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
 
     </a>
-        <button class="btn btn-outline-light p-1" id="but"  type="submit">rechercher</button>
-    </form>&nbsp;
+      
    
         <button class="btn btn-outline-light p-1" id="but" onclick="buts()"  type="submit">Search</button>
     </form>&nbsp;
