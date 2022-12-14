@@ -301,6 +301,7 @@ class PostController extends Controller
         $users = utilisateur::all();
         $nbr = Utilisateur::where('etat', '=', "0")->count();
         $search = \Request::get('prenom');
+
         $users = Utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "0")
             ->orderBy('prenom')
             ->paginate(8);

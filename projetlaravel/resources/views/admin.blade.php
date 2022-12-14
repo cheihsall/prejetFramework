@@ -20,13 +20,7 @@
 <body>
 
     <header>
-      {{--   @if (isset($header))
-        <header class="bg-success shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endif --}}
+
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
                 <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de profil">
@@ -46,12 +40,7 @@
 
                     </button></a>
             </div>
-            {{-- <form class="d-flex" role="search" action="recherche" method="post">
-                <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
-                <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
 
-            </form>--}}
-           {{--  <span class="text-light">Utilisateurs actifs:&nbsp; {{ $nbr }}</span>&nbsp; --}}
               <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
                        <form style="position: relative" class="d-flex" action="search" method="GET" role="search">
                         <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" type="search" placeholder="Recherche par prenom"
@@ -121,18 +110,6 @@
    <div class="pagination d-flex justify-content-center fixed-bottom ">
          {{$users->links()}}
 
-       {{--   <script>
-            function search(){
-        let recherche = document.getElementById('recherche');
-        let quit = document.getElementById('quit');
-
-        if (recherche.value !=" "){
-            quit.style.display = "block";
-
-        }
-    }
-
-         </script> --}}
 </div>
 
 </div>
