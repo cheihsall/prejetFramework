@@ -20,7 +20,7 @@
             <div class="d-flex flex-column">
                 <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de Profil">
                  <span class="text-light h3" title="Matricule">{{ $_SESSION['matricule'] }}</span>
-            </div>
+            </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
@@ -33,19 +33,21 @@
            {{-- a ne  --}}
            <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
             <form style="position: relative" class="d-flex" action="search2" method="GET" role="search">
-             <input style="height:36px" class="form-control me-2" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
+             <input class="form-control" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
                aria-label="Search">
+               <a href="/api/logout">
+                <button type="button" class="btn btn-outline-success "><i
+                    class="fa-solid fa-arrow-right-from-bracket" style="color:white;"></i>Deconnecter</button>
+            </a>
              <a style=" margin-left: -38px;" href="/api/user">
                      <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
              </a>
-             <button style="margin-left: 15px;height:36px" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
-            <div>
-                <a href="/api/logout">
-                    <button type="button" class="btn btn-outline-success "><i
-                        class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:1px;"></i>Deconnecter</button>
-                </a>
-            </div>
+             <button style="margin-left: 10px;" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
+             
             </form>
+            <div>
+                
+            </div>
            
      </div>
     
