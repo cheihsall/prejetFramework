@@ -23,7 +23,7 @@ class PostController extends Controller
     {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
-
+/* boucle for qui nous permet d'incre */
         for ($i = 0; $i < $n; $i++) {
             $index = rand(0, strlen($characters) - 1);
             $randomString .= $characters[$index];
@@ -145,10 +145,6 @@ class PostController extends Controller
     {
         $u = new utilisateur();
         $email = $request->get('email');
-
-
-
-
         $request->validate([
 
             'nom' => 'required',
@@ -160,7 +156,6 @@ class PostController extends Controller
 
 
         ]);
-
 
         //controle du mail existant
         foreach ($u::all() as $user) {
@@ -175,12 +170,7 @@ class PostController extends Controller
             }
         }
 
-
-
-
-
         $etat = '1';
-
 
         $user = new Utilisateur();
 
