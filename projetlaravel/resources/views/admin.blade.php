@@ -54,6 +54,10 @@
                 </div>
                  <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
 
+
+               
+        </div> 
+
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
