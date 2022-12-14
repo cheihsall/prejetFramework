@@ -41,7 +41,7 @@ class PostController extends Controller
 
         //
 
-        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
+        $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8); //recuperation de la session matricule et filftrage de user connecté dans la liste
 
 
         $nbr = Utilisateur::where('etat', '=', "1")->count();
@@ -60,7 +60,7 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
 
-        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
+        $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);  //recuperation de la session matricule et filftrage de user connecté dans la liste
 
         return view("user", [
             'users' => $users
@@ -95,7 +95,7 @@ class PostController extends Controller
             'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
             'passwords' => 'required', 'string',
         ]);
-           
+
 
 
 
@@ -142,19 +142,19 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request)  // function qui fait le controle de saisi
     {
         $u = new utilisateur();
-        $email = $request->get('email');
+        $email = $request->get('email'); //reuperation email
 
 
 
 
-        $request->validate([
+        $request->validate([  // Verification des champs vide
 
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix', //Format email
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required_with:passwords|same:passwords',
@@ -163,8 +163,8 @@ class PostController extends Controller
         ]);
 
 
-        //controle du mail existant
-        foreach ($u::all() as $user) {
+
+        foreach ($u::all() as $user) {  //Parcourir  la base de donnees et controle du mail existant
 
             if ($user->email === $email) {
 
@@ -183,9 +183,9 @@ class PostController extends Controller
         $etat = '1';
 
 
-        $user = new Utilisateur();
+        $user = new Utilisateur(); // insersion des donnees apres avoir inscri
 
-        $user->matricule = $this->generateMatricule();
+        $user->matricule = $this->generateMatricule(); // autogerer le matricule
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
@@ -194,15 +194,17 @@ class PostController extends Controller
 
         $user->role = $request->get('roles');
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/user/', $filename);
-            $user->photo = $filename;
-        } else {
+        //insersion, recuperation et affichage de la photo
 
-            $user->photo = 'avatarr.jpg';
+        if ($request->hasFile('photo')) { //si l'utilisateur s'inscrit avec la photo
+            $file = $request->file('photo'); // on recupere la photo
+            $extension = $file->getClientOriginalExtension(); // cryptage de du nom de la photo
+            $filename = time() . '.' . $extension; // recuperation du nom de la crypte avec l'extention original de la photo
+            $file->move('uploads/user/', $filename); //inserer la photo crypter dans le dossier uploads user
+            $user->photo = $filename; //insersion du chemin de la photo dans la base de donnees
+        } else { //si l'utilisateur s'inscrit sans photo
+
+            $user->photo = 'avatarr.jpg'; // il y'a un avatar par defaut
         }
 
         $user->etat = $etat;
@@ -212,7 +214,7 @@ class PostController extends Controller
 
         $user->save();
 
-        return redirect("/pupop");
+        return redirect("/pupop"); // apres avoir inscrit redirection vers pupop et on choisi si on va se connecter ou pas
     }
 
 
