@@ -1,7 +1,3 @@
-
-
-<?php /* session_start() */ ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,8 +51,8 @@
                  <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
 
 
-               
-        </div> 
+
+        </div>
 
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
@@ -89,12 +85,11 @@
 
 
     <tr>
-      <td cope="row">{{{ $user->nom }}}</td>
-      <td>{{{ $user->prenom }}}</td>
-      <td>{{{ $user->matricule }}}</td>
-      <td>{{{ $user->email }}}</td>
-
-      <td>{{{ $user->role }}}</td>
+      <td cope="row"><b>{{{ $user->nom }}}</b></td>
+      <td><b>{{{ $user->prenom }}}</b></td>
+      <td><b>{{{ $user->matricule }}}</b></td>
+      <td><b>{{{ $user->email }}}</b></td>
+      <td><b>{{{ $user->role }}}</b></td>
       <td>
         <a href="/api/posts/switchRole/{{$user->id}}?post"><i class="fa-solid fa-rotate-right" style="color: black"title="Changer de role"></i></a>
         <a href="/api/posts/archiv/{{$user->id}}"><i class="fa-solid fa-box-archive"style="color:red"title="Archiver"></i></a>

@@ -39,6 +39,7 @@
               </button></a>
       </div>
 
+
       <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
         <form style="position: relative" class="d-flex" action="rechinactif" method="GET" role="search">
          <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
@@ -50,6 +51,7 @@
          <button style="margin-left: 15px;" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
      </form>
  </div>
+
         <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
 
       <ul class="nav-item m-2">

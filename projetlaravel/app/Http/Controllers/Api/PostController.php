@@ -40,7 +40,7 @@ class PostController extends Controller
 
 
         //
-        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(5);
+        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
 
         $nbr =Utilisateur::where('etat', '=', "1")->count();
 
@@ -102,8 +102,8 @@ class PostController extends Controller
 
         foreach ($users as $user) {
 
-            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) {
-
+            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")){
+                if ($user->etat === "1") {
 
                 if ($user->role === "administrateur") {
                     /*   Auth::login($user);   */
@@ -125,7 +125,10 @@ class PostController extends Controller
                     $_SESSION['prenom'] = $user->prenom;
                     return redirect("/api/usersimple");
                 }
+}$valid = $request->validate([
+    'msg' => 'present',
 
+]);
             };
         }
 
@@ -182,7 +185,8 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
-        $user->motdepasse = $request->get('passwords');
+        $user->motdepasse =$request->get('passwords');
+
         $user->role = $request->get('roles');
 
         if($request->hasFile('photo')){
@@ -192,14 +196,9 @@ class PostController extends Controller
           $file->move('uploads/user/',$filename);
           $user->photo=$filename;}
           else{
-            return $request;
-            $user->image='';
+
+            $user->photo='avatarr.jpg';
           }
-
-
-        /* $user->filename = $name;
-        $user->photo = $path;
-        $user->imageUrl: $url + '/public/' + $req.file.filename; */
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
