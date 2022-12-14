@@ -55,13 +55,13 @@
                  <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
 
 
-
                {{--  <a href="/api/admin">
                 <button type="button" id="quit" class="btn mt-4 p-1 " style="">
                     <img src="/im8age/quit.png" alt="quitter" width="30">
                 </button> --}}
 
         </div> 
+
 
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
