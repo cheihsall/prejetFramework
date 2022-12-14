@@ -18,7 +18,7 @@
 <body>
     <div class="container d-flex justify-content-center mt-5">
         <div class="col-md-8  mt-5">
-            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/api/posts/edit/{{$user->id}}" method="post">
+            <form id="form" enctype="multipart/form-data" class="row g-3 d-flex justify-content-center no-wrap m-2  bg-light needs-validation border" novalidate action="/api/posts/edit/{{$user->id}}" method="POST">
 
 
     @csrf
@@ -31,32 +31,26 @@
     </nav>
     <div class="col-md-6 input-control">
         <label for="input1" class="form-label">Nom<span style="color: red;">*</span></label>
-        <input type='text' name='nom' class="form-control border-dark p-2 "value="{{{ $user->nom }}}" id="nom" required>
-        {{-- @error('nom')
-        <div class="text-danger">{{ $message }}</div>
-        @enderror --}}
-    </div>
+        <input type='text' name='nom' class="form-control border-dark p-2 {{-- @error('Nom') is-invalid @enderror"  --}}" value={{{ $user->nom }}} id="Nom" required>
+{{--         @error('Nom')
+          <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div> --}}
 
     <div class="col-md-6 input-control">
         <label for="input2" class="form-label">Prenom<span style="color: red;">*</span></label>
-        <input type="text" class="form-control border-dark p-2 {{-- @error('prenom') is-invalid @enderror --}}" value="{{{ $user->prenom }}}" name="prenom" id="prenom" required>
-       {{--  @error('prenom')
-        <div class="text-danger">{{ $message }}</div>
+        <input type="text" class="form-control border-dark p-2 {{-- @error('Prenom') is-invalid @enderror" --}}" value={{{ $user->prenom }}} name="Prenom" id="prenom" required>
+      {{--  @error('Prenom')
+          <div class="text-danger">{{ $message }}</div>
         @enderror --}}
     </div>
 
     <div class="col-md-6 input-control">
         <label for="input3" class="form-label">Email<span style="color: red;">*</span></label>
-        <input type="text" class="form-control border-dark p-2 {{-- @error('email') is-invalid @enderror --}}" value="{{{ $user->email }}}" name="email" id="email" required>
-       {{--  @error('email')
-        <div class="text-danger">{{ $message }}</div>
+        <input type="text" class="form-control border-dark p-2 {{-- @error('Email') is-invalid @enderror" --}}" value={{{ $user->email }}} name="Email" id="email" required>
+       {{--  @error('Email')
+          <div class="text-danger">{{ $message }}</div>
         @enderror --}}
-    </div>
-
-
-    <div class="col-md-6 input-control">
-        <label for="input4" class="form-label">Photo de profil</label>
-        <input type="file" name="photo" accept=".jpg,.png,.jpeg" class="form-control border-dark p-2">
     </div>
 
     <div class="row d-flex justify-content-center mt-2 gap-2">
