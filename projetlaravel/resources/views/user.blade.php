@@ -46,17 +46,10 @@
                 </a>
             </div>
             </form>
-           
+
      </div>
 
 
-    <div class="" style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;">
-      <a href="/api/logout">
-
-
-        
-    </a>
-            </div>
 
 </nav>
     </header>
