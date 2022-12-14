@@ -17,7 +17,7 @@
 
             <div class="row d-flex justify-content-center bg-white-50 mt-5 ">
                 @error('msg')
-                    <span class="alert alert-danger h5">{{ $message }}</span>
+                    <span class="alert alert-danger h6  " style="width: 38.5rem;" >{{ $message }}</span>
                     <br>
                 @enderror
                 <form method="post" action=""
