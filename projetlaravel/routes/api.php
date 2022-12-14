@@ -15,74 +15,25 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-
-
-//Route::post('/login' ,[utilisateurs::class,'login']);
-
-
-
-
-
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 //Route::apiResource("users", UserController::class);
 /* Route::get('/but', function () {
     return json_encode(['nom' => 'Cheikh', 'prenom' => 'Sall']);
 }); */
-
-
-
-
-
-
-/* Route::delete('posts/{id}', [PostController::class, "dest"]); */
-
-/* Route::post("/utilisateur/login",[Utilisateurs::class,'login']); */
-
-
-Route::post('posts/edit/{id}', [PostController::class, "edit"]);
-Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]);
-Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);
-Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);
-Route::apiResource('admin', PostController::class) ;
-
-Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
-
-Route::delete('posts/destroy/{id}', [PostController::class, "destroy"]);
-
-
-
-
-
-
-
-
-Route::post('recherche', [PostController::class, "recherche"]);
-Route::get('search', [PostController::class, "Search"]);
-
-Route::get('/listearchive', [PostController::class, "listearchive"]);
-
-
-Route::get('/usersimple', [PostController::class, "usersimple"])->name('session');
-
-Route::get('/usersimple', [PostController::class, "usersimple"]);
-
-Route::get('session', [PostController::class, "session"]);
-
-Route::get('search2', [PostController::class, "Search2"]);
-Route::get('rechinactif', [PostController::class, "rechinactif"]);
+Route::apiResource('admin', PostController::class) ;// cette permet de recuperé les donnees de l'API
+Route::post('posts/edit/{id}', [PostController::class, "edit"]);// cette permet de modifier les donnees d'un Utilisateur grace a son id'
+Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);// cette permet d'afficher la formulaire de modification avec les donnees d'un Utilisateur grace a son id'
+Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]); // cette permet de de changer le role d'un Utilisateur grace a son id'
+Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);// cette permet d'archiver un Utilisateur grace a son id'
+Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);// cette permet desarchiver un Utilisateur grace a son id'
+Route::delete('posts/destroy/{id}', [PostController::class, "destroy"]);// cette permet de supprimer definitivement  un Utilisateur grace a son id'
+Route::get('search', [PostController::class, "Search"]);// cette permet de rechercher un Utilisateur dans la page admin grace a son prenom
+Route::get('search2', [PostController::class, "Search2"]);// cette permet de rechercher un Utilisateur dans la page user grace a son prenom
+Route::get('rechinactif', [PostController::class, "rechinactif"]); // cette permet de rechercher un Utilisateur dans la liste des archivés grace a son prenom
+Route::get('/listearchive', [PostController::class, "listearchive"]);// cette permet d'afficher la liste de tous les utilisateur archivés
+Route::get('/usersimple', [PostController::class, "usersimple"]);// cette permet d'afficher la liste de tous les utilisateur archivé
 Route::get('search3', [PostController::class, "Search3"]);
 Route::post('recherche', [PostController::class, "recherche"]);
-
-
-
-Route::get('logout', [PostController::class, 'deconnect']);
-
-
-Route::post('posts/inscription' ,[PostController::class,'store']);
+Route::get('logout', [PostController::class, 'deconnect']); // cette permet de se connecté
+Route::post('posts/inscription' ,[PostController::class,'store']);// cette permet dinsere des donnees dans l'api
 
 
