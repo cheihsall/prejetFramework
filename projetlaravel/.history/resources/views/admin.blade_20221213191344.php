@@ -1,3 +1,7 @@
+
+
+<?php /* session_start() */ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +20,13 @@
 <body>
 
     <header>
-
+      {{--   @if (isset($header))
+        <header class="bg-success shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+    @endif --}}
         <nav class="navbar navbar-expand-lg bg-success p-4">
             <div class="d-flex flex-column">
                 <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de profil">
@@ -32,31 +42,42 @@
             <div class="d-flex justify-content-center m-3 navbar-nav me-auto mb-lg-0">
                 <a class="nav-link active text-light m-2" aria-current="page" href="/api/listearchive"><button type="button" class="btn btn-outline-success ">
 
+
                     <i class="fa-solid fa-list" style="color:white; font-size:35px;padding-left:345px; padding-top:4px;"></i> Utilisateurs Archivés
+
+
+
+
+
 
                     </button></a>
             </div>
+            {{-- <form class="d-flex" role="search" action="recherche" method="post">
+                <input class="form-control me-2" name="prenom" id="recherche" onchange="search()" value="{{ request()->prenom ?? ''}}" type="search" placeholder="rechercher par prenom" aria-label="Search" required>
+                <button class="btn btn-outline-light p-1" id="but" onclick="buts()" type="submit">rechercher</button>
 
+            </form>--}}
+           {{--  <span class="text-light">Utilisateurs actifs:&nbsp; {{ $nbr }}</span>&nbsp; --}}
               <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
                        <form style="position: relative" class="d-flex" action="search" method="GET" role="search">
-                        <input class="form-control me-2" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
-                          aria-label="Search">
-                        <a style=" margin-left: -38px;" href="/api/admin">
+                        <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" type="search" placeholder="Recherche par prenom"
+                        required  aria-label="Search">
+                        <a style="position: absolute; right: 10;" href="/api/admin">
                                 <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
 
                         </a>
-                        <button style="margin-left: 15px;" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
+                        <button class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
                     </form>
                 </div>
                  <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
+            <div class="nav-item mb-3 p-2" >
 
-
-
-        </div>
-
-
-
-
+                <a href="/api/admin">
+                <button type="button" id="quit" class="btn mt-4 p-1 " style="">
+                    <img src="/image/quit.png" alt="quitter" width="30">
+                </button>
+            </a>
+        </div> 
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
@@ -74,7 +95,6 @@
       <th scope="col">NOM</th>
       <th scope="col">PRENOM</th>
       <th scope="col">Matricule</th>
-
       <th scope="col">E-MAIL</th>
       <th scope="col">Role</th>
       <th scope="col">ACTION</th>
@@ -88,16 +108,17 @@
 
 
     <tr>
-      <td cope="row"><b>{{{ $user->nom }}}</b></td>
-      <td><b>{{{ $user->prenom }}}</b></td>
-      <td><b>{{{ $user->matricule }}}</b></td>
-      <td><b>{{{ $user->email }}}</b></td>
-      <td><b>{{{ $user->role }}}</b></td>
+      <td cope="row">{{{ $user->nom }}}</td>
+      <td>{{{ $user->prenom }}}</td>
+      <td>{{{ $user->matricule }}}</td>
+      <td>{{{ $user->email }}}</td>
+
+      <td>{{{ $user->role }}}</td>
       <td>
         <a href="/api/posts/switchRole/{{$user->id}}?post"><i class="fa-solid fa-rotate-right" style="color: black"title="Changer de role"></i></a>
         <a href="/api/posts/archiv/{{$user->id}}"><i class="fa-solid fa-box-archive"style="color:red"title="Archiver"></i></a>
         <a href="posts/editForm/{{$user->id}}"><i class="fa-solid fa-pen-to-square"style="color:blue"title="Modifier"></i></a>
-
+   
      </td>
     </tr>
 
@@ -112,8 +133,20 @@
    <div class="pagination d-flex justify-content-center fixed-bottom ">
          {{$users->links()}}
 
-</div>
+       {{--   <script>
+            function search(){
+        let recherche = document.getElementById('recherche');
+        let quit = document.getElementById('quit');
 
+        if (recherche.value !=" "){
+            quit.style.display = "block";
+
+        }
+    }
+
+         </script> --}}
+</div>
+ 
 </div>
 </main>
 </body>

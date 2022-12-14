@@ -20,45 +20,34 @@
             <div class="d-flex flex-column">
                 <img src="/uploads/user/{{ $_SESSION['photo'] }}" class="rounded-circle" height="100" width="100" alt="photo" title="Photo de Profil">
                  <span class="text-light h3" title="Matricule">{{ $_SESSION['matricule'] }}</span>
-            </div>
+            </div>&nbsp;&nbsp;&nbsp;
             <div class="me-5 d-flex flex-row">
                 <span class="text-light h3">{{ $_SESSION['prenom'] }}</span>&nbsp;&nbsp;
                 <span class="text-light h3">{{ $_SESSION['nom'] }}</span>&nbsp;
 
             </div>
 
-
+    
             <div class=" mt-3 " style="margin-left:50rem;max-height: 2.5rem;">
-
            {{-- a ne  --}}
-           <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
-            <form style="position: relative" class="d-flex" action="search2" method="GET" role="search">
-             <input style="height:36px" class="form-control me-2" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
-               aria-label="Search">
-             <a style=" margin-left: -38px;" href="/api/usersimple">
-                     <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
-             </a>
-             <button style="margin-left: 15px;height:36px" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
-            <div>
-                <a href="/api/logout">
-                    <button type="button" class="btn btn-outline-success "><i
-                        class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:1px;"></i>Deconnecter</button>
-                </a>
+
+    <form class="d-flex" action="search2" method="GET" role="search">
+        <input class="form-control me-2 px-4" name="prenom" type="search" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
+        required  aria-label="Search">
+        <a style="position: absolute; right: 10;" href="/api/admin">
+            <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
+
+    </a>
+        <button class="btn btn-outline-light p-1" id="but"  type="submit">rechercher</button>
+    
             </div>
-            </form>
-           
-     </div>
+    <div class=" " style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;"> 
 
-
-    <div class="" style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;">
-      <a href="/api/logout">
-
-
+    <a href="/api/logout">
         <button type="button" class="btn btn-outline-success "><i
             class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
     </a>
             </div>
-
 </nav>
     </header>
     <main>
@@ -78,17 +67,18 @@
     @if ($users->count() > 0)
     @foreach ($users as $user)
     <tr>
-      <td cope="row"><b>{{{ $user->nom }}}</b></td>
-      <td><b>{{{ $user->prenom }}}</b></td>
-      <td><b>{{{ $user->email }}}</b></td>
-       <td><b>{{{ $user->matricule }}}</b></td>
-       <td><b>{{{ $user->date_inscription = date("d-m-y")}}}</b></td>
+
+      <td cope="row">{{{ $user->nom }}}</td>
+      <td>{{{ $user->prenom }}}</td>
+      <td>{{{ $user->email }}}</td>
+       <td>{{{ $user->matricule }}}</td>
+       <td>{{{ $user->date_inscription = date("d-m-y")}}}</td>
 
 
     </tr>
     @endforeach
     @else:
-      <span class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none text-danger">
+      <span id="ok" class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none t  text-danger">
         L'utilisateur recherché ne figure pas sur cette liste !
     </span>
     @endif
