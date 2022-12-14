@@ -40,7 +40,9 @@ class PostController extends Controller
 
 
         //
-        $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
+
+        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
+
 
         $nbr = Utilisateur::where('etat', '=', "1")->count();
 
@@ -186,6 +188,7 @@ class PostController extends Controller
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
+
         $user->motdepasse = $request->get('passwords');
 
         $user->role = $request->get('roles');
@@ -200,6 +203,7 @@ class PostController extends Controller
 
             $user->photo = 'avatarr.jpg';
         }
+
         $user->etat = $etat;
         $user->date_inscription = date("y-m-d h:i:s");
         $user->date_archivage = null;
