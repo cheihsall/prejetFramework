@@ -34,16 +34,16 @@
             <form style="position: relative" class="d-flex" action="search2" method="GET" role="search">
              <input class="form-control me-2" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
                aria-label="Search">
-             <a style=" margin-left: -38px;" href="/api/user">
+             <a style=" margin-left: -38px;" href="/api/usersimple">
                      <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
 
              </a>
              <button style="margin-left: 15px;" class="btn btn-outline-light p-1" id="but" type="submit">rechercher</button>
          </form>
      </div>
-    <div class=" " style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;">
 
-    <a href="/api/logout">
+    <div class="d-flex justify-content-end " style="margin-left:4rem; margin-top:-1rem;max-height: 2.5rem;">
+      <a href="/api/logout">
         <button type="button" class="btn btn-outline-success "><i
             class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>
     </a>
