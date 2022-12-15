@@ -46,8 +46,10 @@
                 </a>
               </div>
             </form>
-</div>
+
+
      </div>
+
 
 </nav>
     </header>
@@ -72,7 +74,7 @@
       <td><b>{{{ $user->prenom }}}</b></td>
       <td><b>{{{ $user->email }}}</b></td>
        <td><b>{{{ $user->matricule }}}</b></td>
-       <td><b>{{{ $user->date_inscription = date("d-m-y")}}}</b></td>
+       <td><b>{{{ $user->created_at }}}</b></td>
 
 
     </tr>
