@@ -102,7 +102,7 @@
     @endforeach
   @else:
     <span id="ok" class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none t  text-danger">
-      L'utilisateur recherché ne figure pas sur cette liste !
+      0 Utilisateur trouvé !
   </span>
   @endif
 

@@ -46,8 +46,10 @@
                 </a>
               </div>
             </form>
-</div>
+
+
      </div>
+
 
 </nav>
     </header>
@@ -72,14 +74,14 @@
       <td><b>{{{ $user->prenom }}}</b></td>
       <td><b>{{{ $user->email }}}</b></td>
        <td><b>{{{ $user->matricule }}}</b></td>
-       <td><b>{{{ $user->date_inscription = date("d-m-y")}}}</b></td>
+       <td><b>{{{ $user->created_at }}}</b></td>
 
 
     </tr>
     @endforeach
     @else:
       <span class="w-75 h-25 mb-2 h5 d-flex justify-content-center border-none text-danger">
-        L'utilisateur recherché ne figure pas sur cette liste !
+        0 Utilisateur trouvé !
     </span>
     @endif
   </tbody>

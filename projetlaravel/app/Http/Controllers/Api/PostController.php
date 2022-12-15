@@ -41,7 +41,7 @@ class PostController extends Controller
 
         //
 
-        $users = Utilisateur::where('matricule', '!=' , $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);
+        $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8); //recuperation de la session matricule et filftrage de user connecté dans la liste
 
 
         $nbr = Utilisateur::where('etat', '=', "1")->count();
@@ -60,7 +60,8 @@ class PostController extends Controller
         session_start();
         if (!isset($_SESSION['matricule'])) return redirect('/login');
 
-        $users = Utilisateur::where('etat', '=', "1")->paginate(8);
+        $users = Utilisateur::where('matricule', '!=', $_SESSION['matricule'])->where('etat', '=', "1")->paginate(8);  //recuperation de la session matricule et filftrage de user connecté dans la liste
+
 
         return view("user", [
             'users' => $users
@@ -87,12 +88,13 @@ class PostController extends Controller
     }
 
 
+//Debut créationn de la page de connexion
 
-
-    public function login(Request $request)
+    public function login(Request $request) //creation de la fonction login 
     {
-        $request->validate([
-            'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],
+        $request->validate([ // creation d'une variable reponse puis intégration de la méthode validate pour accepter si les règles de validation sont acceptées   non
+            ////////////
+            'email' => ['required', 'email', 'regex: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/'],//require pour controler que le champ est obigatoire ,regex:pour verifier le format de l'email
             'passwords' => 'required', 'string',
         ]);
 
@@ -100,56 +102,64 @@ class PostController extends Controller
 
 
 
-        $users = Utilisateur::all();
 
-        foreach ($users as $user) {
+        $users = Utilisateur::all(); //Récuperation de toutes les users de la base de donnée
 
-            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) {
-                if ($user->etat === "1") {
+        foreach ($users as $user) {  //Parcourir les utilisateurs
 
-                    if ($user->role === "administrateur") {
+            if ($user->email == $request->get("email") && $user->motdepasse == $request->get("passwords")) { //Verifier si les identifiants saisie correspond aux identifiants de l'utilisateur dans la base de donnée
+                if ($user->etat === "1") { //Voir si le user qui veut se connecter est archivé ou pas à partir de son etat
+
+                    if ($user->role === "administrateur") { // Vérification à la page admin à partir du role s'il est un administrateur
                         /*   Auth::login($user);   */
-                        session_start();
-                        $_SESSION['nom'] = $user->nom;
-                        $_SESSION['matricule'] = $user->matricule;
-                        $_SESSION['prenom'] = $user->prenom;
-                        $_SESSION['photo'] = $user->photo;
-                        $_SESSION['prenom'] = $user->prenom;
+                        session_start();//demarrage de la session pour afficher:
+                        $_SESSION['nom'] = $user->nom; // Recuperatio session nom
+                        $_SESSION['matricule'] = $user->matricule;//Recup matricule
+                        $_SESSION['prenom'] = $user->prenom;//Recup prenom 
+                        $_SESSION['photo'] = $user->photo;//Recup photo 
+                       
 
-                        return redirect("/api/admin");
+                        return redirect("/api/admin"); 
                     } elseif ($user->role === "utilisateur") {
 
-                        session_start();
+                        session_start(); 
                         $_SESSION['nom'] = $user->nom;
                         $_SESSION['matricule'] = $user->matricule;
                         $_SESSION['prenom'] = $user->prenom;
                         $_SESSION['photo'] = $user->photo;
-                        $_SESSION['prenom'] = $user->prenom;
+                     
                         return redirect("/api/usersimple");
                     }
                 }
+                //afficher message quand l'utilisateur est archivé :compte archivé
                 $valid = $request->validate([
                     'msg' => 'present',
 
                 ]);
             };
         }
-
+                 //afficher message quand l'utilisateur a saisie le mauvais mot de passe ou le mauvais email
         $valid = $request->validate([
             'msg' => 'accepted',
 
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request)  // function qui fait le controle de saisi
+
     {
         $u = new utilisateur();
-        $email = $request->get('email');
-        $request->validate([
+
+        $email = $request->get('email'); //reuperation email
+
+
+
+
+        $request->validate([  // Verification des champs vide
 
             'nom' => 'required',
             'prenom' => 'required',
-            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'email' => 'required |regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix', //Format email
             'passwords' => 'required',
             'roles' => 'required',
             'passwords2' => 'required_with:passwords|same:passwords',
@@ -157,8 +167,11 @@ class PostController extends Controller
 
         ]);
 
-        //controle du mail existant
-        foreach ($u::all() as $user) {
+
+
+
+        foreach ($u::all() as $user) {  //Parcourir  la base de donnees et controle du mail existant
+
 
             if ($user->email === $email) {
 
@@ -172,9 +185,12 @@ class PostController extends Controller
 
         $etat = '1';
 
-        $user = new Utilisateur();
 
-        $user->matricule = $this->generateMatricule();
+
+        $user = new Utilisateur(); // insersion des donnees apres avoir inscri
+
+
+        $user->matricule = $this->generateMatricule(); // autogerer le matricule
         $user->nom = $request->get('nom');
         $user->prenom = $request->get('prenom');
         $user->email = $request->get('email');
@@ -183,15 +199,17 @@ class PostController extends Controller
 
         $user->role = $request->get('roles');
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/user/', $filename);
-            $user->photo = $filename;
-        } else {
+        //insersion, recuperation et affichage de la photo
 
-            $user->photo = 'avatarr.jpg';
+        if ($request->hasFile('photo')) { //si l'utilisateur s'inscrit avec la photo
+            $file = $request->file('photo'); // on recupere la photo
+            $extension = $file->getClientOriginalExtension(); // cryptage de du nom de la photo
+            $filename = time() . '.' . $extension; // recuperation du nom de la crypte avec l'extention original de la photo
+            $file->move('uploads/user/', $filename); //inserer la photo crypter dans le dossier uploads user
+            $user->photo = $filename; //insersion du chemin de la photo dans la base de donnees
+        } else { //si l'utilisateur s'inscrit sans photo
+
+            $user->photo = 'avatarr.jpg'; // il y'a un avatar par defaut
         }
 
         $user->etat = $etat;
@@ -201,7 +219,7 @@ class PostController extends Controller
 
         $user->save();
 
-        return redirect("/pupop");
+        return redirect("/pupop"); // apres avoir inscrit redirection vers pupop et on choisi si on va se connecter ou pas
     }
 
 

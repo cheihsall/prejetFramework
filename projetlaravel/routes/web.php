@@ -17,95 +17,33 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* Route::middleware('auth')->group(function () { */
+
     Route::get('/', function () {
         return redirect('login');
-    });
+    });// cette permet d'afficher par defaut la page de connexion
 
 ///
-Route::middleware('/')->group(function () {
-    return view('welcome');
-})->name('welcome');
-
-//Route::get('/login', [App\Http\Controllers\TestController::class,'index'])->name('login');
-
-
-//creation
 
 Route::get('/admin', function () {
     return view('admin');
 });
 
 Route::get('/user', function () {
-    return view('user');
+    return view('user');// cette permet d'afficher la page utilisateur simple
 });
 
-////////////////////////////////////////////////////////////////////////////
-
-
-
-
-////////////////////////////////////////////////////////////////////////
-
-/* });
-require __DIR__.'/auth.php'; */
-
-
-
 Route::get('inscription', function () {
-
-
-    return view('inscription');
+    return view('inscription'); // cette permet d'afficher le formulaire de connection
 });
 
 Route::get('pupop', function () {
     return view('pupop');
-});
-
-
-
-
-
-
-Route::post('/inscription', [utilisateurs::class, 'inscription']);
-
-
-
-
-Route::post('/inscription' ,[PostController::class,'store']);
-
-
-
-
-
+});// cette permet d'afficher le popup
+Route::post('/inscription' ,[PostController::class,'store']);// cette permet linsertion dans la base de donnee
 Route::get('/login', function () {
     return view('login');
-});
-//Route::post("/utilisateur/login",[Utilisateurs::class,'login']);
-
+});// cette permet d'afficher le formulaire de connection
 Route::post('/inscription', [PostController::class, 'store']);
-
-/* Route::post('/inscription' ,[PostController::class,'inscription']); */
-Route::post('/login' ,[PostController::class,'login']);
-
-
-/* Route::get('lgin', [AuthenticatedSessionController::class, 'create']);
-/* ->name('lagin');
-
-Route::post('lgin', [AuthenticatedSessionController::class, 'store']); */
-
-Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
-
-//Route::post('/login/save', [App\Http\Controllers\TestController::class,'store'])->name('login.store');
-
-
-
-
+Route::post('/login' ,[PostController::class,'login']);// cette permet lautentification
 Route::post('/login/save', [App\Http\Controllers\TestController::class, 'store'])->name('login.store');
 
-/*
-Route::get('/recherche', function () {
-    return view('recherche');
-});
- */

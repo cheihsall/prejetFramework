@@ -26,11 +26,12 @@
                 </nav>
                 <div class="col-md-6 input-control">
                     <label for="input1" class="form-label">Nom<span style="color: red;">*</span></label>
-                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror" value="{{old('nom')}}" id="nom" required>
+                    <input type='text' name='nom' class="form-control border-dark p-2 @error('nom') is-invalid @enderror"  {{-- icone erreur dans l'input --}} value="{{old('nom')}}" id="nom" required>
                     @error('nom')
-                    <div class="text-danger">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div> {{-- C'est dans cette div que les msg d'erreur vont s'afficher --}}
                     @enderror
                 </div>
+                 {{-- Laravel gere tous les msg d'erreur il faut just utiliser la variable message et d'aller dans le fichier validation pour traduire le message en francais par defaut c en englais  --}}
 
                 <div class="col-md-6 input-control">
                     <label for="input2" class="form-label">Prenom<span style="color: red;">*</span></label>
