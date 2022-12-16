@@ -21,7 +21,11 @@ use Illuminate\Support\Facades\Route;
 }); */
 Route::apiResource('admin', PostController::class) ;// cette permet de recuperé les donnees de l'API
 Route::post('posts/edit/{id}', [PostController::class, "edit"]);// cette permet de modifier les donnees d'un Utilisateur grace a son id'
-Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);// cette permet d'afficher la formulaire de modification avec les donnees d'un Utilisateur grace a son id'
+
+// cette permet d'afficher la formulaire de modification avec les donnees d'un Utilisateur grace a son id'
+Route::group(['middleware' => ['web']], function () {
+   Route::get('posts/editForm/{id}', [PostController::class, "editForm"]);
+});
 Route::get('posts/switchRole/{id}', [PostController::class, "switchRole"]); // cette permet de de changer le role d'un Utilisateur grace a son id'
 Route::get('posts/archiv/{id}', [PostController::class, "archiv"]);// cette permet d'archiver un Utilisateur grace a son id'
 Route::get('posts/desarchiv/{id}', [PostController::class, "desarchiv"]);// cette permet desarchiver un Utilisateur grace a son id'
@@ -35,5 +39,8 @@ Route::get('search3', [PostController::class, "Search3"]);
 Route::post('recherche', [PostController::class, "recherche"]);
 Route::get('logout', [PostController::class, 'deconnect']); // cette permet de se connecté
 Route::post('posts/inscription' ,[PostController::class,'store']);// cette permet dinsere des donnees dans l'api
+Route::get('/posts', [PostController::class, "data"]);
+Route::get('/posts/{id}', [PostController::class, "show"]);
+Route::post('/posts/create', [PostController::class, "create"]);
 
 

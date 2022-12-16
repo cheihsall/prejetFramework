@@ -39,7 +39,7 @@
 
               <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
                        <form style="position: relative" class="d-flex" action="search" method="GET" role="search">
-                        <input class="form-control me-2" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
+                        <input class="form-control me-2" name="matricule" id="recherche" value="{{ request()->matricule ?? ''}}" placeholder="Recherche par matricule"
                           aria-label="Search">
                         <a style=" margin-left: -38px;" href="/api/admin">
                                 <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
@@ -53,7 +53,7 @@
 
 
         </div>
-
+    
             <a href="/api/logout">
                 <button type="button" class="btn btn-outline-success "><i
                     class="fa-solid fa-arrow-right-from-bracket" style="color:white; font-size:35px; padding-top:12px;"></i>Deconnecter</button>

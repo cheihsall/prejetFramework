@@ -82,9 +82,22 @@ class PostController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        //
+    public function create(Request $request)
+    { $etat = '1';
+        $user =new Utilisateur;
+        $user->matricule = $this->generateMatricule(); // autogerer le matricule
+        $user->nom = $request->get('nom');
+        $user->prenom = $request->get('prenom');
+        $user->email = $request->get('email');
+
+        $user->motdepasse = $request->get('motdepasse');
+
+        $user->role = $request->get('role');
+        $user->etat = $etat;
+        $user->photo = 'avatarr.jpg'; // il y'a un avatar par defaut
+        $user->save();
+
+        return response()->json($user);
     }
 
 
@@ -227,18 +240,37 @@ class PostController extends Controller
     {
         $users = Utilisateur::findOrFail($id);
 
-        return view("admin", [
-            'users' => array($users)
-        ]);
+        return response()->json($users);
     }
 
 
     public function edit(string $id, Request $request)
-    {
+    { $user =  Utilisateur::findOrFail($id);
+
+            $email = $request->get('email');
+
+        //Parcourir  la base de donnees et controle du mail existant
+            if ($user->email !== $email) {
+
+                $u =  Utilisateur::all();
+                foreach ($u as $user) {
+            if ($user->email === $email) {
+
+                $request->validate([
+
+                    'email' => ['confirmed'],
+
+                ]);
+            } 
+        }
+         }
+        
         $user =  Utilisateur::findOrFail($id);
         $user->nom = $request->get("nom");
         $user->prenom = $request->get("prenom");
+
         $user->email = $request->get("email");
+
         $user->date_modification = date("y-m-d h:i:s");
         $user->save();
         return redirect("/api/admin");
@@ -268,9 +300,12 @@ class PostController extends Controller
     {
     }
 
-    public function update(Request $request, Post $post)
+    public function update(string $id)
     {
-        //
+       
+
+        $users = Utilisateur::all();
+        return response()->json($users);
     }
 
     public function destroy(string $id)
@@ -278,9 +313,8 @@ class PostController extends Controller
         Utilisateur::destroy($id);
 
         $users = Utilisateur::all();
-        return view("admin", [
-            'users' => $users
-        ]);
+        return response()->json($users);
+        
     }
 
 
@@ -312,8 +346,8 @@ class PostController extends Controller
         session_start(); /* demarrage de la session */
         $users = utilisateur::all(); /* recuperation de tous les utilisateurs et stocké dans la variable $users */
         $nbr = Utilisateur::where('etat', '=', "0")->count(); /* recuperation des utilisateurs dont leur etat est egal à 0 c'est à dire archivé et stocké dans la variable $nbr */
-        $search = \Request::get('prenom'); /* requete pour obtenir le prenom utilisé pour la recherche */
-        $users = Utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "0")/* recuperation des prenom d'utilisateurs  ou a peu prés qui ont comme etat 0 et stocké dans la variable $users */
+        $search = \Request::get('matricule'); /* requete pour obtenir le prenom utilisé pour la recherche */
+        $users = Utilisateur::where('matricule', 'like', '%' . $search . '%')->where("etat", "=", "0")/* recuperation des matricules d'utilisateurs  ou a peu prés qui ont comme etat 0 et stocké dans la variable $users */
 
             ->paginate(8); /* chaque page on aura maximum 8 utilisateurs si la recherche affiche plusieurs resultats*/
         return view("listearchive", ["users" => $users, 'nbr' => $nbr]); /* retourner la page listearchive avec un tableau des utilisateurs trouvés et le nombres total des personnes archivés */
@@ -326,8 +360,8 @@ class PostController extends Controller
         session_start();
         $users = utilisateur::all();
         $nbr = Utilisateur::where('etat', '=', "1")->count();/* recuperation des utilisateurs dont leur etat est egal à 1 c'est à dire archivé et stocké dans la variable $nbr */
-        $search = \Request::get('prenom');
-        $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")/* recuperation des prenom d'utilisateurs  ou a peu prés qui ont comme etat 1 et stocké dans la variable $users */
+        $search = \Request::get('matricule');
+        $users = utilisateur::where('matricule', 'like', '%' . $search . '%')->where("etat", "=", "1")->where('matricule', '!=', $_SESSION['matricule'])/* recuperation des matricules des utilisateurs  ou a peu prés qui ont comme etat 1 et stocké dans la variable $users */
 
             ->paginate(5);    /* chaque page on aura maximum 5 utilisateurs si la recherche affiche plusieurs resultats*/
 
@@ -346,8 +380,8 @@ class PostController extends Controller
         session_start();
         $users = utilisateur::all();
         $nbr = Utilisateur::where('etat', '=', "1")->count();
-        $search = \Request::get('prenom');
-        $users = utilisateur::where('prenom', 'like', '%' . $search . '%')->where("etat", "=", "1")
+        $search = \Request::get('matricule');
+        $users = utilisateur::where('matricule', 'like', '%' . $search . '%')->where("etat", "=", "1")->where("etat", "=", "1")->where('matricule', '!=', $_SESSION['matricule'])
 
             ->paginate(5);
 
@@ -367,5 +401,12 @@ class PostController extends Controller
         session_start();
         session_destroy();
         return redirect('/login');
+    }
+
+    public function data()
+    {
+        $users = Utilisateur::all();
+        return response()->json($users);
+    
     }
 }

@@ -28,14 +28,16 @@
                             <b> modification</b>
                         </a>
                     </div>
-                </nav>
+                </nav>@error('email')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 <div class="col-md-6 input-control">
                     <label for="input1" class="form-label">Nom<span style="color: red;">*</span></label>
                     <input type='text' name='nom' placeholder="nom" value="<?= $user['nom'] ?? null ?>"
                         class="form-control border-dark p-2" id="nom">
                     <div class="invalid-feedback d-none" id="erreur_nom"> Nom est obligatoire</div>
                 </div>
-
+             
                 <div class="col-md-6 input-control">
                     <label for="input2" class="form-label">Prenom<span style="color: red;">*</span></label>
                     <input type="text" class="form-control border-dark p-2" value="<?= $user['prenom'] ?? null ?>"
@@ -49,6 +51,7 @@
                         name="email" placeholder="email" id="email">
                     <div class="invalid-feedback d-none" id="erreur_email">Email est obligatoire</div>
                     <div class="invalid-feedback d-none" id="erreur_email2">entrez un format valide</div>
+                    
                 </div><br>
 
                 <div class="row d-flex justify-content-center mt-2 gap-2">
