@@ -261,10 +261,10 @@ class PostController extends Controller
                     'email' => ['confirmed'],
 
                 ]);
-            } 
+            }
         }
          }
-        
+
         $user =  Utilisateur::findOrFail($id);
         $user->nom = $request->get("nom");
         $user->prenom = $request->get("prenom");
@@ -302,7 +302,7 @@ class PostController extends Controller
 
     public function update(string $id)
     {
-       
+
 
         $users = Utilisateur::all();
         return response()->json($users);
@@ -314,7 +314,7 @@ class PostController extends Controller
 
         $users = Utilisateur::all();
         return response()->json($users);
-        
+
     }
 
 
@@ -346,7 +346,7 @@ class PostController extends Controller
         session_start(); /* demarrage de la session */
         $users = utilisateur::all(); /* recuperation de tous les utilisateurs et stocké dans la variable $users */
         $nbr = Utilisateur::where('etat', '=', "0")->count(); /* recuperation des utilisateurs dont leur etat est egal à 0 c'est à dire archivé et stocké dans la variable $nbr */
-        $search = \Request::get('matricule'); /* requete pour obtenir le prenom utilisé pour la recherche */
+        $search = \Request::get('matricule');
         $users = Utilisateur::where('matricule', 'like', '%' . $search . '%')->where("etat", "=", "0")/* recuperation des matricules d'utilisateurs  ou a peu prés qui ont comme etat 0 et stocké dans la variable $users */
 
             ->paginate(8); /* chaque page on aura maximum 8 utilisateurs si la recherche affiche plusieurs resultats*/
@@ -407,6 +407,6 @@ class PostController extends Controller
     {
         $users = Utilisateur::all();
         return response()->json($users);
-    
+
     }
 }
