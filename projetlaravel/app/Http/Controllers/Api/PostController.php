@@ -88,9 +88,9 @@ class PostController extends Controller
     }
 
 
-//Debut créationn de la page de connexion
+//Debut création de la page de connexion
 
-    public function login(Request $request) //creation de la fonction login 
+    public function login(Request $request) //creation de la fonction login
     {
         $request->validate([ // creation d'une variable reponse puis intégration de la méthode validate pour accepter si les règles de validation sont acceptées   non
             ////////////
@@ -115,19 +115,19 @@ class PostController extends Controller
                         session_start();//demarrage de la session pour afficher:
                         $_SESSION['nom'] = $user->nom; // Recuperatio session nom
                         $_SESSION['matricule'] = $user->matricule;//Recup matricule
-                        $_SESSION['prenom'] = $user->prenom;//Recup prenom 
-                        $_SESSION['photo'] = $user->photo;//Recup photo 
-                       
+                        $_SESSION['prenom'] = $user->prenom;//Recup prenom
+                        $_SESSION['photo'] = $user->photo;//Recup photo
 
-                        return redirect("/api/admin"); 
+
+                        return redirect("/api/admin");
                     } elseif ($user->role === "utilisateur") {
 
-                        session_start(); 
+                        session_start();
                         $_SESSION['nom'] = $user->nom;
                         $_SESSION['matricule'] = $user->matricule;
                         $_SESSION['prenom'] = $user->prenom;
                         $_SESSION['photo'] = $user->photo;
-                     
+
                         return redirect("/api/usersimple");
                     }
                 }
