@@ -42,7 +42,7 @@
 
       <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
         <form style="position: relative" class="d-flex" action="rechinactif" method="GET" role="search">
-         <input class="form-control me-2 px-4" name="prenom" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par prenom"
+         <input class="form-control me-2 px-4" name="matricule" id="recherche" value="{{ request()->prenom ?? ''}}" placeholder="Recherche par matricule"
           aria-label="Search">
          <a style=" margin-left: -38px;" href="/api/listearchive">
                  <img class="mt-1" src="/image/quit.png" alt="quitter" width="22">
@@ -52,7 +52,7 @@
      </form>
  </div>
 
-        <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total actifs:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
+        <span class="text-light" style="margin-top:auto;max-height: 2.5rem;">Total archivés:&nbsp;<span class="text-light h3"> {{ $nbr }}</span></span>&nbsp;
 
       <ul class="nav-item m-2">
 

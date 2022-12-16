@@ -36,6 +36,11 @@ Route::get('inscription', function () {
     return view('inscription'); // cette permet d'afficher le formulaire de connection
 });
 
+
+Route::get('editForm', function () {
+    return view('editForm'); // cette permet d'afficher le formulaire de modification
+});
+
 Route::get('pupop', function () {
     return view('pupop');
 });// cette permet d'afficher le popup
@@ -46,4 +51,5 @@ Route::get('/login', function () {
 Route::post('/inscription', [PostController::class, 'store']);
 Route::post('/login' ,[PostController::class,'login']);// cette permet lautentification
 Route::post('/login/save', [App\Http\Controllers\TestController::class, 'store'])->name('login.store');
+
 
